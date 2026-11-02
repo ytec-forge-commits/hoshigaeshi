@@ -47,5 +47,24 @@ const ITEMS={
  guard:{name:'護星',effect:'20秒以内に一度だけ防ぐ',icon:'item-guard.svg',texture:'item-guard'}
 };
 function itemInfo(type){return ITEMS[type]||ITEMS.twin;}
-return{backgroundFrame,cueFrame,creditsFrame,creditsResumeTime,scoreChainFrame,itemInfo};
+// Render-only motion; never feeds collision or input coordinates back into the simulation.
+function flightPose(previous,vx,vy,dt,reduced=false){
+ if(reduced)return{lean:0,tail:0,thrust:0,energy:0,phase:0};
+ const p=previous||{lean:0,tail:0,thrust:0,energy:0,phase:0},step=Math.max(0,Math.min(.05,Number(dt)||0));
+ const clamp=v=>Math.max(-1,Math.min(1,Number(v)||0)),x=clamp(vx/680),y=clamp(-vy/680),blend=1-Math.exp(-step*14),lag=1-Math.exp(-step*7);
+ const lean=p.lean+(x-p.lean)*blend,thrust=p.thrust+(y-p.thrust)*blend,energy=p.energy+(Math.min(1,Math.hypot(x,y))-p.energy)*blend;
+ return{lean,tail:p.tail+(lean-p.tail)*lag,thrust,energy,phase:(p.phase+step*(4+energy*7))%(Math.PI*2)};
+}
+function paintFlight(canvas,image,pose){
+ const ctx=canvas.getContext('2d'),w=canvas.width,h=canvas.height;if(!ctx)return;
+ ctx.clearRect(0,0,w,h);
+ // Horizontal bands bend the head and tapering tail independently, without replacing the artwork.
+ for(let y=0;y<h;y+=4){
+  const t=(y+2)/h,tail=Math.max(0,(t-.52)/.48),head=Math.max(0,1-t/.34),wing=Math.max(0,1-Math.abs(t-.34)/.22);
+  const offset=pose.lean*3*head-pose.tail*13*tail+Math.sin(pose.phase-tail*3)*3*tail*pose.energy;
+  const spread=1-wing*(.055*pose.thrust+.035*Math.sin(pose.phase)*pose.energy),width=w*spread;
+  ctx.drawImage(image,0,y,image.width,Math.min(4,h-y),(w-width)/2+offset,y,width,Math.min(4,h-y));
+ }
+}
+return{flightPose,paintFlight,backgroundFrame,cueFrame,creditsFrame,creditsResumeTime,scoreChainFrame,itemInfo};
 });

@@ -1,5 +1,7 @@
 # ライセンスと素材クレジット
 
+[English](LICENSES.en.md)
+
 このファイルの自作部分に関する条件は、以下の第三者素材の条件を変更しません。再配布時は該当するライセンスと権利表示を維持してください。
 
 ## 自作コード
@@ -104,6 +106,6 @@ The five screen illustrations and six transparent scenery layers in `assets/v7-a
 
 `startup.js` のロゴ音と `sound-design.js` の6効果音は、正弦波・包絡線・疑似乱数ノイズから実行時に合成します。外部サンプルは使用していません。生成コードはApache-2.0、合成された音は既存の自作効果音と同じCC0 1.0の範囲です。素材ファイルの追加・既存音源の上書きはありません。
 
-起動のY-TEC Forgeの名称・Yマーク・ワードマーク・固定句「アイデアを、動くものへ。」はブランド表現です。コードや作品用素材のApache-2.0/CC0から、名称・ロゴの自由利用や公式な推薦が許可されたとは解釈しないでください。今回の作品での表示は本人依頼によるもので、ブランドを第三者へ再許諾しません。色は作品ごとに変更可、固定句は句点を含めて維持します。
+起動のY-TEC Forgeの名称・Yマーク・ワードマーク・固定句「アイデアを、動くものへ。」および英語版「Turning ideas into working creations.」はブランド表現です。コードや作品用素材のApache-2.0/CC0から、名称・ロゴの自由利用や公式な推薦が許可されたとは解釈しないでください。今回の作品での表示は本人依頼によるもので、ブランドを第三者へ再許諾しません。色は作品ごとに変更可、固定句は句点を含めて維持します。
 
 English: The two new geometric item SVGs are original CC0 game assets. Procedural sounds use no external samples; synthesis code is Apache-2.0 and the resulting sounds follow the existing original-audio CC0 terms. Y-TEC Forge naming, logo and fixed Japanese tagline are brand identifiers, excluded from any implied trademark permission under the code or asset licenses.

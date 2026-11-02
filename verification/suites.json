@@ -51,5 +51,7 @@
   "feedback19-boss-pressure.cjs",
   "feedback20-power.cjs",
   "feedback20-sound.cjs",
-  "feedback20-recharge.cjs"
+  "feedback20-recharge.cjs",
+  "feedback21-flight-drops.cjs",
+  "feedback21-locale.cjs"
 ]

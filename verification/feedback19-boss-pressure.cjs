@@ -10,9 +10,9 @@ test('every boss increases emitted bullets across all three HP bands without dro
   assert(counts[1]>counts[0]&&counts[2]>counts[1],difficulty+'/'+stage+': '+counts.join(' -> '));
  }
 });
-test('boss HP rises modestly while existing player damage, healing and deadlines remain usable',()=>{
+test('all bosses retain the requested twofold endurance increase',()=>{
  const baseline={easy:[480,260,300],normal:[600,320,380],hard:[680,360,450],nightmare:[680,360,450]};
- for(const difficulty of Object.keys(C.DIFF))for(const stage of [0,1,2]){const g=new C.Game({difficulty});g.stageIndex=stage;g.spawnBoss();const ratio=g.boss.maxHp/baseline[difficulty][stage];assert(ratio>=1.1&&ratio<=1.2,difficulty+'/'+stage+' HP ratio '+ratio);}
+ for(const difficulty of Object.keys(C.DIFF))for(const stage of [0,1,2]){const g=new C.Game({difficulty});g.stageIndex=stage;g.spawnBoss();const ratio=g.boss.maxHp/baseline[difficulty][stage];assert(ratio>=2.29&&ratio<=2.31,difficulty+'/'+stage+' HP ratio '+ratio);}
 });
 test('late boss volleys are cancelled at defeat and cannot damage the clear interval',()=>{
  const g=new C.Game({difficulty:'nightmare'});g.stageIndex=2;g.spawnBoss();g.boss.hp=g.boss.maxHp*.25;g.bossPattern();assert(g.scheduled.length);g.kill(g.boss,true);assert.equal(g.scheduled.length,0);for(let i=0;i<120;i++)g.step(1/60);assert.equal(g.hits,0);assert.equal(g.bullets.length,0);

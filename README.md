@@ -9,7 +9,7 @@
 - キーボード、マウス固定、standard配列のゲームパッド、タッチ
 - 端末内の記録・設定保存、任意のオンラインランキング
 - 音量調整、ミュート、演出控えめ、全画面表示
-- 現行候補: v9 feedback20（起動・武器・星返し・ボス調整） / 2026-11-02
+- 現行候補: v9 feedback21（日英対応・出発設定・戦闘と姿勢調整） / 2026-11-03
 
 ## 起動
 
@@ -32,8 +32,8 @@ python -m http.server 8877 --bind 127.0.0.1 --directory source
 | ゲームパッド | 左スティック / 十字キー | A / × | Start / Menu |
 | タッチ | 盤面をなぞる | ダブルタップ / 星返しボタン | Ⅱボタン、再開はタップ |
 
-「操作・音」でPCの操作方法とスマホ用ボタンの左右を選べます
-パッド未接続でタッチを使う場合は、PCの操作方法をキーボードかマウス固定へ切り替えてください
+起動時に言語・操作方法・全画面・音あり／なしを選びます。スマホは「タッチ」がおすすめです
+「操作・音」で言語・操作方法・スマホ用ボタンの左右を変更できます。初期位置は左、保存済みの右設定は引き継ぎます
 マウス固定の解除や画面離脱でゲームを停止します
 
 ## 検証
@@ -68,11 +68,11 @@ Gitへは実データ・鍵・内部作業記録を含めません
 オリジナルコードはApache-2.0、素材と同梱依存には個別条件を適用します
 [LICENSE](LICENSE)、[NOTICE](NOTICE)、[素材とライセンス](source/LICENSES.md) の区分を維持してください
 コードの許諾は作品名・ブランドの公式性や推薦を与えません
-UIと物語は既存の日本語版を維持し、今回は全編英訳を追加せず、操作と配信の要点を英語でも案内しています
+UI・物語・ランキング案内・結果画像・謝辞は日本語／英語を切り替えられます。[English player guide](source/README.en.md)も同梱しています
 
 ## English
 
-STAR REBOUND is a vertical browser shooter: capture nearby bullets and return them as golden homing shots. Three stages, four difficulties and a 55-second practice mode. The game and story are currently in Japanese.
+STAR REBOUND is a vertical browser shooter: capture nearby bullets and return them as golden homing shots. Three stages, four difficulties and a 55-second practice mode. The full interface and story support Japanese and English, selectable at startup or in Settings. See the [English player guide](source/README.en.md).
 
 Run the Python command above and open http://127.0.0.1:8877/ . No build or npm dependencies are required; Phaser and fonts are bundled. Controls: arrows/WASD + Space; locked mouse + left click; standard gamepad stick/D-pad + A/cross; or touch drag + double-tap/touch button. P/Esc pauses; gamepad Start/Menu pauses and resumes. Mouse resume requires a deliberate click.
 

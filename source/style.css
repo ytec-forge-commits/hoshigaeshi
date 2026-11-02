@@ -443,3 +443,43 @@ html.opening #cinematic-screen[data-kind="intro"]{position:fixed;inset:0;margin:
  body.run-active:not(.result-active):not(.credits-active):not(.cinematic-active) .game-column:not(:fullscreen){width:100%;max-width:480px}
  body.run-active:not(.result-active):not(.credits-active):not(.cinematic-active) .game-column:not(:fullscreen) .arena-wrap{width:min(100%,calc((100dvh - 320px)*2/3));margin-inline:auto}
 }
+
+/* feedback21: a readable setup, then the existing studio introduction. */
+.boot-actions{position:static;max-width:440px;width:100%;max-height:100dvh;overflow-y:auto;padding:24px;box-sizing:border-box;font-size:14px;gap:10px}
+#boot-screen:has(#boot-options:not([hidden])) #forge-logo{display:none}
+#boot-options{width:100%;text-align:left;display:grid;gap:8px}
+#boot-options h1{font-size:25px;color:#ffe6b4;margin:0 0 10px;text-align:center}
+#boot-options .boot-kicker{text-align:center;letter-spacing:.22em;color:#a9ddd7;font-size:12px;margin-bottom:8px}
+#boot-options label{font-size:14px;color:#d9e8e9;margin-top:8px}
+#boot-options select{width:100%;min-height:44px;font-size:15px}
+#boot-control-help,#boot-display-help{font-size:12px;line-height:1.65;color:#a8bec4;white-space:pre-line}
+#boot-options~button{width:100%;min-width:0}
+#boot-screen:has(#boot-options[hidden]) .boot-actions:has(#boot-reload[hidden]){position:absolute;bottom:0;padding:0;pointer-events:none}
+#credits-screen .credits-farewell .credits-role{font-size:clamp(32px,6vw,50px);font-weight:800;line-height:1.3;letter-spacing:.08em;color:#ffe9bc;margin:5px 0 16px;text-shadow:0 0 24px #ffd27e38}
+@media(max-height:600px) and (orientation:landscape){.boot-actions{max-width:680px;padding:12px 24px;grid-template-columns:1fr 1fr;align-content:center;gap:8px 16px}#boot-options{grid-column:1/-1;grid-template-columns:1fr 1fr;gap:4px 14px}#boot-options h1,#boot-options .boot-kicker{grid-column:1/-1;margin:0}#boot-options label{margin:0}#boot-options label[for=boot-language]{grid-column:1;grid-row:3}#boot-language{grid-column:1;grid-row:4}#boot-options label[for=boot-control]{grid-column:2;grid-row:3}#boot-control{grid-column:2;grid-row:4}#boot-control-help{grid-column:2;grid-row:5/8}#boot-options label[for=boot-display]{grid-column:1;grid-row:5}#boot-display{grid-column:1;grid-row:6}#boot-display-help{grid-column:1;grid-row:7}#boot-status:empty{display:none}#credits-screen .credits-farewell .credits-role{font-size:30px;margin:0 0 4px}}
+
+html[lang=en] .arcade-logo{font:800 clamp(28px,5.6vw,42px)/1.08 Orbitron,sans-serif;letter-spacing:.02em}
+html[lang=en] .arcade-logo span,html[lang=en] .mobile-brand small,html[lang=en] .credits-opening .credits-english{display:none}
+html[lang=en] .mobile-brand{font:700 16px/1.3 Orbitron,sans-serif;letter-spacing:.02em}
+html[lang=en] #credits-screen .credits-opening .credits-name{font:800 clamp(23px,5vw,37px)/1.3 Orbitron,sans-serif;letter-spacing:.02em}
+html[lang=en] .forge-caption{letter-spacing:.03em;font-size:13px;max-width:330px;line-height:1.5}
+html[lang=en] #cinematic-title-main{font-size:clamp(25px,6vw,44px);letter-spacing:.02em}
+html[lang=en] .bottom-bar #power-status #power-active-effect{font-size:11px}
+html[lang=en] #capture>span{font-size:17px;letter-spacing:0}
+html[lang=en] .hud #score-multiplier{font-size:10px;letter-spacing:0}
+html[lang=en] .game-message{line-height:1.3}
+html[lang=en] .credits-roll strong{overflow-wrap:anywhere}
+html[lang=en] #boot-control-help{font-size:12px}
+
+#boot-control-recommendation{font-size:12px;color:#b2eee5;line-height:1.5}
+@media(max-height:600px) and (orientation:landscape){#boot-control-recommendation{grid-column:2;grid-row:4}#boot-control{grid-row:5}#boot-control-help{grid-row:6/9}}
+
+@media(max-width:370px) and (orientation:portrait){#credits-screen .credits-farewell{padding:0;gap:4px}#credits-screen .credits-farewell .credits-three-stars{margin:2px 0 10px}#credits-screen .credits-farewell .credits-role{margin:5px 0 10px}#credits-screen .credits-farewell strong{font-size:18px;line-height:1.6}#credits-screen .credits-farewell .credits-english{line-height:1.3;margin-top:10px}}
+
+html[lang=en] .credits-farewell .credits-english,html[lang=en] .story h1 span{display:none}
+html[lang=en] .story h1{font-size:34px;letter-spacing:.02em}
+
+@media(max-height:600px) and (orientation:landscape){#credits-screen .credits-farewell strong{line-height:1.4}}
+
+.menu-extra-actions{display:grid;grid-template-columns:1fr 1fr;gap:6px}.menu-extra-actions button{min-width:0;line-height:1.35}
+html[lang=en] #menu-screen .menu-card h2.arcade-logo{font-size:clamp(24px,5vw,36px);line-height:1.15}

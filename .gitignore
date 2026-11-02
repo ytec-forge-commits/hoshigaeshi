@@ -97,3 +97,6 @@
 !/verification/feedback20-power.cjs
 !/verification/feedback20-sound.cjs
 !/verification/feedback20-recharge.cjs
+
+!/verification/feedback21-flight-drops.cjs
+!/verification/feedback21-locale.cjs

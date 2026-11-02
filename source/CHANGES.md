@@ -1,3 +1,19 @@
+# feedback21 · 2026-11-03
+
+- 起動時に日本語／English、操作方法、全画面、音あり／なしを選択。言語と操作は設定でも変更・保存。スマホにはタッチを案内。
+- UI・物語・戦闘案内・ランキング・結果画像・謝辞を英語対応。英題STAR REBOUND、Forge英語コピーはTurning ideas into working creations.
+- タイトルから「オープニングを見る」で繰り返し再生でき、完了・省略後はタイトルへ戻ります。
+- 最後の「ありがとう」を拡大。謝辞は「あなたの旅路に、星の祝福を」／May the stars light your way.
+- 全ボスHPをfeedback20の2倍、期限を1.5倍へ。星返しの単発威力3.4→3。得点式・記録は保持しますが旧版と得点条件は変わります。
+- 運搬敵の撃破地点へアイテムを正確に出し、敵弾をアイテム・ラベルより手前に描画。
+- 自機の頭・羽・尾が移動に追従する表示を追加。当たり判定・速度は維持。演出控えめでは変形を止めます。
+- タッチの星返しボタンは新規設定で左。保存済みの右側は保持。
+- 英語の利用案内・オンライン説明・素材権利案内を同梱。保存形式・ランキングAPI/DB・採用画像・既存音源を保持。
+
+English: Full Japanese/English play, startup preferences, opening replay, a larger thank-you and a starlit farewell. Boss HP is doubled, time limits are 1.5×, and base rebound damage is 3 per shot. Items drop exactly at carrier defeat positions and enemy bullets remain visible above them. Movement drives the ship's pose without changing its hitbox. New touch saves place Rebound on the left. Existing preferences and records remain compatible.
+
+---
+
 # feedback19–20 · 2026-11-02
 
 - 黒画面からForgeロゴと合成チャイムを同期し、フェード後にオープニングへ接続。自動再生制限時の明示開始・無音開始、ミュート、演出控えめ、読み込み失敗を扱います。

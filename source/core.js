@@ -97,9 +97,9 @@ spawnBoss(){
 if(this.stagePhase==='boss')return;
 this.stagePhase='boss';this.stageBossSpawned=true;
 this.bossAttack=0;
-  const mirror=this.stageIndex===1,eclipse=this.stageIndex===2,baseHp=mirror?(this.difficulty==='easy'?260:this.hardRules?360:320):eclipse?(this.difficulty==='easy'?300:this.hardRules?450:380):(this.difficulty==='easy'?480:this.hardRules?680:600),hp=Math.round(baseHp*1.15);
+  const mirror=this.stageIndex===1,eclipse=this.stageIndex===2,baseHp=mirror?(this.difficulty==='easy'?260:this.hardRules?360:320):eclipse?(this.difficulty==='easy'?300:this.hardRules?450:380):(this.difficulty==='easy'?480:this.hardRules?680:600),hp=2*Math.round(baseHp*1.15);
   this.boss={id:++this.id,type:mirror?'mirror-boss':eclipse?'eclipse-boss':'boss',x:240,y:-100,hp,maxHp:hp,r:53,age:0,phase:0,warning:0,telegraphed:false,activeSide:null,telegraphSide:null};
-this.bossDeadline=this.time+STAGES[this.stageIndex].bossLimit;
+this.bossDeadline=this.time+STAGES[this.stageIndex].bossLimit*1.5;
 this.nextBossAttack=this.time+2.8;
   this.message(mirror?'鏡潮の主 · 左右の光を見極めよう':eclipse?'時環の主 · 光る瞬間を待とう':'潮の主 · 押し寄せる星を、光に返す',3);this.emit('boss');
 }
@@ -219,21 +219,12 @@ mirrorVolley(e){if(this.difficulty==='nightmare'&&this.stageIndex===1&&e.shots>0
   tryItemDrop(){
   const pending=this.itemPending;if(!pending||this.state!=='playing')return;
   if(this.stagePhase!=='waves'&&this.stagePhase!=='sweep'){this.itemPending=null;this.emit('itemskip');return;}
-  const p=this.player,nearY=clamp(p.y-130,280,470);
-  const candidates=[{x:clamp(pending.x,70,410),y:clamp(pending.y,220,420)},
-    {x:clamp(p.x-105,70,410),y:nearY},{x:clamp(p.x+105,70,410),y:nearY}];
-  for(const y of [nearY,350,260])for(const x of [70,155,240,325,410])candidates.push({x,y});
-  for(const c of candidates){
-    if(dist2(c,p)<90**2)continue;
-    if(this.beams.some(b=>segmentDistance2(c,b,{x:b.endX,y:b.endY})<(62+b.width/2)**2))continue;
-    if(this.bullets.some(b=>!b.dead&&(dist2(c,b)<62**2||dist2(c,{x:b.x+b.vx*.35,y:b.y+b.vy*.35})<52**2)))continue;
-    if(this.enemies.some(e=>!e.dead&&dist2(c,e)<60**2))continue;
-    this.item={id:++this.id,x:c.x,y:c.y,r:24,age:0,type:pending.type};this.itemPending=null;this.itemOffered=true;
-    this.emit('itemdrop',{x:c.x,y:c.y,itemKind:this.item.type});return;
+  // Rewards begin exactly where their carrier fell. Hazard visibility is a render concern.
+  this.item={id:++this.id,x:pending.x,y:pending.y,r:24,age:0,type:pending.type};
+  this.itemPending=null;this.itemOffered=true;
+  this.emit('itemdrop',{x:this.item.x,y:this.item.y,itemKind:this.item.type});
   }
-  // Dense barrages can postpone an offer, but may not erase a promised upgrade.
-  // Sweeping the remaining enemies eventually opens a safe lane.
-  }
+
   updateOptionLasers(world,targets){
   if(this.state!=='playing'||this.stagePhase==='clear'||this.powerUntil<=this.time){this.optionLasers=[];return;}
   if(this.time>=this.nextOptionLaser){this.nextOptionLaser=this.time+1.6;this.optionLasers=[-1,1].map(side=>({id:++this.id,side,x:clamp(this.player.x+side*38,12,W-12),y:this.player.y-10,endY:0,width:8,age:0,life:.24,hitIds:[]}));this.emit('optionlaser');}
@@ -260,7 +251,7 @@ mirrorVolley(e){if(this.difficulty==='nightmare'&&this.stageIndex===1&&e.shots>0
     this.emit('itempickup',{itemKind:type,until:this.time+20});
   }else if(this.item.age>=12||this.item.y>H+25){this.item=null;this.emit('itemlost');}
   }
- release(){const f=this.field;f.phase='cooldown';f.cooldown=captureCooldown(this.difficulty,!!f.count);const count=Math.min(24,f.count);if(count){const powered=this.powerUntil>this.time&&this.twinCharge&&f.count>=8;const damage=3.4*(f.count/count)*(powered?1.2:1);for(let i=0;i<count;i++){const angle=i/count*Math.PI*2;this.shots.push({id:++this.id,x:this.player.x+Math.cos(angle)*34,y:this.player.y+Math.sin(angle)*34,px:this.player.x,py:this.player.y,vx:Math.cos(angle)*180,vy:Math.sin(angle)*180,age:0,r:7,damage,returned:true,target:null});}this.returned+=f.count;this.capturedTotal+=f.count;const healAt=this.difficulty==='nightmare'?24:this.difficulty==='easy'?8:this.hardRules?16:12;if(f.count>=healAt&&this.player.hp<this.player.maxHp){const amount=Math.min(this.difficulty==='nightmare'?1:2,Math.floor(f.count/healAt),this.player.maxHp-this.player.hp);this.player.hp+=amount;this.heals++;this.message(`星の光で、ライフが${amount}回復`,1.8);this.emit('heal',{hp:this.player.hp,amount});}this.score+=f.count*12;this.scoreBreakdown.returns+=f.count*12;this.slow=.11;this.emit('release',{count:f.count,x:this.player.x,y:this.player.y});if(powered){this.twinCharge=false;this.itemActivations++;this.message('連星の光が、星返しを強めた',1.8);this.emit('itemuse',{count:f.count});}}else{this.message('近くの紫の弾を、星返しでつかまえよう',2);this.emit('empty');}f.stars=[];}
+ release(){const f=this.field;f.phase='cooldown';f.cooldown=captureCooldown(this.difficulty,!!f.count);const count=Math.min(24,f.count);if(count){const powered=this.powerUntil>this.time&&this.twinCharge&&f.count>=8;const damage=3*(f.count/count)*(powered?1.2:1);for(let i=0;i<count;i++){const angle=i/count*Math.PI*2;this.shots.push({id:++this.id,x:this.player.x+Math.cos(angle)*34,y:this.player.y+Math.sin(angle)*34,px:this.player.x,py:this.player.y,vx:Math.cos(angle)*180,vy:Math.sin(angle)*180,age:0,r:7,damage,returned:true,target:null});}this.returned+=f.count;this.capturedTotal+=f.count;const healAt=this.difficulty==='nightmare'?24:this.difficulty==='easy'?8:this.hardRules?16:12;if(f.count>=healAt&&this.player.hp<this.player.maxHp){const amount=Math.min(this.difficulty==='nightmare'?1:2,Math.floor(f.count/healAt),this.player.maxHp-this.player.hp);this.player.hp+=amount;this.heals++;this.message(`星の光で、ライフが${amount}回復`,1.8);this.emit('heal',{hp:this.player.hp,amount});}this.score+=f.count*12;this.scoreBreakdown.returns+=f.count*12;this.slow=.11;this.emit('release',{count:f.count,x:this.player.x,y:this.player.y});if(powered){this.twinCharge=false;this.itemActivations++;this.message('連星の光が、星返しを強めた',1.8);this.emit('itemuse',{count:f.count});}}else{this.message('近くの紫の弾を、星返しでつかまえよう',2);this.emit('empty');}f.stars=[];}
 hurt(x,y){const p=this.player;if(p.invuln>0||this.practice)return;if(this.guardUntil>this.time){this.guardUntil=0;p.invuln=.35;this.emit('guardbreak',{x,y});return;}p.hp--;p.invuln=this.difficulty==='easy'?3:1.8;this.hits++;this.combo=0;this.emit('hit',{x,y,hp:p.hp});if(p.hp<=0)this.finish('lost');}
 finish(result){if(this.state!=='playing')return;this.state=result;this.extendUntil=0;this.guardUntil=0;this.bullets=[];this.beams=[];this.optionLasers=[];this.nextOptionLaser=0;this.shots=[];this.scheduled=[];this.buffer=0;this.emit(result,{score:this.score,time:this.time});}
   kill(enemy,returned){if(enemy.dead)return;const bossKill=enemy===this.boss||enemy.type==='boss';enemy.dead=true;if(enemy.itemKind&&!this.item&&!this.itemPending){this.itemPending={x:enemy.x,y:enemy.y,at:this.time,type:enemy.itemKind};this.emit('itemincoming',{itemKind:enemy.itemKind});}this.kills++;this.combo=this.time-this.lastKill<4?this.combo+1:1;this.bestCombo=Math.max(this.bestCombo,this.combo);this.lastKill=this.time;const multiplier=Math.min(5,1+Math.floor(this.combo/5));const points=(bossKill?3000:enemy.type==='jelly'?220:120)*multiplier;this.score+=points;this.scoreBreakdown.defeats+=points;this.emit('destroy',{x:enemy.x,y:enemy.y,enemyType:enemy.type,returned,multiplier,combo:this.combo});if(bossKill){this.bossDefeated=true;this.bullets=[];this.score+=this.player.hp*500;this.scoreBreakdown.lifeBonus+=this.player.hp*500;this.completeStage();}}
