@@ -459,9 +459,10 @@ function creditsHeld(){return document.hidden||creditsBlurred||$('settings').ope
 function syncCreditsAudio(){if(mode!=='credits')return;if(creditsHeld())sound.pause();else if(sound.music)sound.resume();else sound.beginCredits();}
 function paintCredits(dt=0){
  if(mode!=='credits')return;
- const view=document.querySelector('.credits-window'),roll=$('credits-roll'),frame=FEEL.creditsFrame(creditsElapsed,dt,view.clientHeight,roll.scrollHeight,creditsHeld()||creditsReading,roll.lastElementChild.offsetHeight);
+ const view=document.querySelector('.credits-window'),roll=$('credits-roll'),finale=roll.lastElementChild,frame=FEEL.creditsFrame(creditsElapsed,dt,view.clientHeight,roll.offsetHeight,creditsHeld()||creditsReading,finale.offsetHeight);
  creditsElapsed=frame.elapsed;creditsRemaining=creditsReading?Infinity:frame.remaining;
  roll.style.animation='none';roll.style.transform=creditsReading?'none':`translateY(${frame.y}px)`;
+ finale.style.transform=creditsReading?'none':`translateY(${frame.finaleOffset}px)`;
  document.body.classList.toggle('credits-reading',creditsReading);const reduced=effectiveReduced();$('credits-read').disabled=reduced;$('credits-read').textContent=reduced?'スクロールで読む':creditsReading?'流して見る':'止めて読む';$('credits-read').setAttribute('aria-pressed',String(creditsReading));
  const skyTime=reduced?0:creditsElapsed,stamp=[skyTime,reduced,window.devicePixelRatio,frame.closing].join(':');
  if(stamp!==creditsSkyStamp){window.StarCinematic.paintCreditsSky($('credits-sky'),window.StarCinematic.creditsSkyFrame(skyTime,reduced,reduced?0:frame.closing));creditsSkyStamp=stamp;}

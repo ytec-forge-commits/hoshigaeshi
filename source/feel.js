@@ -30,8 +30,8 @@ function cueFrame(kind,age,reduced=false){
 }
 function creditsFrame(elapsed,dt,height,contentHeight,held,finaleHeight=0){
  const next=Math.max(0,elapsed)+(held?0:Math.max(0,dt)),finale=Math.min(height,Math.max(0,finaleHeight)),endY=(height+finale)/2-contentHeight;
- const arrive=(height-endY)/48,duration=finale?Math.max(24,arrive)+4:Math.max(24,(height+contentHeight)/48)+1;
- return{elapsed:next,y:finale?Math.max(endY,height-next*48):height-next*48,remaining:Math.max(0,duration-next),done:next>=duration,closing:finale?clamp((next-arrive)/4,0,1):0};
+ const arrive=(height-endY)/48,duration=finale?Infinity:Math.max(24,(height+contentHeight)/48)+1,y=finale?Math.max(-contentHeight,height-next*48):height-next*48;
+ return{elapsed:next,y,finaleOffset:finale?Math.max(0,endY-y):0,remaining:Math.max(0,duration-next),done:next>=duration,closing:finale?clamp((next-arrive)/4,0,1):0};
 }
 function creditsResumeTime(scrollTop,height){return(Math.max(0,scrollTop)+Math.max(0,height))/48;}
 // Presentation only; the contract test checks these tiers against Game.kill.

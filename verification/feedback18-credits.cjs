@@ -1,13 +1,13 @@
 const assert=require('node:assert/strict'),F=require('../source/feel.js'),C=require('../source/cinematic.js'),results=[];
 function test(name,fn){try{fn();results.push({name,status:'PASS'});}catch(e){results.push({name,status:'FAIL',message:e.message});}}
 // Catch an early result transition, or a farewell that scrolls off before it can be read.
-test('credits farewell settles at the centre and remains readable before result',()=>{
+test('only the farewell stays centred until the player chooses the result',()=>{
  const entering=F.creditsFrame(26,0,400,1200,false,200);
- assert.equal(entering.y,-848);assert.equal(entering.done,false);
+ assert.equal(entering.y,-848);assert.equal(entering.finaleOffset,0);assert.equal(entering.done,false);
  const held=F.creditsFrame(29,0,400,1200,false,200);
- assert.equal(held.y,-900);assert.equal(held.done,false);
- assert.equal(F.creditsFrame(31,0,400,1200,false,200).done,false);
- assert.equal(F.creditsFrame(31,.1,400,1200,false,200).done,true);
+ assert.equal(held.y,-992);assert.equal(held.y+held.finaleOffset,-900);assert.equal(held.done,false);
+ const late=F.creditsFrame(600,0,400,1200,false,200);
+ assert.equal(late.y,-1200);assert.equal(late.y+late.finaleOffset,-900);assert.equal(late.done,false);assert.equal(late.remaining,Infinity);
  assert.deepEqual(F.creditsFrame(29,10,400,1200,true,200),held);
 });
 test('credits can resume from a reading position before the farewell',()=>{

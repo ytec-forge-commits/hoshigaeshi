@@ -92,10 +92,10 @@ English: Guidance follows keyboard, locked mouse, standard gamepad or touch inpu
 ## 星降るスタッフロール（feedback18）
 
 帰還後のエンドクレジットは、暗い星空とゆっくり降る光、時折流れる星を背景にしたスタッフロールです
-役割と名前の間に余白を設け、最後の謝辞を中央で4秒留めてから結果画面へ進みます
+役割と名前の間に余白を設け、最後の謝辞だけを中央に残し、「結果を見る」を押すと結果画面へ進みます
 「止めて読む」、画面を離れたとき、設定中はロールと星の動きが止まります
 演出控えめでは静止した星空と手動スクロールになり、すべてのクレジットを読めます
 横向きの小さい画面では、クレジット中だけ横幅を使って表示します
 
-The closing roll uses a quiet starfield with occasional falling stars, generous spacing, and a four-second farewell hold
+The closing roll uses a quiet starfield with occasional falling stars, generous spacing, and a farewell that stays centred until you choose to view the result
 Reading mode, loss of focus, and settings pause the visuals; reduced motion provides a still sky and manual scrolling
