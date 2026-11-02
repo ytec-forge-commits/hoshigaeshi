@@ -392,4 +392,33 @@ body.run-active:not(.result-active):not(.credits-active):not(.cinematic-active) 
 #result-copy,#pause-reason,#menu-controls,#game-message,#ranking-dialog p,.ranking-submit p,.credits-roll strong,.credits-roll p{ text-wrap:balance }
 #result-title,.credits-veil h2,#stage-clear-name{ text-wrap:balance;line-break:strict }
 .credits-roll strong,.credits-roll p{overflow-wrap:normal;max-width:100%}
+
+/* Closing film: open night sky, quiet type, occasional falling starlight. */
+#credits-screen{padding:0;background:#030914;color:#f6eddb;isolation:isolate}
+#credits-sky{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;z-index:-1}
+#credits-screen .credits-veil{border:0;border-radius:0;padding:24px 20px 16px;gap:8px;background:linear-gradient(180deg,#020712b0,transparent 18%,transparent 80%,#020712d9);overflow:hidden}
+#credits-screen .credits-overline{font:600 10px var(--star-number),sans-serif;letter-spacing:.3em;color:#9bbabf;opacity:.85}
+#credits-screen .credits-veil h2{font-size:14px;font-weight:500;letter-spacing:.12em;color:#d2dfe0;margin:3px 0 8px;text-shadow:0 2px 8px #000}
+#credits-screen .credits-window{mask-image:linear-gradient(transparent,#000 13%,#000 86%,transparent)}
+#credits-screen .credits-roll{gap:64px;padding:0 9px;animation:none}
+#credits-screen .credits-roll section{gap:5px;position:relative;text-shadow:0 2px 12px #020712,0 0 28px #020712}
+#credits-screen .credits-roll section:not(:first-child):not(:last-child)::before{content:'';display:block;width:36px;height:1px;background:linear-gradient(90deg,transparent,#a9bdb65c,transparent);margin:0 auto 15px}
+#credits-screen .credits-roll .credits-role{font-size:12px;font-weight:500;line-height:1.8;letter-spacing:.19em;color:#9fc9cc;margin:0 0 10px}
+#credits-screen .credits-roll strong{font-size:20px;font-weight:600;line-height:1.85;letter-spacing:.035em;color:#f4e8d0}
+#credits-screen .credits-roll p{font-size:14px;line-height:1.95;color:#b9cbd2}
+#credits-screen .credits-opening{gap:12px;margin-bottom:16px}
+#credits-screen .credits-opening .credits-name{font-family:var(--star-display);font-size:54px;font-weight:900;letter-spacing:.22em;padding-left:.22em;color:#ffe3ac;line-height:1.5}
+#credits-screen .credits-roll .credits-english{font:500 10px/1.8 var(--star-number),sans-serif;letter-spacing:.23em;color:#a9babc}
+#credits-screen .credits-three-stars{display:block;color:#e8c686;letter-spacing:.28em;font-size:15px;margin:10px 0 18px;text-shadow:0 0 18px #e6bd6f6b}
+#credits-screen .credits-farewell{padding:18px 0 26px;gap:12px}
+#credits-screen .credits-farewell .credits-role{margin:0 0 4px;color:#d5c295}
+#credits-screen .credits-farewell strong{font-size:21px;color:#ffe7b7}
+#credits-screen .credits-farewell .credits-english{margin-top:13px}
+#credits-screen .credits-actions{gap:10px;padding-top:12px;max-width:360px}
+#credits-screen .credits-actions button{border:1px solid #8da9ad57;border-radius:5px;background:#06101ec9;font-size:13px;color:#b6cdd0;box-shadow:none}
+#credits-screen .credits-actions button:hover{background:#142634;color:#f6e5c4;border-color:#c9bf9c}
+body.credits-reading #credits-screen .credits-window,body.reduced-effects #credits-screen .credits-window{mask-image:none;overflow-y:auto}
+@media(max-width:799px){#credits-screen .credits-veil{padding:20px 13px 13px}#credits-screen .credits-roll{gap:52px}#credits-screen .credits-roll strong{font-size:18px}#credits-screen .credits-roll p{font-size:13px}#credits-screen .credits-opening .credits-name{font-size:48px}#credits-screen .credits-farewell strong{font-size:19px}}
+@media(max-height:600px) and (orientation:landscape){#credits-screen .credits-veil{padding:10px 8px 8px}#credits-screen .credits-veil h2{font-size:12px;margin:0}#credits-screen .credits-overline{font-size:8px}#credits-screen .credits-actions{padding-top:4px}#credits-screen .credits-actions button{font-size:11px;padding:5px;min-height:44px}#credits-screen .credits-farewell{gap:4px;padding:4px 0}#credits-screen .credits-farewell .credits-three-stars{margin:0 0 5px}#credits-screen .credits-farewell strong{font-size:14px}#credits-screen .credits-farewell .credits-english{font-size:8px;margin-top:3px}}
+@media(max-height:600px) and (orientation:landscape){body.credits-active .game-column{display:block;width:100%;max-width:min(720px,calc(100vw - 32px))}body.credits-active .arena-wrap{height:calc(100dvh - 92px);aspect-ratio:auto}#credits-screen .credits-roll{max-width:480px;margin-inline:auto}}
 footer p{line-break:strict;word-break:normal}

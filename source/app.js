@@ -358,7 +358,7 @@ if(qaMode){
   mode='playing';clearInput();acc=0;screen(null);$('capture').disabled=false;if(readyAudioAction){const action=readyAudioAction;readyAudioAction=null;action();}if(!sound.music)sound.begin();else sound.resume();$('arena').focus({preventScroll:true});announce('プレイを再開しました');
  }
  function home(){pendingMouseRestart=null;mouseLock.release();$('resume').disabled=false;stageTransit=null;cancelBossDefeat();readyAudioAction=null;launchGeneration++;ranking.cancel();$('start').disabled=false;$('practice').disabled=false;$('start').textContent='星の海へ ↗';cinematic.cancel();document.body.classList.remove('cinematic-active');currentResult=null;creditsRemaining=0;audioGate=null;hideAudioGate();document.body.classList.remove('run-active','result-active','credits-active','stage-clear-active');sound.stop();sound.keep(COMMON_AUDIO);clearInput();mode='menu';sim=null;finished=false;acc=0;screen('menu');$('pause').disabled=true;$('capture').disabled=true;$('boss-health').hidden=true;$('power-status').hidden=true;$('game-message').textContent='';$('act').textContent='第1ステージ・潮の入口';$('combo').hidden=true;scene?.clearWorld();updateRecords();$('start').focus({preventScroll:true});}
-let currentResult=null,creditsRemaining=0,creditsElapsed=0,creditsReading=false,creditsBlurred=false;
+let currentResult=null,creditsRemaining=0,creditsElapsed=0,creditsReading=false,creditsBlurred=false,creditsSkyStamp='';
 const cinematic=new window.StarCinematic.Timeline();let cinematicHeld=false,stageTransit=null,stageDefeat=null;
 function cancelBossDefeat(){stageDefeat?.clock.cancel();stageDefeat=null;scene?.clearBossDefeat();$('boss-defeat-skip').hidden=true;}
 function beginBossDefeat(stageIndex){
@@ -459,10 +459,13 @@ function creditsHeld(){return document.hidden||creditsBlurred||$('settings').ope
 function syncCreditsAudio(){if(mode!=='credits')return;if(creditsHeld())sound.pause();else if(sound.music)sound.resume();else sound.beginCredits();}
 function paintCredits(dt=0){
  if(mode!=='credits')return;
- const view=document.querySelector('.credits-window'),roll=$('credits-roll'),frame=FEEL.creditsFrame(creditsElapsed,dt,view.clientHeight,roll.scrollHeight,creditsHeld()||creditsReading);
+ const view=document.querySelector('.credits-window'),roll=$('credits-roll'),frame=FEEL.creditsFrame(creditsElapsed,dt,view.clientHeight,roll.scrollHeight,creditsHeld()||creditsReading,roll.lastElementChild.offsetHeight);
  creditsElapsed=frame.elapsed;creditsRemaining=creditsReading?Infinity:frame.remaining;
  roll.style.animation='none';roll.style.transform=creditsReading?'none':`translateY(${frame.y}px)`;
  document.body.classList.toggle('credits-reading',creditsReading);const reduced=effectiveReduced();$('credits-read').disabled=reduced;$('credits-read').textContent=reduced?'スクロールで読む':creditsReading?'流して見る':'止めて読む';$('credits-read').setAttribute('aria-pressed',String(creditsReading));
+ const skyTime=reduced?0:creditsElapsed,stamp=[skyTime,reduced,window.devicePixelRatio,frame.closing].join(':');
+ if(stamp!==creditsSkyStamp){window.StarCinematic.paintCreditsSky($('credits-sky'),window.StarCinematic.creditsSkyFrame(skyTime,reduced,reduced?0:frame.closing));creditsSkyStamp=stamp;}
+ $('credits-screen').style.setProperty('--credits-closing',reduced?0:frame.closing);
  if(!creditsReading&&frame.done)showResult();
 }
 function setCreditsReading(reading){
@@ -474,7 +477,7 @@ function setCreditsReading(reading){
 function showCredits(){
  cinematic.cancel();document.body.classList.remove('cinematic-active');if(!currentResult||currentResult.result!=='stage-clear')return;
  mode='credits';document.body.classList.remove('result-active','stage-clear-active');document.body.classList.add('credits-active');screen('credits');
- creditsElapsed=0;creditsBlurred=!document.hasFocus();creditsReading=effectiveReduced();
+ creditsElapsed=0;creditsBlurred=!document.hasFocus();creditsReading=effectiveReduced();creditsSkyStamp='';
  document.querySelector('.credits-window').scrollTop=0;paintCredits();syncCreditsAudio();$('credits-skip').focus({preventScroll:true});announce('三つのステージをクリア　止めて読むボタンでクレジットを読み返せます');
 }
 function showResult(){if(!currentResult)return;document.body.classList.remove('credits-reading');mode='result';creditsRemaining=0;sound.stop();sound.keep(COMMON_AUDIO);document.body.classList.remove('credits-active','credits-dialog-open');document.body.classList.add('result-active');screen('result');$('result-title').focus({preventScroll:true});announce(`${$('result-title').textContent} 得点${currentResult.score}　返した星${currentResult.returned}個`);}

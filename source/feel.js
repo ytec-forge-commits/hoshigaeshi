@@ -28,9 +28,10 @@ function cueFrame(kind,age,reduced=false){
  const duration=kind==='warning'?2.4:1.5,p=clamp(age/duration,0,1),visible=age>=0&&age<duration;
  return {visible,opacity:visible?(reduced?1:Math.min(1,p*7,(1-p)*6)):0,scale:reduced?1:.92+.12*Math.sin(Math.min(1,p*2)*Math.PI/2),rotation:reduced?0:(1-p)*-5,ring:reduced?1:1+p*1.4};
 }
-function creditsFrame(elapsed,dt,height,contentHeight,held){
- const next=Math.max(0,elapsed)+(held?0:Math.max(0,dt)),duration=Math.max(24,(height+contentHeight)/48)+1;
- return{elapsed:next,y:height-next*48,remaining:Math.max(0,duration-next),done:next>=duration};
+function creditsFrame(elapsed,dt,height,contentHeight,held,finaleHeight=0){
+ const next=Math.max(0,elapsed)+(held?0:Math.max(0,dt)),finale=Math.min(height,Math.max(0,finaleHeight)),endY=(height+finale)/2-contentHeight;
+ const arrive=(height-endY)/48,duration=finale?Math.max(24,arrive)+4:Math.max(24,(height+contentHeight)/48)+1;
+ return{elapsed:next,y:finale?Math.max(endY,height-next*48):height-next*48,remaining:Math.max(0,duration-next),done:next>=duration,closing:finale?clamp((next-arrive)/4,0,1):0};
 }
 function creditsResumeTime(scrollTop,height){return(Math.max(0,scrollTop)+Math.max(0,height))/48;}
 // Presentation only; the contract test checks these tiers against Game.kill.

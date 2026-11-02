@@ -55,5 +55,41 @@ function defeatFrame(progress,reduced=false){
  if(reduced)return{opacity:p>=1?0:1,x:0,portraitScale:1,accent:0};
  return{opacity:smooth(p/.08)*(1-smooth((p-.92)/.08)),x:-115*(1-smooth(p/.125))+115*smooth((p-.875)/.125),portraitScale:1.12-.12*smooth(p/.125),accent:Math.sin(Math.PI*p)};
 }
-return{Timeline,endingFrame,paintEnding,defeatFrame};
+// A finite, deterministic night sky for the closing roll; no emitters or shared RNG.
+function creditsSkyFrame(elapsed,reduced=false,closing=0){
+ const t=reduced?0:Math.max(0,Number(elapsed)||0),fract=v=>v-Math.floor(v),seed=i=>fract(Math.sin(i*127.1+311.7)*43758.5453);
+ const stars=Array.from({length:150},(_,i)=>({x:seed(i+1)*480,y:seed(i+191)*720,radius:.35+seed(i+381)*1.2,opacity:.2+seed(i+571)*.45+(reduced?0:.12*Math.sin(t*.55+i)),cool:i%3===0}));
+ const dust=Array.from({length:32},(_,i)=>({x:seed(i+751)*480+(reduced?0:Math.sin(t*.12+i)*8),y:fract(seed(i+951)+(reduced?0:t*(.006+seed(i+1151)*.009)))*780-30,radius:.45+seed(i+1351)*.7,opacity:.12+seed(i+1551)*.23,cool:i%2===0}));
+ const meteors=[],cycle=Math.floor(t/12),smooth=v=>{v=Math.max(0,Math.min(1,v));return v*v*(3-2*v);};
+ if(!reduced)for(let j=0;j<3;j++){
+  const id=cycle*3+j,start=cycle*12+2.4+j*.72,duration=2.1+seed(id+1701)*.35,p=(t-start)/duration;
+  if(p<0||p>=1)continue;
+  const right=id%2===0,dx=right?-120:95,x=(right?385:18)+seed(id+1801)*70+dx*p,y=-65+p*850;
+  meteors.push({id,x,y,dx,dy:850,tail:85+seed(id+1901)*55,opacity:smooth(p/.12)*smooth((1-p)/.26)*.82,cool:j===1});
+ }
+ return{stars,dust,meteors,nebula:reduced?0:Math.sin(t*.055),closing:Math.max(0,Math.min(1,Number(closing)||0))};
+}
+function paintCreditsSky(canvas,frame){
+ const ratio=Math.min(2,Math.max(1,Number(globalThis.devicePixelRatio)||1)),width=Math.round(480*ratio),height=Math.round(720*ratio);
+ if(canvas.width!==width||canvas.height!==height){canvas.width=width;canvas.height=height;}
+ const ctx=canvas.getContext('2d');if(!ctx)return;
+ ctx.setTransform(ratio,0,0,ratio,0,0);ctx.clearRect(0,0,480,720);
+ const glow=(x,y,r,color)=>{const g=ctx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,color);g.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=g;ctx.fillRect(0,0,480,720);};
+ glow(50+frame.nebula*28,125,325,'rgba(36,128,148,.2)');
+ glow(465-frame.nebula*25,480,310,'rgba(93,62,144,.13)');
+ glow(210,760,290,`rgba(198,141,67,${.11+frame.closing*.12})`);
+ for(const s of frame.stars){ctx.globalAlpha=s.opacity;ctx.fillStyle=s.cool?'#b8e9f1':'#f7e6c9';ctx.beginPath();ctx.arc(s.x,s.y,s.radius,0,Math.PI*2);ctx.fill();}
+ for(const s of frame.dust){ctx.globalAlpha=s.opacity;ctx.fillStyle=s.cool?'#a4ddd9':'#ffe1ac';ctx.fillRect(s.x,s.y,s.radius,s.radius*1.8);}
+ for(const s of frame.meteors){
+  const norm=Math.hypot(s.dx,s.dy),tx=s.x-s.dx/norm*s.tail,ty=s.y-s.dy/norm*s.tail;
+  const tail=ctx.createLinearGradient(tx,ty,s.x,s.y);tail.addColorStop(0,'rgba(0,0,0,0)');tail.addColorStop(.7,s.cool?'#85cbc991':'#f4cc8391');tail.addColorStop(1,'#fff6d9');
+  ctx.globalAlpha=s.opacity;ctx.strokeStyle=tail;ctx.lineWidth=1.25;ctx.beginPath();ctx.moveTo(tx,ty);ctx.lineTo(s.x,s.y);ctx.stroke();
+  ctx.fillStyle='#ffefd0';ctx.beginPath();ctx.arc(s.x,s.y,1.6,0,Math.PI*2);ctx.fill();
+  ctx.globalAlpha=s.opacity*.18;ctx.beginPath();ctx.arc(s.x,s.y,4.8,0,Math.PI*2);ctx.fill();
+ }
+ ctx.globalAlpha=1;
+ // A quiet centre protects the credit lettering while the sky remains visible at the edges.
+ const shade=ctx.createLinearGradient(0,0,480,0);shade.addColorStop(0,'rgba(3,8,18,0)');shade.addColorStop(.32,'rgba(3,8,18,.38)');shade.addColorStop(.68,'rgba(3,8,18,.38)');shade.addColorStop(1,'rgba(3,8,18,0)');ctx.fillStyle=shade;ctx.fillRect(0,0,480,720);
+}
+return{Timeline,endingFrame,paintEnding,defeatFrame,creditsSkyFrame,paintCreditsSky};
 });

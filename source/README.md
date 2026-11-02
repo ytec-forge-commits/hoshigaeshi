@@ -87,3 +87,15 @@ English: Boss cut-ins now last 2.4 seconds, including a 1.8-second central hold.
 物語・結果・操作説明は意味のまとまりで改行し、狭い画面の折返しを調整しています。冒頭ヒント・星返しボタン・撃破演出・面間演出・停止復帰の案内は、キーボード・マウス・パッド・タッチに合わせて切り替わります。ゲームパッドB・○はダイアログを閉じるか撃破演出を省く操作、A・×は決定・星返し・面間演出の静止切替です。
 
 English: Guidance follows keyboard, locked mouse, standard gamepad or touch input. Story, results and help copy use deliberate line breaks. Gamepad B/circle closes dialogs or skips a boss defeat; A/cross confirms, captures or freezes the stage transition.
+
+
+## 星降るスタッフロール（feedback18）
+
+帰還後のエンドクレジットは、暗い星空とゆっくり降る光、時折流れる星を背景にしたスタッフロールです
+役割と名前の間に余白を設け、最後の謝辞を中央で4秒留めてから結果画面へ進みます
+「止めて読む」、画面を離れたとき、設定中はロールと星の動きが止まります
+演出控えめでは静止した星空と手動スクロールになり、すべてのクレジットを読めます
+横向きの小さい画面では、クレジット中だけ横幅を使って表示します
+
+The closing roll uses a quiet starfield with occasional falling stars, generous spacing, and a four-second farewell hold
+Reading mode, loss of focus, and settings pause the visuals; reduced motion provides a still sky and manual scrolling
