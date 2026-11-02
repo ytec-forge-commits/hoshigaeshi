@@ -9,6 +9,6 @@ vm.createContext(env);
 const prefix=source.slice(0,source.indexOf(' function updateRecords()'));
 vm.runInContext(prefix+'persist();})();',env);
 assert.deepEqual(keys,['tenchan.hoshigaeshi.v8-dev']);
-assert.equal(writes.length,1);assert.equal(writes[0][0],'tenchan.hoshigaeshi.v8-dev');assert.deepEqual(writes[0][1],{...fixture,settings:{...fixture.settings,controlMode:'keyboard',captureSide:'left',language:'ja'},schemaVersion:1,previewBests:{...fixture.previewBests,nightmare:0}});
+assert.equal(writes.length,1);assert.equal(writes[0][0],'tenchan.hoshigaeshi.v8-dev');assert.deepEqual(writes[0][1],{...fixture,settings:{...fixture.settings,controlMode:'mouse',captureSide:'left',language:'ja'},schemaVersion:1,previewBests:{...fixture.previewBests,nightmare:0}});
 module.exports='PASS existing synthetic v8 save round trip: all records/settings retained';
 if(require.main===module)console.log(module.exports);

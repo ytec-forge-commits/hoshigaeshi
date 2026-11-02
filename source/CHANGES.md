@@ -1,3 +1,10 @@
+# feedback22 · 2026-11-03
+
+- 操作方法を保存していないPCではマウス、スマホ・タブレットではタッチを初期選択にします。起動時の日英案内も揃え、保存済みの操作方法・記録は保持します。
+- English: New PC saves default to Mouse; touch-first phones and tablets default to Touch. Existing control choices and records are retained.
+
+---
+
 # feedback21 · 2026-11-03
 
 - 起動時に日本語／English、操作方法、全画面、音あり／なしを選択。言語と操作は設定でも変更・保存。スマホにはタッチを案内。

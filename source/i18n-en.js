@@ -527,7 +527,7 @@
   "ゲームパッド（コントローラー）": "Gamepad (controller)",
   "タッチ（スマホ・タブレット）": "Touch (phones and tablets)",
   "スマホ・タブレットは「タッチ」がおすすめです": "On a phone or tablet, choose Touch.",
-  "PCは「キーボード」で始められます": "On a PC, Keyboard is a good place to start.",
+  "PCは「マウス」で始められます": "On a PC, start with Mouse.",
   "画面を指でなぞって移動\nダブルタップか星返しボタンで発動\nⅡ ボタンで一時停止": "Drag your finger on the playfield to move\nDouble-tap or press Rebound to capture\nPress Pause to take a break",
   "未記録秒": "Not recorded",
   "未記録機": "Not recorded",

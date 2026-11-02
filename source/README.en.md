@@ -1,4 +1,4 @@
-# STAR REBOUND — v9 feedback21
+# STAR REBOUND — v9 feedback22
 
 [日本語](README.md)
 
@@ -8,7 +8,7 @@ Open `index.html` through a static HTTP server. Images, music, fonts and scripts
 
 ## Before you begin
 
-The startup screen lets you choose Japanese or English, controls, windowed or fullscreen display, and whether to start with sound. On phones and tablets, **Touch** is recommended and selected for new saves on touch-first devices. Existing choices are retained. Unsupported fullscreen is disabled; if a fullscreen request fails, you can keep playing in the window.
+The startup screen lets you choose Japanese or English, controls, windowed or fullscreen display, and whether to start with sound. For new saves, PCs start with **Mouse**; touch-first phones and tablets start with **Touch**. Existing choices are retained. Unsupported fullscreen is disabled; if a fullscreen request fails, you can keep playing in the window.
 
 After the Forge logo and opening, choose a difficulty or try the 55-second practice mode. The title screen's **Watch opening** button replays the opening at any time and returns to the title when finished or skipped. **Settings** lets you change language, controls, music and sound-effect volume, mute, reduced effects, and the side of the touch Rebound button. The default button position is left; saved right-side preferences are retained.
 
