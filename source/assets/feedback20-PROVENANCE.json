@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-02",
+  "assets": [
+    {
+      "file": "item-extend.svg",
+      "type": "original geometric SVG",
+      "creator": "Y-TEC project with Codex coding assistance",
+      "method": "Written as vector markup; no external source image or image generator",
+      "license": "CC0-1.0 within rights the provider may grant",
+      "distribution": "Game source and runtime package",
+      "modified": true,
+      "sha256": "0d2a12955c50a72643c4f1aaf79570aacdb7c92df6b838c9c785d87291fcd0a8"
+    },
+    {
+      "file": "item-guard.svg",
+      "type": "original geometric SVG",
+      "creator": "Y-TEC project with Codex coding assistance",
+      "method": "Written as vector markup; no external source image or image generator",
+      "license": "CC0-1.0 within rights the provider may grant",
+      "distribution": "Game source and runtime package",
+      "modified": true,
+      "sha256": "2e02b97039fa257d1ae7195b625acf5fdea8fa0d7df569fb4af596cbc0ad9585"
+    }
+  ],
+  "branding": {
+    "location": "index.html / style.css",
+    "origin": "Y-TEC Forge Y-mark and wordmark, adapted with original CSS for this game at the owner request",
+    "tagline": "アイデアを、動くものへ。",
+    "policy": "Tagline remains fixed including punctuation. Palette may vary by work. No trademark permission is implied by code or game-asset licenses."
+  },
+  "proceduralAudio": {
+    "files": [
+      "startup.js",
+      "sound-design.js"
+    ],
+    "method": "Original JavaScript synthesis from oscillators, envelopes and deterministic pseudo-random noise. No external sample, recording or generative audio service.",
+    "codeLicense": "Apache-2.0",
+    "audioLicense": "CC0-1.0 within rights the provider may grant",
+    "verification": "PCM buffer generation, finite values, peak limit and Web Audio source start tested; physical listening not performed."
+  }
+}

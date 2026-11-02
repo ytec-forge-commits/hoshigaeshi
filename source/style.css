@@ -422,3 +422,24 @@ body.credits-reading #credits-screen .credits-window,body.reduced-effects #credi
 @media(max-height:600px) and (orientation:landscape){#credits-screen .credits-veil{padding:10px 8px 8px}#credits-screen .credits-veil h2{font-size:12px;margin:0}#credits-screen .credits-overline{font-size:8px}#credits-screen .credits-actions{padding-top:4px}#credits-screen .credits-actions button{font-size:11px;padding:5px;min-height:44px}#credits-screen .credits-farewell{gap:4px;padding:4px 0}#credits-screen .credits-farewell .credits-three-stars{margin:0 0 5px}#credits-screen .credits-farewell strong{font-size:14px}#credits-screen .credits-farewell .credits-english{font-size:8px;margin-top:3px}}
 @media(max-height:600px) and (orientation:landscape){body.credits-active .game-column{display:block;width:100%;max-width:min(720px,calc(100vw - 32px))}body.credits-active .arena-wrap{height:calc(100dvh - 92px);aspect-ratio:auto}#credits-screen .credits-roll{max-width:480px;margin-inline:auto}}
 footer p{line-break:strict;word-break:normal}
+
+/* feedback19: a black first paint, a restrained studio signature, then the opening. */
+#forge-logo{display:grid;justify-items:center;gap:24px;will-change:opacity,transform;padding:24px}
+.forge-mark{display:grid;place-items:center;width:92px;height:92px;border-radius:29px;border:1px solid #f7d990;color:#ffe8af;background:linear-gradient(145deg,#2c2925,#111b20);box-shadow:0 0 45px #f5d28820,7px 8px 0 -3px #69d8d34d;transform:rotate(-3deg)}
+.forge-mark span{font:800 54px/1 system-ui,sans-serif;text-shadow:0 0 20px #ffcf8277;transform:rotate(3deg)}
+.forge-wordmark{font:600 clamp(25px,5vw,40px)/1.3 system-ui,sans-serif;letter-spacing:.08em;color:#f6ead0}.forge-wordmark strong{font-weight:500;color:#b2eee5}
+.forge-caption{font-size:11px;letter-spacing:.2em;color:#a9bfc0;margin:0}
+.boot-actions{position:absolute;bottom:max(8%,env(safe-area-inset-bottom));left:20px;right:20px;display:grid;justify-items:center;gap:12px;font-size:12px;color:#b6c5cc}.boot-actions p{margin:0}.boot-actions button{min-width:220px;border-color:#60767b;background:#111c23;color:#f3e6c6;min-height:48px}.boot-actions #boot-silent{background:none;border:0;color:#a9bfc0;min-width:150px;font-size:12px}.boot-actions a{text-decoration:underline}
+html.booting body,html.opening body{overflow:hidden;background:#000}
+html.opening body>.top,html.opening .story,html.opening footer,html.opening .hud,html.opening .bottom-bar,html.opening .storage-note,html.opening .act{visibility:hidden}
+html.opening #cinematic-screen[data-kind="intro"]{position:fixed;inset:0;margin:auto;width:min(100vw,66.6667dvh);height:100dvh;max-height:none;z-index:999;background:#000;border:0;border-radius:0;box-shadow:0 0 0 100vmax #000}
+@media(max-height:450px){#forge-logo{gap:13px}.forge-mark{width:65px;height:65px;border-radius:20px}.forge-mark span{font-size:40px}.forge-caption{font-size:10px;display:block}.boot-actions{bottom:15px;gap:3px}}
+
+/* Reserve the existing item panel; support pickups never move the playfield. */
+.bottom-bar #power-status{height:90px;min-height:90px;grid-template-rows:24px 20px 18px;align-content:center;row-gap:2px}#power-status #power-active-effect{font-size:12px;white-space:nowrap;line-height:20px}#power-status #power-support{grid-column:1/-1;grid-row:3;font-size:12px;line-height:18px;color:#bbeae6;white-space:nowrap}
+
+/* Reserve room for both support statuses without moving controls on pickup. */
+@media(max-width:799px) and (orientation:portrait){
+ body.run-active:not(.result-active):not(.credits-active):not(.cinematic-active) .game-column:not(:fullscreen){width:100%;max-width:480px}
+ body.run-active:not(.result-active):not(.credits-active):not(.cinematic-active) .game-column:not(:fullscreen) .arena-wrap{width:min(100%,calc((100dvh - 320px)*2/3));margin-inline:auto}
+}

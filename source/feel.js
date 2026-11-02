@@ -39,5 +39,13 @@ function scoreChainFrame(combo,lastKill,time){
  const remaining=combo>0?clamp(4-(time-lastKill),0,4):0,count=remaining>0?combo:0,multiplier=Math.min(5,1+Math.floor(count/5));
  return{combo:count,multiplier,remaining,nextKills:multiplier===5?0:multiplier*5-count,nextMultiplier:Math.min(5,multiplier+1)};
 }
-return{backgroundFrame,cueFrame,creditsFrame,creditsResumeTime,scoreChainFrame};
+const ITEMS={
+ spread:{name:'三連星',effect:'通常弾が三方向',icon:'item-spread-v5.png',texture:'item-spread-v5'},
+ twin:{name:'連星',effect:'レーザー＋反撃強化1回',icon:'item-twin-v5.png',texture:'item-twin-v5'},
+ pierce:{name:'貫星',effect:'通常弾が二体を貫通',icon:'star.png',texture:'star'},
+ extend:{name:'時星',effect:'取り込み時間 ＋0.25秒',icon:'item-extend.svg',texture:'item-extend'},
+ guard:{name:'護星',effect:'20秒以内に一度だけ防ぐ',icon:'item-guard.svg',texture:'item-guard'}
+};
+function itemInfo(type){return ITEMS[type]||ITEMS.twin;}
+return{backgroundFrame,cueFrame,creditsFrame,creditsResumeTime,scoreChainFrame,itemInfo};
 });

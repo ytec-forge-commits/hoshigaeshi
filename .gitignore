@@ -89,3 +89,11 @@
 **/*.key
 **/__pycache__/
 **/*.pyc
+
+# Startup, boss pressure and powerup regression contracts
+!/verification/feedback19-startup.cjs
+!/verification/feedback19-victory.cjs
+!/verification/feedback19-boss-pressure.cjs
+!/verification/feedback20-power.cjs
+!/verification/feedback20-sound.cjs
+!/verification/feedback20-recharge.cjs

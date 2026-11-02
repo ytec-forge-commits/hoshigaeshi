@@ -45,5 +45,11 @@
   "feedback15-touch.cjs",
   "feedback15-save.cjs",
   "feedback16-cinematics.cjs",
-  "feedback18-credits.cjs"
+  "feedback18-credits.cjs",
+  "feedback19-startup.cjs",
+  "feedback19-victory.cjs",
+  "feedback19-boss-pressure.cjs",
+  "feedback20-power.cjs",
+  "feedback20-sound.cjs",
+  "feedback20-recharge.cjs"
 ]

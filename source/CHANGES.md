@@ -1,3 +1,18 @@
+# feedback19–20 · 2026-11-02
+
+- 黒画面からForgeロゴと合成チャイムを同期し、フェード後にオープニングへ接続。自動再生制限時の明示開始・無音開始、ミュート、演出控えめ、読み込み失敗を扱います。
+- ブランド固定句を「アイデアを、動くものへ。」に統一。星返しでは金と青緑の配色を採用。
+- ボスの微小なHP残差による撃破判定漏れを修正。致死ダメージと期限が同じtickなら撃破を優先し、真の残HPによる時間切れは維持。
+- ボスHPを15％増加。HP68％・34％以下で捕獲できる追加弾を段階的に増加。
+- 通常弾0.4→0.5、三連星0.34→0.43、連星レーザー2→4。レーザーと3面ビームの演出・SEを強化。
+- 時星（20秒間、捕獲+0.25秒）と護星（20秒以内の1被弾を防ぐ）を追加。武器とは併用でき、支援同士も共存。アイテムは各面最大5回。
+- 星返しゲージの回復速度を1.3倍。成功後の待ち時間は通常約3.54秒、ナイトメア4秒、空振り約1.04秒。コンボ猶予4秒は維持。
+- 通常弾・レーザー・ビーム・護星破壊・時星取得・護星取得の6合成SEを追加。既存音源・保存・ランキングAPI/DBは保持。
+
+English: Black-first Forge startup with a synchronized chime; robust fractional boss defeat; 15% more boss HP and health-based extra bullets; stronger shots and lasers; independent capture-extension and one-hit guard items; 1.3× faster capture recharge; stronger procedural cues. Existing saves and ranking formats remain compatible. Synthetic tests do not replace physical-device or human playthrough validation.
+
+---
+
 # v9 feedback18 追補 · 謝辞の中央保持（2026-11-02）
 
 - 先行するクレジットは上へ抜け、最後の「ありがとう」からの謝辞だけを中央に保持

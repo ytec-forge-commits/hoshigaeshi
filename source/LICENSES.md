@@ -8,7 +8,7 @@
 
 ## 生成ラスタ画像・自作音源
 
-assets/ のオリジナル画像は生成AIを用いたラスタ画像です。audio/ のオリジナル楽曲・効果音とともに、提供者が保有し、適法に放棄・許諾できる著作権等の範囲で CC0 1.0 Universal により提供します。第三者由来の素材には、次節の個別条件が適用されます。
+assets/ の従来のオリジナル画像は生成AIを用いたラスタ画像です。追加SVGとForgeロゴの区分は後述します。audio/ のオリジナル楽曲・効果音とともに、提供者が保有し、適法に放棄・許諾できる著作権等の範囲で CC0 1.0 Universal により提供します。第三者由来の素材には、次節の個別条件が適用されます。
 
 生成物に独占的な著作権が成立すること、または第三者の権利が一切存在しないことを保証するものではありません。CC0は、提供者が保有しない権利を譲渡するものではありません。
 
@@ -96,3 +96,14 @@ The five screen illustrations and six transparent scenery layers in `assets/v7-a
 `audio/arcade/chain-1..4` と `pickup-spread/twin/pierce`（OGG/MP3）は Kenney **Interface Sounds 1.0**（CC0 1.0）の confirmation_001/003/004、glass_001 から音程変更・短い重ね合わせ・音量調整・fadeを施したものです。原作者は Kenney。商用利用・改変・再配布可、任意の帰属表示を行います。既存BGM/SEの権利は不変です。
 
 公式出典: https://kenney.nl/assets/interface-sounds 。同梱通知: `audio/arcade/License.txt`。変換元・手順・各ファイルSHA-256: `audio/arcade/PROVENANCE.json`。ブラウザで音声を復号し波形を確認済み、物理スピーカーでの聴取は未実施です。
+
+
+## 追加の幾何学アイコン・合成音・Forgeロゴ（2026-11-02）
+
+`assets/item-extend.svg` と `assets/item-guard.svg` は、この作品用にコードで作成したオリジナルの幾何学アイコンです。外部の画像・ストック素材・画像生成モデルは使っていません。これら2点は既存の自作作品素材と同じく、提供者が許諾できる権利の範囲でCC0 1.0として提供します。
+
+`startup.js` のロゴ音と `sound-design.js` の6効果音は、正弦波・包絡線・疑似乱数ノイズから実行時に合成します。外部サンプルは使用していません。生成コードはApache-2.0、合成された音は既存の自作効果音と同じCC0 1.0の範囲です。素材ファイルの追加・既存音源の上書きはありません。
+
+起動のY-TEC Forgeの名称・Yマーク・ワードマーク・固定句「アイデアを、動くものへ。」はブランド表現です。コードや作品用素材のApache-2.0/CC0から、名称・ロゴの自由利用や公式な推薦が許可されたとは解釈しないでください。今回の作品での表示は本人依頼によるもので、ブランドを第三者へ再許諾しません。色は作品ごとに変更可、固定句は句点を含めて維持します。
+
+English: The two new geometric item SVGs are original CC0 game assets. Procedural sounds use no external samples; synthesis code is Apache-2.0 and the resulting sounds follow the existing original-audio CC0 terms. Y-TEC Forge naming, logo and fixed Japanese tagline are brand identifiers, excluded from any implied trademark permission under the code or asset licenses.
