@@ -1,0 +1,110 @@
+{
+  "README.md": {
+    "bytes": 1417,
+    "sha256": "ec456e1b35be8b9fe6e1550f4e6ba50e19714c59d131ea1e8189908de8e74297"
+  },
+  "audio-pack/CREDITS.md": {
+    "bytes": 2344,
+    "sha256": "56f2399d7beddad5aca1801592f7dbde22ebadd9970cf46abb78fdd7a2902fdd"
+  },
+  "audio-pack/README.md": {
+    "bytes": 3763,
+    "sha256": "f930c7cd11d497a55736885d0b66c302ab4fde3d866a8d2a4423d61ba80d17fe"
+  },
+  "audio-pack/licenses/Upright-Piano-Info.txt": {
+    "bytes": 220,
+    "sha256": "a3bd9d49720187b10269e78b091316d043dcd7b059ec77edb582195152aaf1ce"
+  },
+  "audio-pack/licenses/VSCO-2-CE-CC0-LICENSE.txt": {
+    "bytes": 6555,
+    "sha256": "36ffd9dc085d529a7e60e1276d73ae5a030b020313e6c5408593a6ae2af39673"
+  },
+  "audio-pack/manifest.json": {
+    "bytes": 6928,
+    "sha256": "90d917ab81f6721cc9ef9e9846e6797af549ad34dd24bd8b32c41b051f06ae66"
+  },
+  "audio-pack/qa/loudness.txt": {
+    "bytes": 1208,
+    "sha256": "8d4afef17d057e279b4ebe541991badb006b6e4e4e0d28d111f9ce1ac44a4b66"
+  },
+  "audio-pack/qa/metrics.json": {
+    "bytes": 1774,
+    "sha256": "d3ee6017af22f7f66c90a7ef2c1614ed4ad151594d8b3638d9d0d809343c7c6a"
+  },
+  "audio-pack/qa/mix-stress.json": {
+    "bytes": 308,
+    "sha256": "4302df91ec31a95e7d9ea6e36dd5693ce4ea8873caf1f079a1410d8c98595460"
+  },
+  "audio-pack/qa/sha256.json": {
+    "bytes": 2986,
+    "sha256": "485cbd6311a868bb43f9140f8b5a8580dba14e7c9c4f0a3cf8479e445b699bfb"
+  },
+  "audio-pack/runtime/capture.mp3": {
+    "bytes": 6313,
+    "sha256": "0ba4c01993fb188acb06eba3e92b2d31b0a292fc8acd6f637f73455a8b18d08a"
+  },
+  "audio-pack/runtime/capture.ogg": {
+    "bytes": 8366,
+    "sha256": "d1652e1eeef0c8b6920790dd23c0578615b1ea839951b9d17f641b8fda017452"
+  },
+  "audio-pack/runtime/hit.mp3": {
+    "bytes": 8403,
+    "sha256": "318451f875ebd2c6ee92456bc9daefc4567f023890ee69697d6778fd64523e07"
+  },
+  "audio-pack/runtime/hit.ogg": {
+    "bytes": 8318,
+    "sha256": "56e627503af7877319a961f58631164f4f8986dac2739928bc34129a2fc265bf"
+  },
+  "audio-pack/runtime/rebound.mp3": {
+    "bytes": 20419,
+    "sha256": "087e3a2cdda241e4b35cd84d0dcfa5d6d5de28a798911da4f907e3ce5f0f2a3a"
+  },
+  "audio-pack/runtime/rebound.ogg": {
+    "bytes": 20144,
+    "sha256": "488c3e5809f97da9566de247c3666cafb1d53fb79315f812212916576b7400d9"
+  },
+  "audio-pack/runtime/stage1-flow.mp3": {
+    "bytes": 687064,
+    "sha256": "d13cd08842dd055d36d55ed47d5d4316ab01a86f88add84359dbb80778d7b12d"
+  },
+  "audio-pack/runtime/stage1-flow.ogg": {
+    "bytes": 610502,
+    "sha256": "6c6cf5b71366015bb5b0b698c424ca1a342660bcc9d04b6cf22340d2d43c98f1"
+  },
+  "audio-pack/sources/provenance.json": {
+    "bytes": 2405,
+    "sha256": "6cc9457d3ca81d21962e8fcd45e7dfc1cbdcd0ab79f11a24d2a65ca604869617"
+  },
+  "docs/ASSET-CONTRACT.md": {
+    "bytes": 2196,
+    "sha256": "ff1f13b75bcd72f24c82ee33d8aee666bdd78362b6b48805004989382b955a78"
+  },
+  "docs/preview.html": {
+    "bytes": 1066,
+    "sha256": "d7ff2646f495dcd1e97e08b907fcf0d8333b86914330d5c0423b29732ea7fb5a"
+  },
+  "images/PROVENANCE.md": {
+    "bytes": 2090,
+    "sha256": "3c3de6b08e54d7e9ca4e63f3cb349de5623cdf1b3e4f4dcbdd47a552859231b5"
+  },
+  "images/generation-prompts.txt": {
+    "bytes": 3175,
+    "sha256": "50f7343cd31e4a178f195e49981302f418d8841229651da6a54169406cd26d00"
+  },
+  "images/manifest.json": {
+    "bytes": 2405,
+    "sha256": "d78a91422d5f24f8408bf1bf7704e7d16af2b8948ca66456abaeae545719851e"
+  },
+  "images/runtime/stage1-far.webp": {
+    "bytes": 135876,
+    "sha256": "da77965d6fa6571796e35894e4b6352a0d9d536cd1aa8673c0e58b87e4930ca5"
+  },
+  "images/runtime/stage1-mid.webp": {
+    "bytes": 309734,
+    "sha256": "1f2fe3606bf13e64246fe2372150cfa80209b8af2bdb9a54c8dade2f45fb1e2f"
+  },
+  "images/runtime/stage1-near.webp": {
+    "bytes": 113664,
+    "sha256": "0a5f752b53d04d9040f90ffd13f1aa73a22c5958f8098a2f6f357dfab31e648d"
+  }
+}

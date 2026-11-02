@@ -1,0 +1,26 @@
+{
+  "date": "2026-11-01",
+  "selection": "C, explicitly selected by user",
+  "fonts": [
+    {
+      "family": "zenkakugothicnew",
+      "source": "https://raw.githubusercontent.com/google/fonts/6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec/ofl/zenkakugothicnew/ZenKakuGothicNew-Black.ttf",
+      "sha256": "795819a979184981842994d8f4eb9e14ce443d687bd5e731d6ca67ded8f92261",
+      "bytes": 2300600,
+      "license": "OFL-1.1",
+      "file": "ZenKakuGothicNew-Black.ttf",
+      "modified": false,
+      "use": "Japanese headings"
+    },
+    {
+      "family": "orbitron",
+      "source": "https://raw.githubusercontent.com/google/fonts/6c1dbe27dcf7d817d4b62cec033ba77fa8e2a5ec/ofl/orbitron/Orbitron%5Bwght%5D.ttf",
+      "sha256": "f42db2dd16e642258e35782916eceb1dcdbea06fb958d77ad71dc5963587e8fd",
+      "bytes": 38576,
+      "license": "OFL-1.1",
+      "file": "Orbitron-Variable.ttf",
+      "modified": false,
+      "use": "English headings and numerical scores"
+    }
+  ]
+}

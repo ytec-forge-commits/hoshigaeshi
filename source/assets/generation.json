@@ -1,0 +1,37 @@
+{
+  "background": {
+    "prompt": "Use case: stylized-concept. Production raster background for an original ethereal cosmic-ocean vertical arcade shooter STAR REBOUND. Wide 1536x1024 image composition also excellent cropped to central portrait. Midnight navy ocean merging with deep nebula, distant teal bioluminescent clouds and tiny amber stardust, sinuous organic submerged nebula reef texture at far left and far right. Painterly high-end atmospheric game art, beautiful layered depth, very dark quiet low-noise middle 55 percent for readable bullet gameplay. No horizon line, no ships, no characters, no text or typography, no sharp bright points in center. Seamless-feeling atmospheric expanse. Actual raster painted art, not vector shapes.",
+    "source_file": "sources/background.png",
+    "source_sha256": "eb0ea92a3c1f59b552073ee796c1ed40d38047c974e49db32abb9424ea519e22"
+  },
+  "player": {
+    "prompt": "Use case: stylized-concept. One production-ready top-down player creature sprite for original cosmic-ocean shooter STAR REBOUND, isolated on genuinely transparent background. A small luminous manta ray / flying fish, pointing straight upward, two wide sweeping curved teal wings, amber pearl heart, luminous ivory leading edges, short tapering tail flowing down. Organic graceful living creature, NOT aircraft or spaceship. High-end painted raster game asset, sculpted softly iridescent material, strong simple distinctive readable silhouette at 48 pixels, cyan/teal and amber only. Centered entire creature with ample empty transparent margins, square image, no scenery, no text, no cast shadow, no additional objects.",
+    "source_file": "sources/player.png",
+    "source_sha256": "f7c3337b26280e383141f7dd6a63f450d4de9231e95321e10dd26312b2e595dc"
+  },
+  "enemy-coral": {
+    "prompt": "Use case: stylized-concept. One production-ready top-down hostile creature sprite for original cosmic-ocean shooter STAR REBOUND, genuinely transparent background. Coral seed creature: a compact round dark plum seed with 5 asymmetric fleshy branching coral horns, hot magenta bioluminescent tips and small glowing pink eye in center, hovering organic marine alien, facing downward. High-end painterly raster game art with soft sculpted materials, strong simple silhouette readable at 40px. Entire creature centered with generous transparent margin. No scenery, no shadow, no text, no ships, no additional objects.",
+    "source_file": "sources/enemy-coral.png",
+    "source_sha256": "18d126b1614a26bd4262c27511a92717431874a31213544988394741524ed74b"
+  },
+  "enemy-prism": {
+    "prompt": "Use case: stylized-concept. One production-ready top-down hostile creature sprite for original cosmic-ocean shooter STAR REBOUND, genuinely transparent background. Armored prism lantern creature, elongated diamond shell of dark violet translucent mineral armor, bright pink/magenta living pearl core, two broad articulated shell fins, 3 short curved tendrils hanging downward. Facing downward, looks like a living abyssal lantern jelly rather than a spaceship. High-end painted raster game art, softly sculpted iridescent textures, very strong distinct silhouette readable at 64px, entire creature centered with generous transparent margins. No scenery, no text, no cast shadow, no additional objects.",
+    "source_file": "sources/enemy-prism.png",
+    "source_sha256": "59b2cad1b4b7d279346be83e5729fdb2a59e23c942a7f81b03297b94fe9a621c"
+  },
+  "boss": {
+    "prompt": "Use case: stylized-concept. One production-ready boss sprite for original cosmic-ocean shooter STAR REBOUND, isolated on genuinely transparent background. Large eclipse-flower entity seen from above: dark circular living eclipse center rimmed with amber fire, seven broad curling petal-tentacles made of dark plum organic armor, magenta luminous veins, pink pearl nodes near petal bases. Beautiful ominous abyssal celestial flower, not mechanical. Rich sculpted painterly raster game asset, bold coherent silhouette readable at 180px, restrained fine detail, symmetric radial composition with organic variation, all tentacles inside image, generous transparent margins. No text, no scenery, no cast shadow, no additional objects.",
+    "source_file": "sources/boss.png",
+    "source_sha256": "bddca077caead1149e9e24eedca6ff553f6ca6d1ffcde097537dfad9f8660d91"
+  },
+  "fx-sheet": {
+    "prompt": "Use case: stylized-concept. Production raster sprite atlas for original ethereal cosmic ocean shooter. Genuinely transparent square canvas, EXACTLY four separated sprites in a clean 2 by 2 grid with equal square cells and generous transparent margins inside each cell. Upper left: cyan luminous pearl projectile with white core, slightly elongated vertical, subtle teal glow. Upper right: magenta enemy projectile, compact pointed thorn pearl with pink core. Lower left: golden converted star projectile, warm amber luminous organic five-point star with bright ivory core. Lower right: soft white spark/glow with four delicate tapered rays and soft short halo. High-end painted raster game assets, each crisp readable at 16-32px. All four same consistent painterly luminous treatment. NO background, NO text, NO separators, NO labels, NO extra particles, NO scenery. Each object wholly within its own quarter.",
+    "source_file": "sources/fx-sheet.png",
+    "source_sha256": "48e46b767c992e3348509b6ac9b1063ce365d769beb7324a533e5ffe4fbc542f"
+  },
+  "fx-extra": {
+    "prompt": "Production raster FX atlas for original ethereal cosmic-ocean shooter. Genuinely transparent wide canvas with TWO separate square cells side by side. LEFT: one circular capture-field ring, delicate softly painted luminous cyan and gold wisps forming an unbroken circle, very thin soft line with organic shimmer. Entire center completely transparent. Ring circular, not oval, fits within left half. RIGHT: one gentle golden burst haze, soft diffuse amber light with delicate short radial wisps, ivory gold center, not a harsh star flare. Each effect separated with generous transparent margin, no text, no lines, no grid, no objects, no background. Restrained painterly raster effect, no white-screen flash.",
+    "source_file": "sources/fx-extra.png",
+    "source_sha256": "88a20b5e1d16987e36a806020e8e6e39b14dd1fb64250e263ed28aaa0fee8156"
+  }
+}

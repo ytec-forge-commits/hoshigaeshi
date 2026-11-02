@@ -1,0 +1,240 @@
+{
+  "source": "https://kenney.nl/assets/interface-sounds",
+  "author": "Kenney",
+  "license": "CC0-1.0",
+  "date": "2026-11-01",
+  "modifications": "Pitch shifts, short layers, gain matching, attack/release fades; originals preserved.",
+  "audition": "Decoded and waveform-checked; physical listening not performed.",
+  "cues": [
+    {
+      "name": "chain-1",
+      "parts": [
+        [
+          "confirmation_001.ogg",
+          1,
+          0,
+          0.5
+        ]
+      ],
+      "seconds": 0.31482993197278913,
+      "peak": 0.41802629828453064,
+      "rms": 0.12487887591123581,
+      "files": [
+        {
+          "file": "chain-1.ogg",
+          "sha256": "5ea307e24f16efeb6abf2d9ba8b3fdd846c207aae94b9bb3f6f0ec60b096e7a6",
+          "bytes": 5477
+        },
+        {
+          "file": "chain-1.mp3",
+          "sha256": "1c0436939851693bf5cbbb55b9af1f53478cb82aefcdd017ba683e1abea265a1",
+          "bytes": 3011
+        }
+      ]
+    },
+    {
+      "name": "chain-2",
+      "parts": [
+        [
+          "confirmation_001.ogg",
+          1.122462,
+          0,
+          0.56
+        ],
+        [
+          "glass_001.ogg",
+          0.85,
+          0.12,
+          0.16
+        ]
+      ],
+      "seconds": 0.4691609977324263,
+      "peak": 0.4615006744861603,
+      "rms": 0.10833188146352768,
+      "files": [
+        {
+          "file": "chain-2.ogg",
+          "sha256": "593d028bbcab69d8442c0d638c28cd9358be573480060d74e74da34cd6014643",
+          "bytes": 7013
+        },
+        {
+          "file": "chain-2.mp3",
+          "sha256": "d469f9bccf11a919e40e6cbe01649f80aea5479023ba100618847d7de1cb0b11",
+          "bytes": 4211
+        }
+      ]
+    },
+    {
+      "name": "chain-3",
+      "parts": [
+        [
+          "confirmation_001.ogg",
+          1.259921,
+          0,
+          0.58
+        ],
+        [
+          "confirmation_001.ogg",
+          1.498307,
+          0.12,
+          0.28
+        ]
+      ],
+      "seconds": 0.33843537414965985,
+      "peak": 0.4733622968196869,
+      "rms": 0.13580197095870972,
+      "files": [
+        {
+          "file": "chain-3.ogg",
+          "sha256": "8c8acfe54863da81fd5438dbe4e0cfbbfd47ca686100110d6444e81f3611dcb5",
+          "bytes": 5872
+        },
+        {
+          "file": "chain-3.mp3",
+          "sha256": "f13783eb8862909c75a6f2cc40c1133c0ab67626d8fb510c497405504823edee",
+          "bytes": 3691
+        }
+      ]
+    },
+    {
+      "name": "chain-4",
+      "parts": [
+        [
+          "confirmation_001.ogg",
+          1.498307,
+          0,
+          0.56
+        ],
+        [
+          "confirmation_004.ogg",
+          1,
+          0.09,
+          0.32
+        ],
+        [
+          "glass_001.ogg",
+          1,
+          0.2,
+          0.15
+        ]
+      ],
+      "seconds": 0.6053968253968254,
+      "peak": 0.4503403604030609,
+      "rms": 0.11007575690746307,
+      "files": [
+        {
+          "file": "chain-4.ogg",
+          "sha256": "573848f0fe2e97d29e489fca19c973638364581e05a6a8615b6ea8d89150f739",
+          "bytes": 7646
+        },
+        {
+          "file": "chain-4.mp3",
+          "sha256": "c39a6ed04d14801a83386ce55295e91726706132a9f3e4445a5d7415ddaf30bd",
+          "bytes": 5802
+        }
+      ]
+    },
+    {
+      "name": "pickup-spread",
+      "parts": [
+        [
+          "confirmation_004.ogg",
+          1,
+          0,
+          0.65
+        ],
+        [
+          "glass_001.ogg",
+          0.9,
+          0.15,
+          0.2
+        ]
+      ],
+      "seconds": 0.5153968253968254,
+      "peak": 0.6600000262260437,
+      "rms": 0.16135524213314056,
+      "files": [
+        {
+          "file": "pickup-spread.ogg",
+          "sha256": "4fe5cd51bec38c9f12af86d8140a636138239b4fd3391b8bfb601f41410087c3",
+          "bytes": 7273
+        },
+        {
+          "file": "pickup-spread.mp3",
+          "sha256": "06093bfa287c4fc4d8d5a229968d6d1e90fd100ac41b5b985be3ba6576c3b298",
+          "bytes": 5202
+        }
+      ]
+    },
+    {
+      "name": "pickup-twin",
+      "parts": [
+        [
+          "confirmation_001.ogg",
+          0.943874,
+          0,
+          0.45
+        ],
+        [
+          "confirmation_001.ogg",
+          1.259921,
+          0.1,
+          0.42
+        ],
+        [
+          "glass_001.ogg",
+          1,
+          0.23,
+          0.16
+        ]
+      ],
+      "seconds": 0.5305215419501134,
+      "peak": 0.5101947784423828,
+      "rms": 0.12310222536325455,
+      "files": [
+        {
+          "file": "pickup-twin.ogg",
+          "sha256": "fd36ea0e2c45a3ecc94dcabcd61eb00868f047cc93699fcc244a94325c955caa",
+          "bytes": 7105
+        },
+        {
+          "file": "pickup-twin.mp3",
+          "sha256": "4e0a39b125bfc5faf078e8074cb70e0ab7ef72004d21e3faf2ce5528a30a72c0",
+          "bytes": 5045
+        }
+      ]
+    },
+    {
+      "name": "pickup-pierce",
+      "parts": [
+        [
+          "confirmation_003.ogg",
+          0.8,
+          0,
+          0.52
+        ],
+        [
+          "confirmation_004.ogg",
+          1.259921,
+          0.12,
+          0.3
+        ]
+      ],
+      "seconds": 0.5342403628117914,
+      "peak": 0.4204452335834503,
+      "rms": 0.09798487275838852,
+      "files": [
+        {
+          "file": "pickup-pierce.ogg",
+          "sha256": "050a390feb21c76e07fb39383cf6e20797123e4ebbb39ed54be68c6e87a36c48",
+          "bytes": 7560
+        },
+        {
+          "file": "pickup-pierce.mp3",
+          "sha256": "dd40fd81bc17aecb5c0cfbeb7169f4e675d92b24b99e5f25d7e5edd46ddc08cc",
+          "bytes": 5200
+        }
+      ]
+    }
+  ]
+}

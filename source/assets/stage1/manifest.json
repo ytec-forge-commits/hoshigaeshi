@@ -1,0 +1,83 @@
+[
+  {
+    "key": "stage1-far",
+    "path": "images/runtime/stage1-far.webp",
+    "master": "images/masters/stage1-far.png",
+    "width": 960,
+    "height": 1440,
+    "logical_display": [
+      480,
+      720
+    ],
+    "origin": [
+      0.5,
+      0.5
+    ],
+    "alpha_min": 255,
+    "alpha_max": 255,
+    "center_36_percent_alpha_max": 255,
+    "top_alpha_max": 255,
+    "bottom_alpha_max": 255,
+    "bytes": 135876,
+    "sha256": "da77965d6fa6571796e35894e4b6352a0d9d536cd1aa8673c0e58b87e4930ca5",
+    "master_sha256": "1e80b93e6ce61e1a7ca8a852d3c75a0a81b86887b7c68ea7dead18c009e4d0ea",
+    "initial_opacity": 1,
+    "suggested_scroll_px_per_second": 0,
+    "vertical_loop": "Do not tile; static/slow bounded drift",
+    "illustration_method": "built-in OpenAI image generation; raster"
+  },
+  {
+    "key": "stage1-mid",
+    "path": "images/runtime/stage1-mid.webp",
+    "master": "images/masters/stage1-mid.png",
+    "width": 960,
+    "height": 1440,
+    "logical_display": [
+      480,
+      720
+    ],
+    "origin": [
+      0.5,
+      0.5
+    ],
+    "alpha_min": 0,
+    "alpha_max": 255,
+    "center_36_percent_alpha_max": 1,
+    "top_alpha_max": 0,
+    "bottom_alpha_max": 1,
+    "bytes": 309734,
+    "sha256": "1f2fe3606bf13e64246fe2372150cfa80209b8af2bdb9a54c8dade2f45fb1e2f",
+    "master_sha256": "e423c861f1001915dc8384ea8dcf7fe3ca95828b4447da94f395a2648de46445",
+    "initial_opacity": 0.3,
+    "suggested_scroll_px_per_second": 28,
+    "vertical_loop": "Transparent top/bottom; repeat sprite, verify in game",
+    "illustration_method": "built-in OpenAI image generation; raster"
+  },
+  {
+    "key": "stage1-near",
+    "path": "images/runtime/stage1-near.webp",
+    "master": "images/masters/stage1-near.png",
+    "width": 960,
+    "height": 1440,
+    "logical_display": [
+      480,
+      720
+    ],
+    "origin": [
+      0.5,
+      0.5
+    ],
+    "alpha_min": 0,
+    "alpha_max": 255,
+    "center_36_percent_alpha_max": 1,
+    "top_alpha_max": 0,
+    "bottom_alpha_max": 0,
+    "bytes": 113664,
+    "sha256": "0a5f752b53d04d9040f90ffd13f1aa73a22c5958f8098a2f6f357dfab31e648d",
+    "master_sha256": "dae0999a17dd60a009584232e1c9ede6afda970838dd443fa66f1d5142f7ff63",
+    "initial_opacity": 0.42,
+    "suggested_scroll_px_per_second": 74,
+    "vertical_loop": "Transparent top/bottom; repeat sprite, verify in game",
+    "illustration_method": "built-in OpenAI image generation; raster"
+  }
+]

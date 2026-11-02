@@ -1,0 +1,145 @@
+[
+  {
+    "name": "final-clear",
+    "master": "masters/final-clear.png",
+    "runtime": "runtime/final-clear.webp",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "mode": "RGB",
+    "bytes": 590686,
+    "sha256": "0c576574a1f65dbb8dc45d0922c6ba06edd0d4a06171bf22c264d5ba9867e3f7",
+    "master_sha256": "c1b446ab0e3e105fa7a12e05133f0ed0125e4c04b67fa439a6738c2b039d8e16"
+  },
+  {
+    "name": "gameover",
+    "master": "masters/gameover.png",
+    "runtime": "runtime/gameover.webp",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "mode": "RGB",
+    "bytes": 571338,
+    "sha256": "155980425b7ca05aa59e09eefadad96fab49dfd880e308a9e475bec1471100bc",
+    "master_sha256": "69836aec89c28e2c91980923709deb3b47f9bd43b328199b980cc2eecbbd9a61"
+  },
+  {
+    "name": "stage1-clear",
+    "master": "masters/stage1-clear.png",
+    "runtime": "runtime/stage1-clear.webp",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "mode": "RGB",
+    "bytes": 690292,
+    "sha256": "3059ab4c682f49a750cb1319c685428e5ce227c35cc31e79f71cb093cf0ed10a",
+    "master_sha256": "d9fcafc6a172fbe02e2a31df5221331bc249070ce88aba57e61db94ec7f89665"
+  },
+  {
+    "name": "stage1-mid",
+    "master": "masters/stage1-mid.png",
+    "runtime": "runtime/stage1-mid.webp",
+    "dimensions": [
+      512,
+      768
+    ],
+    "mode": "RGBA",
+    "bytes": 108794,
+    "sha256": "e08e8ce968cbd38de8861e212e2a3f39b04fb848ee7a5adb50122dd6c95087b3",
+    "master_sha256": "b6c1b5f968fa34dcf186b367a9a8d50b6fa575c8c146336dafd51e3cce4643ec"
+  },
+  {
+    "name": "stage1-near",
+    "master": "masters/stage1-near.png",
+    "runtime": "runtime/stage1-near.webp",
+    "dimensions": [
+      512,
+      768
+    ],
+    "mode": "RGBA",
+    "bytes": 131788,
+    "sha256": "239201b4b301d288134a6194eb5c04a75b06934fc80b75c610610b493efafad4",
+    "master_sha256": "3c0c292c29963f791ffeb3a45de8a74b489751699e545197a6affb4a721ba150"
+  },
+  {
+    "name": "stage2-clear",
+    "master": "masters/stage2-clear.png",
+    "runtime": "runtime/stage2-clear.webp",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "mode": "RGB",
+    "bytes": 619870,
+    "sha256": "4331feedf55d5e79c1d1487703e65340bcca3b901df2d971b9fede33cf40da34",
+    "master_sha256": "04797befc64ed27265f34d33f8d35ebe388358633cfa8ff510df2ba954c41a59"
+  },
+  {
+    "name": "stage2-mid",
+    "master": "masters/stage2-mid.png",
+    "runtime": "runtime/stage2-mid.webp",
+    "dimensions": [
+      512,
+      768
+    ],
+    "mode": "RGBA",
+    "bytes": 144732,
+    "sha256": "385e9ff0faeef93f1f1b37c593f5421b8784d55226544030172058d5fe907ba3",
+    "master_sha256": "9b89bbb0724e268f61a05ddb6b7a4361d38949d4a6666db3575cc00059be95ff"
+  },
+  {
+    "name": "stage2-near",
+    "master": "masters/stage2-near.png",
+    "runtime": "runtime/stage2-near.webp",
+    "dimensions": [
+      512,
+      768
+    ],
+    "mode": "RGBA",
+    "bytes": 138134,
+    "sha256": "b89b3bbdb6bd870f57c0ce1e2312d3f551f11dca40d73a4d0dc9898a81a21641",
+    "master_sha256": "f611c3d9aa2e36323da348cf3f5276a3df0d588f8db20d2f637d68c1e3023d2f"
+  },
+  {
+    "name": "stage3-mid",
+    "master": "masters/stage3-mid.png",
+    "runtime": "runtime/stage3-mid.webp",
+    "dimensions": [
+      512,
+      768
+    ],
+    "mode": "RGBA",
+    "bytes": 142264,
+    "sha256": "acd582168745f99b00aacd986bba94dd86bcabdc3ad202a194332fdf4e353855",
+    "master_sha256": "2efdc6038450d0bb442010b86780996422f444357abbfac3097b48ca9fcf91c4"
+  },
+  {
+    "name": "stage3-near",
+    "master": "masters/stage3-near.png",
+    "runtime": "runtime/stage3-near.webp",
+    "dimensions": [
+      512,
+      768
+    ],
+    "mode": "RGBA",
+    "bytes": 124766,
+    "sha256": "d35b4d165316b9f4bf2ed4d0f39e05fe7733555f0394d1a5201024c2ceba9f63",
+    "master_sha256": "17acee0096425f481f737039713348e0e88c377ff28abe34fd78d85bded6c9df"
+  },
+  {
+    "name": "title",
+    "master": "masters/title.png",
+    "runtime": "runtime/title.webp",
+    "dimensions": [
+      1024,
+      1536
+    ],
+    "mode": "RGB",
+    "bytes": 693380,
+    "sha256": "0e73215b4f476071616e47a168389fa340b324328b58d0a3411c5915acb80d09",
+    "master_sha256": "c34a7ab185be4d14815514ce9bbe800103dfc0904a07bc2009c97fffe543348b"
+  }
+]

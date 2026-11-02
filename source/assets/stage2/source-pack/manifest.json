@@ -1,0 +1,292 @@
+{
+  "status": "all six route chunks and sprites; actual game QA pending",
+  "background": {
+    "source_dimensions": [
+      724,
+      2172
+    ],
+    "runtime_resample": [
+      960,
+      2880
+    ],
+    "source_sha256": "64abd155ac4557923613be0b82dada9ca51779d5390fd022821a7a48ef0f2b30",
+    "logical_overlap": 120,
+    "texture_overlap_pixels": 240,
+    "exact_overlap_equal": null,
+    "route_direction": "01 bottom-to-top, then 02 bottom-to-top; scenery moves downward as camera advances upward",
+    "candidate_only": true,
+    "files": [
+      {
+        "key": "stage2-route-01",
+        "path": "assets/stage2/route/stage2-route-01.webp",
+        "dimensions": [
+          960,
+          1440
+        ],
+        "logical": [
+          480,
+          720
+        ],
+        "anchor": [
+          0.5,
+          0.5
+        ],
+        "bytes": 1116148,
+        "sha256": "88c9f64111df29602d23cd7f2e7cd8d8abddbb55b3a5c5ee864cd709623b2065"
+      },
+      {
+        "key": "stage2-route-02",
+        "path": "assets/stage2/route/stage2-route-02.webp",
+        "dimensions": [
+          960,
+          1440
+        ],
+        "logical": [
+          480,
+          720
+        ],
+        "anchor": [
+          0.5,
+          0.5
+        ],
+        "bytes": 1129304,
+        "sha256": "bf08382bc5fe938cec8d36b39dad9ec328fe7e4b5f39fa6ebe744f7507e29853"
+      },
+      {
+        "key": "stage2-route-03",
+        "path": "assets/stage2/route/stage2-route-03.webp",
+        "dimensions": [
+          960,
+          1440
+        ],
+        "logical": [
+          480,
+          720
+        ],
+        "anchor": [
+          0.5,
+          0.5
+        ],
+        "bytes": 1136654,
+        "sha256": "47dcf6b3647ba7034edeaa8eca9632d12669a75c4f4e34f14ecffc1493c9560d"
+      },
+      {
+        "key": "stage2-route-04",
+        "path": "assets/stage2/route/stage2-route-04.webp",
+        "dimensions": [
+          960,
+          1440
+        ],
+        "logical": [
+          480,
+          720
+        ],
+        "anchor": [
+          0.5,
+          0.5
+        ],
+        "bytes": 898468,
+        "sha256": "c08e79d4ba23f716bb463489782989eba181c0befc0d3d06c6264c8feec6d245"
+      },
+      {
+        "key": "stage2-route-05",
+        "path": "assets/stage2/route/stage2-route-05.webp",
+        "dimensions": [
+          960,
+          1440
+        ],
+        "logical": [
+          480,
+          720
+        ],
+        "anchor": [
+          0.5,
+          0.5
+        ],
+        "bytes": 828790,
+        "sha256": "f7a7a1652ae4d3a73da4cdd2ae2e5db672a94a8e378ef365b2149821dd0c284e"
+      },
+      {
+        "key": "stage2-route-06",
+        "path": "assets/stage2/route/stage2-route-06.webp",
+        "dimensions": [
+          960,
+          1440
+        ],
+        "logical": [
+          480,
+          720
+        ],
+        "anchor": [
+          0.5,
+          0.5
+        ],
+        "bytes": 958422,
+        "sha256": "52f680a845fa74a83eaecac6a0f296920b865ba29f9fa2652d15cfcb96087e0c"
+      }
+    ],
+    "exact_overlap_pairs": [
+      [
+        1,
+        2
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        5,
+        6
+      ]
+    ],
+    "nonidentical_generation_joins": [
+      [
+        2,
+        3
+      ],
+      [
+        4,
+        5
+      ]
+    ],
+    "join_blend": "local240texturepx/120logicalpx spatial mask, seeREADME",
+    "sources": [
+      {
+        "name": "route-first-two-source-v3.png",
+        "sha256": "64abd155ac4557923613be0b82dada9ca51779d5390fd022821a7a48ef0f2b30"
+      },
+      {
+        "name": "route-three-four-source.png",
+        "sha256": "0337890cadf4a79e9e5d4f8919b20381713e7dffcb07425a6b173f2b0dc50bbd"
+      },
+      {
+        "name": "route-five-six-source.png",
+        "sha256": "0a83fb97b9a38086108c63b86f01a87be0c16ece536c8ef35600ed71c15378ec"
+      }
+    ]
+  },
+  "sprites": [
+    {
+      "key": "stage2-mirror",
+      "path": "assets/stage2/enemy-mirror.png",
+      "size": [
+        256,
+        256
+      ],
+      "display": [
+        64,
+        64
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "opaque_threshold": 128,
+      "body_bbox": [
+        48,
+        58,
+        208,
+        197
+      ],
+      "apparent_body_width": 40.0,
+      "collision_radius_independent": 18,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "source_size": [
+        1254,
+        1254
+      ],
+      "sha256": "7004093b019baa4004280a838f3f85355de172d8bcc5e71865c5fa22c86d25d4",
+      "bytes": 38200
+    },
+    {
+      "key": "stage2-boss",
+      "path": "assets/stage2/boss-mirror.png",
+      "size": [
+        512,
+        512
+      ],
+      "display": [
+        190,
+        190
+      ],
+      "anchor": [
+        0.5,
+        0.5
+      ],
+      "opaque_threshold": 128,
+      "body_bbox": [
+        108,
+        125,
+        405,
+        386
+      ],
+      "apparent_body_width": 110.21484375,
+      "collision_radius_independent": 53,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "source_size": [
+        1254,
+        1254
+      ],
+      "sha256": "a77cc426e4c3bea521bd1faa9328e9d3e158a7a1cca8b71a388e241384ad3f14",
+      "bytes": 106708
+    }
+  ],
+  "files": [
+    {
+      "path": "assets/stage2/boss-mirror.png",
+      "bytes": 106708,
+      "sha256": "a77cc426e4c3bea521bd1faa9328e9d3e158a7a1cca8b71a388e241384ad3f14"
+    },
+    {
+      "path": "assets/stage2/enemy-mirror.png",
+      "bytes": 38200,
+      "sha256": "7004093b019baa4004280a838f3f85355de172d8bcc5e71865c5fa22c86d25d4"
+    },
+    {
+      "path": "assets/stage2/route/join-after-02-reference.webp",
+      "bytes": 194568,
+      "sha256": "b68c08b1872048c6e5117f5c4c6bc2945993bba43fd926e9798dd71d172b06ba"
+    },
+    {
+      "path": "assets/stage2/route/join-after-04-reference.webp",
+      "bytes": 151808,
+      "sha256": "dc8800995ca767c4d50333a0525ea3d38e797e592c810924f82b19c724d73531"
+    },
+    {
+      "path": "assets/stage2/route/stage2-route-01.webp",
+      "bytes": 1116148,
+      "sha256": "88c9f64111df29602d23cd7f2e7cd8d8abddbb55b3a5c5ee864cd709623b2065"
+    },
+    {
+      "path": "assets/stage2/route/stage2-route-02.webp",
+      "bytes": 1129304,
+      "sha256": "bf08382bc5fe938cec8d36b39dad9ec328fe7e4b5f39fa6ebe744f7507e29853"
+    },
+    {
+      "path": "assets/stage2/route/stage2-route-03.webp",
+      "bytes": 1136654,
+      "sha256": "47dcf6b3647ba7034edeaa8eca9632d12669a75c4f4e34f14ecffc1493c9560d"
+    },
+    {
+      "path": "assets/stage2/route/stage2-route-04.webp",
+      "bytes": 898468,
+      "sha256": "c08e79d4ba23f716bb463489782989eba181c0befc0d3d06c6264c8feec6d245"
+    },
+    {
+      "path": "assets/stage2/route/stage2-route-05.webp",
+      "bytes": 828790,
+      "sha256": "f7a7a1652ae4d3a73da4cdd2ae2e5db672a94a8e378ef365b2149821dd0c284e"
+    },
+    {
+      "path": "assets/stage2/route/stage2-route-06.webp",
+      "bytes": 958422,
+      "sha256": "52f680a845fa74a83eaecac6a0f296920b865ba29f9fa2652d15cfcb96087e0c"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+const assert=require('node:assert/strict'),C=require('../source/core.js'),results=[];
+function test(name,fn){try{fn();results.push({name,status:'PASS'});}catch(e){results.push({name,status:'FAIL',message:e.message});}}
+function fixture(difficulty='normal',practice=false){const g=new C.Game({difficulty,practice,seed:431});g.waveAt=Infinity;g.nextShot=Infinity;g.enemies=[{id:++g.id,type:'courier',x:240,y:594,baseX:240,age:2,hp:999,maxHp:999,r:16,fireAt:999,shots:0,offset:-2*1.3,pattern:0,beat:0}];return g;}
+for(const difficulty of ['easy','normal','hard'])test(difficulty+' enemy body hurts once then respects invulnerability',()=>{const g=fixture(difficulty),hp=g.player.hp;g.step(1/60);assert.equal(g.player.hp,hp-1);assert.equal(g.hits,1);assert.equal(g.player.invuln,difficulty==='easy'?3:1.8);g.step(1/60);assert.equal(g.player.hp,hp-1);g.player.invuln=0;g.step(1/60);assert.equal(g.player.hp,hp-2);});
+test('boss body damages the normal player',()=>{const g=fixture();g.enemies=[];g.spawnBoss();g.boss.y=130;g.player.y=130;g.nextBossAttack=Infinity;g.step(1/60);assert.equal(g.player.hp,3);assert.equal(g.hits,1);});
+test('visual wings outside the core collision circle do not hurt',()=>{const g=fixture();g.player.x=270;g.step(1/60);assert.equal(g.player.hp,4);assert.equal(g.hits,0);});
+test('practice and QA invulnerability deliberately ignore body contact',()=>{const practice=fixture('normal',true);practice.step(1/60);assert.equal(practice.player.hp,4);const qa=fixture();qa.player.invuln=999;qa.step(1/60);assert.equal(qa.player.hp,4);assert(qa.player.invuln>998);});
+module.exports={failed:results.filter(r=>r.status==='FAIL').length,results};

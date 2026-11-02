@@ -1,0 +1,46 @@
+[
+  {
+    "key": "stage1-passage",
+    "path": "images/runtime/stage1-passage.webp",
+    "master": "images/masters/stage1-passage.png",
+    "width": 960,
+    "height": 1440,
+    "logical_display": [
+      480,
+      720
+    ],
+    "origin": [
+      0.5,
+      0.5
+    ],
+    "opaque": true,
+    "seamless": false,
+    "center30_mean_srgb_luma": 0.059163019808309125,
+    "center30_p95_srgb_luma": 0.09259607843137253,
+    "bytes": 269866,
+    "sha256": "21b67cb1103a0de23598cefe49df5d02291b3ebad1a418e71c4da8d050f9f716",
+    "master_sha256": "8e71de1bf0d118fbb9e3829218e37c415ed9eaf911062a28582c222fae61b6e3"
+  },
+  {
+    "key": "stage1-boss-vista",
+    "path": "images/runtime/stage1-boss-vista.webp",
+    "master": "images/masters/stage1-boss-vista.png",
+    "width": 960,
+    "height": 1440,
+    "logical_display": [
+      480,
+      720
+    ],
+    "origin": [
+      0.5,
+      0.5
+    ],
+    "opaque": true,
+    "seamless": false,
+    "center30_mean_srgb_luma": 0.05948142358652564,
+    "center30_p95_srgb_luma": 0.09823686274509803,
+    "bytes": 174234,
+    "sha256": "cc4dd1ce04623edd05ed0f022e674af5a27d28f2d54e33dde045cab4b15488e8",
+    "master_sha256": "09ed51a35e9d21cdf9f9e2e8d6a29b354f8d808cd1486cb04d79e7ce833f37eb"
+  }
+]

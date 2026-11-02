@@ -1,0 +1,222 @@
+{
+  "title": "Star Current / 星流",
+  "status": "private integration candidate; actual listening pending",
+  "bpm": 112,
+  "bars": 16,
+  "time_signature": "4/4",
+  "source_repository_tree_sha": "440300901dfe9275fd84e0b7763af1f8443ae62e",
+  "audio": {
+    "stage1-flow": {
+      "sample_rate": 44100,
+      "channels": 2,
+      "frames": 1512000,
+      "seconds": 34.285714285714285,
+      "peak_dbfs": -5.000377362660108,
+      "rms_dbfs": -20.722974050442893,
+      "oversampled_peak_dbfs": -4.994849987629037,
+      "clipped_samples": 0,
+      "decoded_ogg_frames": 1512000,
+      "decoded_ogg_peak_dbfs": -4.965564131134083,
+      "loop_start_frame": 0,
+      "loop_end_frame_exclusive": 1512000,
+      "loop_boundary_delta": 0.0
+    },
+    "capture": {
+      "sample_rate": 44100,
+      "channels": 2,
+      "frames": 10584,
+      "seconds": 0.24,
+      "peak_dbfs": -10.000126940172311,
+      "rms_dbfs": -23.643516068765663,
+      "oversampled_peak_dbfs": -9.99459956514124,
+      "clipped_samples": 0,
+      "decoded_ogg_frames": 10456,
+      "decoded_ogg_peak_dbfs": -9.863731385569185,
+      "loop_start_frame": null,
+      "loop_end_frame_exclusive": null,
+      "loop_boundary_delta": null
+    },
+    "rebound": {
+      "sample_rate": 44100,
+      "channels": 2,
+      "frames": 41895,
+      "seconds": 0.95,
+      "peak_dbfs": -4.0000883347026726,
+      "rms_dbfs": -18.62290298652362,
+      "oversampled_peak_dbfs": -3.9945609596716016,
+      "clipped_samples": 0,
+      "decoded_ogg_frames": 41767,
+      "decoded_ogg_peak_dbfs": -4.095132452327147,
+      "loop_start_frame": null,
+      "loop_end_frame_exclusive": null,
+      "loop_boundary_delta": null
+    },
+    "hit": {
+      "sample_rate": 44100,
+      "channels": 2,
+      "frames": 15876,
+      "seconds": 0.36,
+      "peak_dbfs": -7.0005506829029605,
+      "rms_dbfs": -20.555508934791796,
+      "oversampled_peak_dbfs": -6.9950233078718895,
+      "clipped_samples": 0,
+      "decoded_ogg_frames": 15748,
+      "decoded_ogg_peak_dbfs": -6.921388792955368,
+      "loop_start_frame": null,
+      "loop_end_frame_exclusive": null,
+      "loop_boundary_delta": null
+    }
+  },
+  "files": [
+    {
+      "path": "CREDITS.md",
+      "bytes": 2344,
+      "sha256": "56f2399d7beddad5aca1801592f7dbde22ebadd9970cf46abb78fdd7a2902fdd"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3763,
+      "sha256": "f930c7cd11d497a55736885d0b66c302ab4fde3d866a8d2a4423d61ba80d17fe"
+    },
+    {
+      "path": "compose.py",
+      "bytes": 8124,
+      "sha256": "f723e51807f1ea32a68ea0a393c67397c16a92d1cc260db3e85be3c0637f4b36"
+    },
+    {
+      "path": "licenses/Upright-Piano-Info.txt",
+      "bytes": 220,
+      "sha256": "a3bd9d49720187b10269e78b091316d043dcd7b059ec77edb582195152aaf1ce"
+    },
+    {
+      "path": "licenses/VSCO-2-CE-CC0-LICENSE.txt",
+      "bytes": 6555,
+      "sha256": "36ffd9dc085d529a7e60e1276d73ae5a030b020313e6c5408593a6ae2af39673"
+    },
+    {
+      "path": "masters/capture.wav",
+      "bytes": 42380,
+      "sha256": "3b4da5f4ba0c3eae2303215c2c08cc175817404dec8aa0bbb9537294cc71a797"
+    },
+    {
+      "path": "masters/hit.wav",
+      "bytes": 63548,
+      "sha256": "47e37ccef2b4a19fbedbb36aec6042c9376ba3c978d9c45c15a16166fc3bba25"
+    },
+    {
+      "path": "masters/rebound.wav",
+      "bytes": 167624,
+      "sha256": "d776a69d0fe2c07602622213129b667e924854f347ba179f87f7b41c986e2ce9"
+    },
+    {
+      "path": "masters/stage1-flow.wav",
+      "bytes": 6048044,
+      "sha256": "4a88c888c250d230f88e181d9dbe8ff9cc4f0de88dc8125eb5068d2674763367"
+    },
+    {
+      "path": "qa/loop-boundary.wav",
+      "bytes": 1058444,
+      "sha256": "6e2917c614419203aefc12b7506d9228a4b81de28a5c2ac109fe8a92f23bbba1"
+    },
+    {
+      "path": "qa/loudness.txt",
+      "bytes": 1208,
+      "sha256": "8d4afef17d057e279b4ebe541991badb006b6e4e4e0d28d111f9ce1ac44a4b66"
+    },
+    {
+      "path": "qa/metrics.json",
+      "bytes": 1774,
+      "sha256": "d3ee6017af22f7f66c90a7ef2c1614ed4ad151594d8b3638d9d0d809343c7c6a"
+    },
+    {
+      "path": "qa/mix-stress-preview.wav",
+      "bytes": 705644,
+      "sha256": "c74ed0998884646c3fc307c8fd7dd4a815117ebc371a549b0e5768e8eb6296cf"
+    },
+    {
+      "path": "qa/mix-stress.json",
+      "bytes": 308,
+      "sha256": "4302df91ec31a95e7d9ea6e36dd5693ce4ea8873caf1f079a1410d8c98595460"
+    },
+    {
+      "path": "runtime/capture.mp3",
+      "bytes": 6313,
+      "sha256": "0ba4c01993fb188acb06eba3e92b2d31b0a292fc8acd6f637f73455a8b18d08a"
+    },
+    {
+      "path": "runtime/capture.ogg",
+      "bytes": 8366,
+      "sha256": "d1652e1eeef0c8b6920790dd23c0578615b1ea839951b9d17f641b8fda017452"
+    },
+    {
+      "path": "runtime/hit.mp3",
+      "bytes": 8403,
+      "sha256": "318451f875ebd2c6ee92456bc9daefc4567f023890ee69697d6778fd64523e07"
+    },
+    {
+      "path": "runtime/hit.ogg",
+      "bytes": 8318,
+      "sha256": "56e627503af7877319a961f58631164f4f8986dac2739928bc34129a2fc265bf"
+    },
+    {
+      "path": "runtime/rebound.mp3",
+      "bytes": 20419,
+      "sha256": "087e3a2cdda241e4b35cd84d0dcfa5d6d5de28a798911da4f907e3ce5f0f2a3a"
+    },
+    {
+      "path": "runtime/rebound.ogg",
+      "bytes": 20144,
+      "sha256": "488c3e5809f97da9566de247c3666cafb1d53fb79315f812212916576b7400d9"
+    },
+    {
+      "path": "runtime/stage1-flow.mp3",
+      "bytes": 687064,
+      "sha256": "d13cd08842dd055d36d55ed47d5d4316ab01a86f88add84359dbb80778d7b12d"
+    },
+    {
+      "path": "runtime/stage1-flow.ogg",
+      "bytes": 610502,
+      "sha256": "6c6cf5b71366015bb5b0b698c424ca1a342660bcc9d04b6cf22340d2d43c98f1"
+    },
+    {
+      "path": "sources/Marimba_hit_Outrigger_C2_loud_01.wav",
+      "bytes": 2236004,
+      "sha256": "bfad3b0e57d04c31e6079aba11fb0a6c5c84627fd4bc46e4e0923663586c460c"
+    },
+    {
+      "path": "sources/Marimba_hit_Outrigger_C4_loud_01.wav",
+      "bytes": 1016564,
+      "sha256": "4af539d47a452d7fad26e171b1c8adcca272cee97191f040d192680462c880b8"
+    },
+    {
+      "path": "sources/Player_dyn1_rr1_016.wav",
+      "bytes": 3546940,
+      "sha256": "f1a3a542cf70a13aa865ce130d50d72cd735449e605d1c5a45dc06b5a60b27fd"
+    },
+    {
+      "path": "sources/Player_dyn2_rr1_022.wav",
+      "bytes": 4476550,
+      "sha256": "9a4e03fa389b7e59ea6b3a6719eef52be8d607844283c7163662030f57b60942"
+    },
+    {
+      "path": "sources/Timpani2_Hit_v3_rr1_Sum.wav",
+      "bytes": 1895164,
+      "sha256": "69e5d604effd3f29c86117d22ad2335f73e43f5d47868dc57d8fa593975ee241"
+    },
+    {
+      "path": "sources/pizzT_D2_v1_RR1.wav",
+      "bytes": 723014,
+      "sha256": "434925e6b7d154cfa7c17e89ccc8e4a126e01a970cabee22fe09a9fb0e462bb6"
+    },
+    {
+      "path": "sources/pizzT_D2_v1_RR2.wav",
+      "bytes": 769676,
+      "sha256": "f23062710e77ca46c33fe453874f8730e80b1f7f7a769bcafdf7bcd0b6254460"
+    },
+    {
+      "path": "sources/provenance.json",
+      "bytes": 2405,
+      "sha256": "6cc9457d3ca81d21962e8fcd45e7dfc1cbdcd0ab79f11a24d2a65ca604869617"
+    }
+  ]
+}

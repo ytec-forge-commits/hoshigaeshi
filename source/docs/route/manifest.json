@@ -1,0 +1,75 @@
+{
+  "candidate": true,
+  "transient_visible_textures": 3,
+  "identical_joins": [
+    "01\u219202",
+    "03\u219204",
+    "05\u219206"
+  ],
+  "pending_joins": [
+    "02\u219203",
+    "04\u219205"
+  ],
+  "files": {
+    "READ-ME-FIRST.md": {
+      "bytes": 2682,
+      "sha256": "ea62b0fa55fd508f6f35a54983dc8850f9d6dc21ac15ed3b802d39e2d6270e8c"
+    },
+    "provenance/v3-README.md": {
+      "bytes": 2938,
+      "sha256": "b727d203370404cee98bf81db6221d4efe0494a2a5e9109650c79a449b18e8e6"
+    },
+    "provenance/v3-generation-prompt.txt": {
+      "bytes": 1555,
+      "sha256": "2af88878029cfe05997f152a0a7a909331caf6e410fa35bc87caabf484bde751"
+    },
+    "provenance/v3-manifest.json": {
+      "bytes": 1338,
+      "sha256": "6b096448f650f760640bc60e9606df19ff7f83ed4cbfa4b2e82c07bce20ceb33"
+    },
+    "provenance/v4-manifest.json": {
+      "bytes": 2471,
+      "sha256": "e206825197df64300e3f5d7337946879a3fd8e4fa8ff75e4a172795333aa3c54"
+    },
+    "provenance/v4-generation-prompts.txt": {
+      "bytes": 2646,
+      "sha256": "cbeee283d1a51219227803da81bfda56272124007201baac8b730ad63a5c6429"
+    },
+    "provenance/v4-README.md": {
+      "bytes": 3209,
+      "sha256": "3739857ede3ba6e63f66c5dd600d041753636e6a3f7a94486d0e0baa4f9c26cd"
+    },
+    "runtime/stage1-route-05.webp": {
+      "bytes": 1207468,
+      "sha256": "dba67f5028c84450a1a6e4c2cdc4ca58abac952b0fdfa40b50b6226b034b7bf9"
+    },
+    "runtime/join-after-02-reference.webp": {
+      "bytes": 241572,
+      "sha256": "06e5bc2d9c360e096b2b9873d27f58d4c9a79fdb2bf70dca81b43d1b8276453a"
+    },
+    "runtime/stage1-route-02.webp": {
+      "bytes": 1307512,
+      "sha256": "56c207f5a5d03405510bbb2fb5ed7f4b1d64d8565c46e9fc5ff379faa212bccc"
+    },
+    "runtime/join-after-04-reference.webp": {
+      "bytes": 205176,
+      "sha256": "49411582878d6ce7927a38d60c3832b0f6c51be0d114eed2e393a82c781373de"
+    },
+    "runtime/stage1-route-03.webp": {
+      "bytes": 1395630,
+      "sha256": "c1dc58f25c16e8d0c7303d1c1e9431116ee8a19904c58b0a8041ca37e1ea2080"
+    },
+    "runtime/stage1-route-01.webp": {
+      "bytes": 1179884,
+      "sha256": "95aad44ec01bc716be3a49373ae40264a74385df9e6e44cedc87d62d001e97fb"
+    },
+    "runtime/stage1-route-04.webp": {
+      "bytes": 1284922,
+      "sha256": "593c59cd6c4b6cf1daf92e112bb1b0d17cdafaba82dc35e11699e3ff4c32d0dc"
+    },
+    "runtime/stage1-route-06.webp": {
+      "bytes": 1190530,
+      "sha256": "fdfc29ea8cedb7cad1cb3caa58d4554861853657c950f4550b5e7d97b0be2005"
+    }
+  }
+}

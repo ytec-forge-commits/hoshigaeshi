@@ -1,0 +1,7 @@
+{
+  "center60_mean_srgb_luma": 0.12349743992485757,
+  "outer40_mean_srgb_luma": 0.3353327498423458,
+  "center60_p95": 0.20065019607843138,
+  "center60_fraction_above_half": 0.001439427615842171,
+  "limits": "Image statistics support composition review only; purple/gold projectile visibility and scenery collision perception require actual game QA."
+}

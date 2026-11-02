@@ -1,0 +1,5 @@
+const assert=require('node:assert/strict'),F=require('../source/feel.js'),results=[];
+function test(name,fn){try{fn();results.push({name,status:'PASS'});}catch(e){results.push({name,status:'FAIL',message:e.message});}}
+test('credits flow keeps 48 pixels per second and freezes on hidden, dialog or reading',()=>{assert.equal(typeof F.creditsFrame,'function');const a=F.creditsFrame(3,.5,300,1200,false),b=F.creditsFrame(3,.5,300,1200,true);assert.equal(a.elapsed,3.5);assert.equal(a.y,132);assert.equal(b.elapsed,3);assert.equal(b.y,156);assert.equal(b.done,false);assert.equal(F.creditsFrame(32,1,300,1200,false).done,true);});
+test('credits scroll-to-flow restoration preserves visible reading position',()=>{assert.equal(typeof F.creditsResumeTime,'function');for(const scroll of [0,200,550]){const elapsed=F.creditsResumeTime(scroll,300);const frame=F.creditsFrame(elapsed,0,300,1200,true);assert(Math.abs(frame.y+scroll)<1e-9);}});
+module.exports={failed:results.filter(r=>r.status==='FAIL').length,results};if(require.main===module){console.log(JSON.stringify(module.exports,null,2));process.exitCode=module.exports.failed?1:0;}

@@ -1,0 +1,66 @@
+{
+  "source_dimensions": [
+    724,
+    2172
+  ],
+  "runtime_resample": [
+    960,
+    2880
+  ],
+  "source_sha256": "bc22dc904760f86299c21dd90616a32fa628b7b941f552888c5445c9ee78e97e",
+  "logical_overlap": 120,
+  "texture_overlap_pixels": 240,
+  "exact_overlap_equal": true,
+  "route_direction": "01 bottom-to-top, then 02 bottom-to-top; scenery moves downward as camera advances upward",
+  "candidate_only": true,
+  "files": [
+    {
+      "key": "stage1-route-01",
+      "path": "runtime/stage1-route-01.webp",
+      "dimensions": [
+        960,
+        1440
+      ],
+      "logical": [
+        480,
+        720
+      ],
+      "origin": [
+        0.5,
+        0.5
+      ],
+      "normalized_source_crop": [
+        0,
+        1440,
+        960,
+        2880
+      ],
+      "bytes": 1179884,
+      "sha256": "95aad44ec01bc716be3a49373ae40264a74385df9e6e44cedc87d62d001e97fb"
+    },
+    {
+      "key": "stage1-route-02",
+      "path": "runtime/stage1-route-02.webp",
+      "dimensions": [
+        960,
+        1440
+      ],
+      "logical": [
+        480,
+        720
+      ],
+      "origin": [
+        0.5,
+        0.5
+      ],
+      "normalized_source_crop": [
+        0,
+        240,
+        960,
+        1680
+      ],
+      "bytes": 1307512,
+      "sha256": "56c207f5a5d03405510bbb2fb5ed7f4b1d64d8565c46e9fc5ff379faa212bccc"
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+{
+  "files": [
+    {
+      "key": "stage1-route-03",
+      "path": "runtime/stage1-route-03.webp",
+      "width": 960,
+      "height": 1440,
+      "logical": [
+        480,
+        720
+      ],
+      "source": "route-three-four-source.png",
+      "source_dimensions": [
+        724,
+        2172
+      ],
+      "source_normalized": [
+        960,
+        2880
+      ],
+      "crop": [
+        0,
+        1440,
+        960,
+        2880
+      ],
+      "bytes": 1395630,
+      "sha256": "c1dc58f25c16e8d0c7303d1c1e9431116ee8a19904c58b0a8041ca37e1ea2080"
+    },
+    {
+      "key": "stage1-route-04",
+      "path": "runtime/stage1-route-04.webp",
+      "width": 960,
+      "height": 1440,
+      "logical": [
+        480,
+        720
+      ],
+      "source": "route-three-four-source.png",
+      "source_dimensions": [
+        724,
+        2172
+      ],
+      "source_normalized": [
+        960,
+        2880
+      ],
+      "crop": [
+        0,
+        240,
+        960,
+        1680
+      ],
+      "bytes": 1284922,
+      "sha256": "593c59cd6c4b6cf1daf92e112bb1b0d17cdafaba82dc35e11699e3ff4c32d0dc"
+    },
+    {
+      "key": "stage1-route-05",
+      "path": "runtime/stage1-route-05.webp",
+      "width": 960,
+      "height": 1440,
+      "logical": [
+        480,
+        720
+      ],
+      "source": "route-five-six-source.png",
+      "source_dimensions": [
+        724,
+        2172
+      ],
+      "source_normalized": [
+        960,
+        2880
+      ],
+      "crop": [
+        0,
+        1440,
+        960,
+        2880
+      ],
+      "bytes": 1207468,
+      "sha256": "dba67f5028c84450a1a6e4c2cdc4ca58abac952b0fdfa40b50b6226b034b7bf9"
+    },
+    {
+      "key": "stage1-route-06",
+      "path": "runtime/stage1-route-06.webp",
+      "width": 960,
+      "height": 1440,
+      "logical": [
+        480,
+        720
+      ],
+      "source": "route-five-six-source.png",
+      "source_dimensions": [
+        724,
+        2172
+      ],
+      "source_normalized": [
+        960,
+        2880
+      ],
+      "crop": [
+        0,
+        240,
+        960,
+        1680
+      ],
+      "bytes": 1190530,
+      "sha256": "fdfc29ea8cedb7cad1cb3caa58d4554861853657c950f4550b5e7d97b0be2005"
+    }
+  ],
+  "logical_overlap": 120,
+  "texture_overlap": 240,
+  "pixel_identical_joins": [
+    "03\u219204",
+    "05\u219206"
+  ],
+  "non_identical_joins_requiring_local_overlap_and_QA": [
+    "02\u219203",
+    "04\u219205"
+  ],
+  "approval_status": "asset candidate; not in-game validated"
+}

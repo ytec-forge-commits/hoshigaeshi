@@ -1,0 +1,25 @@
+星返し / STAR REBOUND — audio asset pack
+Original score: 「星潮 / STAR TIDE」, 120 BPM, D minor, 32 bars, 64 seconds.
+Created for this project on 2026-10-22 UTC (2026-10-23 JST).
+
+COMPOSITION AND SOUND DESIGN
+New project-specific composition and arrangement, with recorded acoustic piano in the foreground, original synthesized rounded bass and stereo atmosphere, and original procedural percussion. No third-party finished music, melody recording, commercial sound-effect library, or artist imitation was used.
+Capture, return-burst, victory and button include the piano samples below. Hit, enemy-pop and boss are original procedural sound designs. This is not an all-acoustic recording; the low end, pads, percussion and impact effects deliberately use synthesis.
+New generated composition, scripts and sound design are supplied for the user's app, source ZIP and project materials. This statement does not assign a new blanket license to the user's entire app. Third-party source recordings retain the following license.
+
+THIRD-PARTY SOURCE RECORDINGS — REDISTRIBUTION VERIFIED
+VSCO 2 Community Edition, Upright Piano.
+Recorded by Simon Dalzell of Ivy Audio, Winter 2015–16.
+Distributed by Versilian Studios LLC.
+License: CC0 1.0 Universal, not merely a free-to-listen or free-to-use permission.
+The repository LICENSE applies CC0. The instrument-specific Info.txt additionally grants the bearer the right to redistribute this sample set. Credit is encouraged, and provided here.
+The relevant files allow modification and redistribution of both incorporated samples and original sample files, including within a source ZIP. No new third-party samples were downloaded for this pack; the previously obtained local samples were reused.
+
+Official project: https://versilian-studios.com/vsco-community/
+Official repository: https://github.com/sgossner/VSCO-2-CE
+Official license: https://github.com/sgossner/VSCO-2-CE/blob/master/LICENSE
+Instrument-specific rights: https://github.com/sgossner/VSCO-2-CE/blob/master/Keys/Upright%20Piano/Info.txt
+CC0 legal code: https://creativecommons.org/publicdomain/zero/1.0/legalcode
+Both official repository license and instrument-specific rights pages were checked on 2026-10-22 UTC. Copies are in licenses/. Sample-file SHA-256 hashes are in provenance.json.
+
+No app source was edited, no Site deployed, and no Library upload was made during creation of this asset pack.

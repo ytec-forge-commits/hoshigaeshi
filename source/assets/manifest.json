@@ -1,0 +1,156 @@
+{
+  "background.webp": {
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "sha256": "33c56c60fdd656c37c8bec67bfb4e6f78b5c99ceed20396ec48e90ba701206a9",
+    "alpha_range": [
+      255,
+      255
+    ],
+    "fully_transparent_pixels": 0,
+    "partial_alpha_pixels": 0,
+    "bytes": 336442
+  },
+  "boss.png": {
+    "dimensions": [
+      512,
+      512
+    ],
+    "sha256": "21af0a0d38eb959698a4fa32568039a7857faa6e5a12ba42bfc92c1ffcaf35fc",
+    "alpha_range": [
+      0,
+      255
+    ],
+    "fully_transparent_pixels": 136205,
+    "partial_alpha_pixels": 124552,
+    "bytes": 351411
+  },
+  "bullet-petal.png": {
+    "dimensions": [
+      128,
+      128
+    ],
+    "sha256": "ebe53aeea88149e72032f028acbd037d187a41db44209d2bd511a96bb3d11195",
+    "alpha_range": [
+      0,
+      255
+    ],
+    "fully_transparent_pixels": 10511,
+    "partial_alpha_pixels": 5841,
+    "bytes": 15680
+  },
+  "bullet-thorn.png": {
+    "dimensions": [
+      128,
+      128
+    ],
+    "sha256": "096f926597ff18961257acae8a396838ac1472552e681a1f60495a56194d1fb5",
+    "alpha_range": [
+      0,
+      255
+    ],
+    "fully_transparent_pixels": 11082,
+    "partial_alpha_pixels": 5220,
+    "bytes": 14194
+  },
+  "enemy-jelly.png": {
+    "dimensions": [
+      256,
+      256
+    ],
+    "sha256": "4f6dc497896aa0791204b63245af55195503d1030413e820ed30fc4bd4663e54",
+    "alpha_range": [
+      0,
+      255
+    ],
+    "fully_transparent_pixels": 48329,
+    "partial_alpha_pixels": 16387,
+    "bytes": 57575
+  },
+  "enemy-ray.png": {
+    "dimensions": [
+      256,
+      256
+    ],
+    "sha256": "0e3761bd392fb5b649d97732efa5da9ac589e8368e36d4721bfb576f12da517c",
+    "alpha_range": [
+      0,
+      255
+    ],
+    "fully_transparent_pixels": 43983,
+    "partial_alpha_pixels": 20489,
+    "bytes": 68264
+  },
+  "glow.png": {
+    "dimensions": [
+      256,
+      256
+    ],
+    "sha256": "c408ed9c1e4653763695e0aaaf9dc9a59272e0490a39707911bfc279ab54b8e6",
+    "alpha_range": [
+      0,
+      253
+    ],
+    "fully_transparent_pixels": 21205,
+    "partial_alpha_pixels": 44331,
+    "bytes": 97176
+  },
+  "player.png": {
+    "dimensions": [
+      256,
+      256
+    ],
+    "sha256": "5cf697d4833f009e4d2adca3eedb3c2dc37899d6c40817a4032f288a1115e6a0",
+    "alpha_range": [
+      0,
+      255
+    ],
+    "fully_transparent_pixels": 51910,
+    "partial_alpha_pixels": 13006,
+    "bytes": 45189
+  },
+  "ring.png": {
+    "dimensions": [
+      512,
+      512
+    ],
+    "sha256": "d73af762e38f847d4b10d7a1d86ea54ae36b301aa24fca441a11e90dbf1779a7",
+    "alpha_range": [
+      0,
+      252
+    ],
+    "fully_transparent_pixels": 137751,
+    "partial_alpha_pixels": 124393,
+    "bytes": 287541
+  },
+  "spark.png": {
+    "dimensions": [
+      128,
+      128
+    ],
+    "sha256": "d4f05eeb2cfa9802193e87c6b96631d3d46dc09d389fb50a460028c17fb146c1",
+    "alpha_range": [
+      0,
+      253
+    ],
+    "fully_transparent_pixels": 10199,
+    "partial_alpha_pixels": 6185,
+    "bytes": 14813
+  },
+  "star.png": {
+    "dimensions": [
+      128,
+      128
+    ],
+    "sha256": "abaac11acc4ed68995dfa033c3713cc90b223f3764be0766639ab3b5356711c8",
+    "alpha_range": [
+      0,
+      255
+    ],
+    "fully_transparent_pixels": 6669,
+    "partial_alpha_pixels": 9616,
+    "bytes": 23914
+  }
+}

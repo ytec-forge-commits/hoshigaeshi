@@ -1,0 +1,125 @@
+{
+  "unchanged_bgm_sha256": "4a88c888c250d230f88e181d9dbe8ff9cc4f0de88dc8125eb5068d2674763367",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 5087,
+      "sha256": "911ec916e7751bc4dae971da6960b17429c74602f5925dd946d964e5f359a7de"
+    },
+    {
+      "path": "dependencies.json",
+      "bytes": 1369,
+      "sha256": "e30154904454059d9d8c3d683f44da78ea9d6e1330f73158d2f2ca91ef8af417"
+    },
+    {
+      "path": "masters/capture.wav",
+      "bytes": 47672,
+      "sha256": "bc9d20ac0d8483c381af3f5e24ef9d88346b5273ae64ea121a23da20880d3af4"
+    },
+    {
+      "path": "masters/hit.wav",
+      "bytes": 74132,
+      "sha256": "a443c5ddafeb8ba87d06542f6584f95441887d5cf4fc50b085dc70f23a5a9ee3"
+    },
+    {
+      "path": "masters/rebound.wav",
+      "bytes": 167624,
+      "sha256": "42229b1f3a217c3f212d1a33603cd3dc9fdb8728818949de778e68f5821b3ffa"
+    },
+    {
+      "path": "masters/stage1-boss.wav",
+      "bytes": 6048044,
+      "sha256": "50219a47be72fbf366d3829cad292ee97b652c0d019f88abdc0303e9db829735"
+    },
+    {
+      "path": "qa/boss-loudness.txt",
+      "bytes": 1207,
+      "sha256": "953a2b0e48d0981b72e7a8d3b4b16ffb8691f03f58eebf8815e4270738b918cb"
+    },
+    {
+      "path": "qa/boss-metrics.json",
+      "bytes": 384,
+      "sha256": "b40582ff8218258c4cb6f80155edcc9b53bd0dc5a5ac38d7241ef771b41f87c8"
+    },
+    {
+      "path": "qa/crossfade-stress.json",
+      "bytes": 7263,
+      "sha256": "e33655cb357f14ebccfbd9f7122515cbec1086e4dafd8ba7ded561e66590d328"
+    },
+    {
+      "path": "qa/crossfade-worst-preview.wav",
+      "bytes": 529244,
+      "sha256": "fd012d69b8a11defdeabc5b718c7942f7f1ce4d6456b6542553776bf2b1d57ab"
+    },
+    {
+      "path": "qa/metrics.json",
+      "bytes": 1723,
+      "sha256": "0833183504587764ba1702ae36ad82bd99a132c3019eb0be8a6faf514f783c11"
+    },
+    {
+      "path": "qa/mix-stress.wav",
+      "bytes": 705644,
+      "sha256": "4f52307c689f7eac9d73d41e355e0f0f2fe433fcc0dcb6676df5a3e2002d07fd"
+    },
+    {
+      "path": "qa/se-sequence.wav",
+      "bytes": 705644,
+      "sha256": "c71744d51431d82447596200a745e0cca8fc6b17442f3ba9d532b11e46b45a38"
+    },
+    {
+      "path": "render_boss.py",
+      "bytes": 6813,
+      "sha256": "c0ecd2822cabcd5e0cf9d1760c414be4da8f356df9c075ef6e398977cad2acfd"
+    },
+    {
+      "path": "render_se.py",
+      "bytes": 5758,
+      "sha256": "778a827ffedf89698907a9113fb4870a182722a183d052b509e9809776300cff"
+    },
+    {
+      "path": "runtime/capture.mp3",
+      "bytes": 6835,
+      "sha256": "8ce84079a3bf858c6010614ad71904f5ddec5cd85f1c451c06c65157e779d831"
+    },
+    {
+      "path": "runtime/capture.ogg",
+      "bytes": 9328,
+      "sha256": "d27cf8ed47a7d1e658219305c0a0871849c58472a66c3b35af2f57d6bef10b46"
+    },
+    {
+      "path": "runtime/hit.mp3",
+      "bytes": 9970,
+      "sha256": "e4ade4d6e705fef09cc61725d668a834bb945c59851318322473f90e4848f6e0"
+    },
+    {
+      "path": "runtime/hit.ogg",
+      "bytes": 11792,
+      "sha256": "ef04398e1673d37c5b070cf653685245944421aa79d50a32f75459d4d0980965"
+    },
+    {
+      "path": "runtime/rebound.mp3",
+      "bytes": 20419,
+      "sha256": "296f36f42fe6146eb0ea1ed92fcede123201818bac039c54aadf0aff21a906fa"
+    },
+    {
+      "path": "runtime/rebound.ogg",
+      "bytes": 21315,
+      "sha256": "cae473658c6386f7a040e15721c8d293ecefdc7e59747a7eb33adc3788c40847"
+    },
+    {
+      "path": "runtime/stage1-boss.mp3",
+      "bytes": 687064,
+      "sha256": "aa977fdd627b5cc4dcacb1cb1a7f63008b941d245885f6e87db068bbf5083028"
+    },
+    {
+      "path": "runtime/stage1-boss.ogg",
+      "bytes": 626649,
+      "sha256": "64c59fd3e30a2d056ae4bf93966cb5419d9e91487845eef045c99e0a0a752060"
+    },
+    {
+      "path": "verify_transition.py",
+      "bytes": 1765,
+      "sha256": "1a9e34b3aed727416127bc294886a09e0ff9571f2d23120f27ae71fdb314d1f7"
+    }
+  ]
+}

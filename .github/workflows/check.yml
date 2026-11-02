@@ -1,0 +1,28 @@
+name: Verify source
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: verify-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # verified v4
+        with:
+          persist-credentials: false
+      - name: JavaScript contracts and asset integrity
+        run: node scripts/check.cjs
+      - name: PHP syntax and ranking contracts
+        run: |
+          php -l server/bootstrap.php
+          php -l server/Leaderboard.php
+          php -l source/api/index.php
+          php verification/feedback4-ranking-contracts.php
+          php verification/feedback12-ranking.php
+          php verification/forge-sqlite-compat.php

@@ -1,0 +1,33 @@
+/* Run with Node, or evaluate in the bundled Node REPL using createRequire. */
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const source=fs.readFileSync(require('node:path').join(__dirname,'../source/app.js'),'utf8');
+const tests=[];
+function test(name,fn){tests.push([name,fn]);}
+function harness(){
+  const nodes=new Map();const node=id=>{if(!nodes.has(id))nodes.set(id,{hidden:false,textContent:'',style:{setProperty(){}},classList:{add(){},remove(){},toggle(){}},focus(){},setAttribute(){},clientHeight:400,scrollHeight:1000,offsetWidth:320});return nodes.get(id);};
+  const param=()=>({value:1,setTargetAtTime(v){this.value=v;},cancelScheduledValues(){},setValueAtTime(v){this.value=v;},linearRampToValueAtTime(v){this.value=v;}});
+  const ctx={state:'running',currentTime:10,resume:async()=>{},suspend:async()=>{},createGain:()=>({gain:param(),connect(){},disconnect(){}}),createBufferSource:()=>({playbackRate:{value:1},connect(){},disconnect(){},start(){},stop(){this.onended?.();}})};
+  const env={FEEL:require('../source/feel.js'),matchMedia:()=>({matches:false}),creditsElapsed:0,creditsReading:false,creditsBlurred:false,cinematic:{cancel(){}},console,setTimeout,clearTimeout,AbortController,settings:{musicVolume:40,sfxVolume:40,muted:false,reduced:false},mode:'playing',sim:{time:0,player:{x:10,y:10}},asset:x=>x,announce(){},$:node,document:{hidden:false,hasFocus:()=>true,body:{classList:{add(){},remove(){},toggle(){}}},querySelector:()=>node('credits-window')},currentResult:{result:'stage-clear'},creditsRemaining:0,screen(){},format:x=>x,COMMON_AUDIO:['button','capture','hit','return-burst','enemy-pop','boss','victory'],CREDITS_TRACK:'star-tide-loop',musicGainFor:()=>1,fieldTrackFor:()=> 'star-tide-loop',bossTrackFor:()=> 'stage1-boss',AUDIO_FILES:{},AUDIO_ATTEMPT_TIMEOUT_MS:50};
+  env.effectiveReduced=()=>env.settings.reduced;
+  vm.createContext(env);
+  vm.runInContext(source.slice(source.indexOf('const SOUND_RULES='),source.indexOf('const sound=new Sound();'))+';globalThis.sound=new Sound();',env);
+  env.sound.ctx=ctx;env.sound.ready=true;env.sound.musicGain=ctx.createGain();env.sound.fxGain=ctx.createGain();env.sound.master=ctx.createGain();
+  for(const key of [...env.COMMON_AUDIO,'item-pickup','star-tide-loop'])env.sound.buffers[key]={duration:1};
+  const eventCode=source.slice(source.indexOf('handleEvents(events){'),source.indexOf('  update(t,delta)'));
+  vm.runInContext('globalThis.presenter={burst(){},ringBurst(){},'+eventCode+'};',env);
+  vm.runInContext(source.slice(source.indexOf('function creditsHeld(){'),source.indexOf('function finish(){')),env);
+  return env;
+}
+test('item pickup produces an audible voice',()=>{const e=harness();e.presenter.handleEvents([{type:'itempickup',itemKind:'spread'}]);assert.equal(e.sound.voices.length,1,'pickup must create a sound voice');});
+test('credits starts music and skip stops it',async()=>{const e=harness();e.showCredits();await new Promise(r=>setTimeout(r,0));assert.ok(e.sound.music,'credits must start music');e.showResult();assert.equal(e.sound.music,null);});
+test('muted and silent pickup does not create voices',()=>{for(const flag of ['muted','silent']){const e=harness();if(flag==='muted')e.settings.muted=true;else e.sound.runSilent=true;e.presenter.handleEvents([{type:'itempickup',itemKind:'twin'}]);assert.equal(e.sound.voices.length,0);}});
+test('late credits decode cannot play after skip or retain its buffer',async()=>{const e=harness();delete e.sound.buffers['star-tide-loop'];let complete;e.sound.loadBuffer=()=>new Promise(r=>complete=r);e.showCredits();e.showResult();complete({decoded:{duration:2},path:'fixture'});await new Promise(r=>setTimeout(r,0));assert.equal(e.sound.music,null);assert.equal(e.sound.buffers['star-tide-loop'],undefined);});
+test('replaying credits leaves one music source',async()=>{const e=harness();e.showCredits();e.showCredits();await new Promise(r=>setTimeout(r,0));assert.equal(e.sound.activeMusic.size,1);e.showCredits();await new Promise(r=>setTimeout(r,0));assert.equal(e.sound.activeMusic.size,1);e.showResult();assert.equal(e.sound.activeMusic.size,0);});
+test('credits respects silent play and zero music volume',async()=>{const e=harness();e.sound.runSilent=true;e.showCredits();await new Promise(r=>setTimeout(r,0));assert.equal(e.sound.music,null);e.sound.runSilent=false;e.settings.musicVolume=0;e.showCredits();await new Promise(r=>setTimeout(r,0));assert.equal(e.sound.musicGain.gain.value,0);});
+test('pickup can replace a low priority voice without exceeding four voices',()=>{const e=harness();for(const k of ['capture','enemy-pop','button','boss'])e.sound.play(k);assert.equal(e.sound.voices.length,4);e.presenter.handleEvents([{type:'itempickup',itemKind:'pierce'}]);assert.equal(e.sound.voices.length,4);assert.ok(e.sound.voices.some(v=>v.key==='item-pickup'));assert.equal(e.sound.voices.find(v=>v.key==='item-pickup').source.playbackRate.value,1);});
+test('zero SE volume does not emit a pickup voice',()=>{const e=harness();e.settings.sfxVolume=0;e.presenter.handleEvents([{type:'itempickup',itemKind:'spread'}]);assert.equal(e.sound.voices.length,0);});
+test('credits load failure stays readable and creates no music',async()=>{const e=harness();delete e.sound.buffers['star-tide-loop'];e.sound.loadBuffer=async()=>{throw Error('unavailable');};e.showCredits();await new Promise(r=>setTimeout(r,0));assert.equal(e.mode,'credits');assert.equal(e.sound.music,null);});
+test('a new run cancels a pending credits load',async()=>{const e=harness();delete e.sound.buffers['star-tide-loop'];let complete;e.sound.loadBuffer=()=>new Promise(r=>complete=r);e.showCredits();e.sound.stop();e.mode='playing';e.sound.keep(e.COMMON_AUDIO);complete({decoded:{duration:2},path:'fixture'});await new Promise(r=>setTimeout(r,0));assert.equal(e.sound.activeMusic.size,0);assert.equal(e.sound.buffers['star-tide-loop'],undefined);});
+test('delayed duplicate credits requests resolve to one source',async()=>{const e=harness();delete e.sound.buffers['star-tide-loop'];let complete;e.sound.loadBuffer=()=>new Promise(r=>complete=r);e.showCredits();e.showCredits();complete({decoded:{duration:2},path:'fixture'});await new Promise(r=>setTimeout(r,0));assert.equal(e.sound.activeMusic.size,1);});
+module.exports=(async()=>{let failed=0;const results=[];for(const [name,fn] of tests){try{await fn();results.push('PASS '+name);}catch(e){failed++;results.push('FAIL '+name+': '+e.message);}}return{tests:tests.length,failed,results};})();
+if(require.main===module)module.exports.then(result=>{console.log(JSON.stringify(result,null,2));process.exitCode=result.failed?1:0;});

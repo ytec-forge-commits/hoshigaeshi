@@ -1,0 +1,45 @@
+[
+  {
+    "file": "Timpani2_Hit_v3_rr1_Sum.wav",
+    "sha256": "69e5d604effd3f29c86117d22ad2335f73e43f5d47868dc57d8fa593975ee241",
+    "bytes": 1895164
+  },
+  {
+    "file": "Marimba_hit_Outrigger_C2_loud_01.wav",
+    "sha256": "bfad3b0e57d04c31e6079aba11fb0a6c5c84627fd4bc46e4e0923663586c460c",
+    "bytes": 2236004
+  },
+  {
+    "file": "pizzT_D2_v1_RR2.wav",
+    "sha256": "f23062710e77ca46c33fe453874f8730e80b1f7f7a769bcafdf7bcd0b6254460",
+    "bytes": 769676
+  },
+  {
+    "file": "Marimba_hit_Outrigger_C4_loud_01.wav",
+    "sha256": "4af539d47a452d7fad26e171b1c8adcca272cee97191f040d192680462c880b8",
+    "bytes": 1016564
+  },
+  {
+    "file": "../masters/stage1-flow.wav",
+    "sha256": "4a88c888c250d230f88e181d9dbe8ff9cc4f0de88dc8125eb5068d2674763367",
+    "use": "Read-only stress reference, not part of v2 outputs"
+  },
+  {
+    "file": "Player_dyn1_rr1_016.wav",
+    "sha256": "f1a3a542cf70a13aa865ce130d50d72cd735449e605d1c5a45dc06b5a60b27fd",
+    "bytes": 3546940,
+    "use": "boss composition"
+  },
+  {
+    "file": "Player_dyn2_rr1_022.wav",
+    "sha256": "9a4e03fa389b7e59ea6b3a6719eef52be8d607844283c7163662030f57b60942",
+    "bytes": 4476550,
+    "use": "boss composition"
+  },
+  {
+    "file": "pizzT_D2_v1_RR1.wav",
+    "sha256": "434925e6b7d154cfa7c17e89ccc8e4a126e01a970cabee22fe09a9fb0e462bb6",
+    "bytes": 723014,
+    "use": "boss composition"
+  }
+]
