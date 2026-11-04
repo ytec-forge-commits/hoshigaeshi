@@ -70,3 +70,9 @@ Official source: https://kenney.nl/assets/interface-sounds . Bundled notice: `au
 The startup chime in `startup.js` and six effects in `sound-design.js` are synthesized at runtime from sine waves, envelopes and pseudorandom noise, with no external samples. Synthesis code is Apache-2.0; the generated sound follows the original-effect CC0 terms. Existing audio files were not overwritten.
 
 **Y-TEC Forge**, its Y mark, wordmark, Japanese tagline **「アイデアを、動くものへ。」**, and English tagline **“Turning ideas into working creations.”** are brand identifiers. Code and game-asset licenses do not grant permission to use the branding freely or imply official endorsement. Their appearance in this game is requested by the owner and does not relicense the brand to third parties. Colors may suit the work; the established tagline wording is retained.
+
+## Generated projectiles / 生成弾素材 (2026-11-04)
+
+`assets/projectiles-v2/petal.png`, `thorn.png`, `gold.png`, `player.png`, `return.png` are original transparent raster illustrations generated with the built-in OpenAI image tool. They follow the existing original generated-raster terms above, within the rights the provider can grant. No third-party reference image or stock was supplied. Prompts, tool and runtime processing are recorded in `assets/projectiles-v2/PROVENANCE.md`; dimensions and SHA-256 are in `manifest.json`. The previous adopted sprites are retained.
+
+The 2026-11-04 boss-defeat cue, four UI cues and quiet opening music are also original procedural audio under the same terms, with no external samples.

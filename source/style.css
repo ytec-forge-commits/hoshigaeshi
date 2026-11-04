@@ -483,3 +483,69 @@ html[lang=en] .story h1{font-size:34px;letter-spacing:.02em}
 
 .menu-extra-actions{display:grid;grid-template-columns:1fr 1fr;gap:6px}.menu-extra-actions button{min-width:0;line-height:1.35}
 html[lang=en] #menu-screen .menu-card h2.arcade-logo{font-size:clamp(24px,5vw,36px);line-height:1.15}
+
+/* Result sharing remains separate from retry / home navigation. */
+#result-screen #share-result{grid-column:1/-1;min-height:44px;font-size:14px;font-weight:800;color:#fff4d2;border-color:#caad6b;background:linear-gradient(135deg,#735329,#463d55);display:block}
+#share-manual{margin:8px 0;text-align:left}
+#share-manual label{display:block;font-size:12px;color:#e4eef2;margin-bottom:5px}
+#share-caption{display:block;width:100%;box-sizing:border-box;resize:vertical;min-height:100px;padding:8px;border:1px solid #72959f;border-radius:8px;background:#0c1b29;color:#f3f7fa;font:13px/1.5 Noto,sans-serif}
+
+#result-screen #share-status:empty{display:none}
+#result-screen #share-status{font-size:12px;line-height:1.4;margin:4px 0}
+#share-caption:focus-visible{outline:3px solid #ffdc81;outline-offset:2px}
+
+/* Landscape results use the width for score and actions together. */
+@media(max-width:999px) and (max-height:600px) and (orientation:landscape){
+ body.result-active .game-column{display:block;width:100%;max-width:min(720px,calc(100vw - 32px))}
+ body.result-active .arena-wrap{height:calc(100dvh - 92px);aspect-ratio:auto}
+ #result-screen .menu-card.result{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(160px,1fr);gap:16px;max-width:none;height:100%;padding:12px 16px}
+ #result-screen .result-navigation{margin:0;padding:0 0 0 12px;border-top:0;border-left:1px solid #a9cbd347;justify-content:center}
+ #result-screen .result-navigation button{min-height:44px;font-size:12px;margin-top:4px}
+ #result-screen .menu-card.result h2{font-size:20px;margin:3px 0}
+ #result-screen .menu-card p{font-size:11px}
+ #result-screen .result #result-score{font-size:36px}
+}
+/* feedback23: starship glass, metal edging and restrained optical depth. */
+.menu-card,#menu-screen .menu-card,#result-screen .menu-card,dialog{
+ position:relative;isolation:isolate;border:1px solid #6d8b96;border-top-color:#c2bd98;border-bottom-color:#283d54;border-radius:16px 6px 16px 6px;
+ background:radial-gradient(ellipse at 50% -10%,#37627666,transparent 55%),linear-gradient(135deg,#183247f7 0%,#09192cfb 38%,#101d32fb 75%,#1b3043f5);
+ box-shadow:inset 0 0 0 3px #050f20,inset 0 0 0 4px #74909f36,inset 0 15px 30px #82dcd90a,0 16px 48px #000a,0 0 30px #4fdace0b;
+}
+.menu-card::before,dialog::before{
+ content:"";position:absolute;inset:8px;pointer-events:none;z-index:-1;border-radius:8px 2px 8px 2px;
+ background:linear-gradient(#d7c393,#d7c393) left top/22px 1px no-repeat,linear-gradient(#d7c393,#d7c393) left top/1px 22px no-repeat,linear-gradient(#759da7,#759da7) right bottom/22px 1px no-repeat,linear-gradient(#759da7,#759da7) right bottom/1px 22px no-repeat,radial-gradient(ellipse at 50% 0,#b4f9ec28,transparent 60%) top/100% 65px no-repeat;
+}
+.menu-card .eyebrow{color:#9de1db;text-shadow:0 0 12px #6bf8df55}
+.menu-card h2,dialog h2{color:#fff1ce;text-shadow:0 2px 2px #000b,0 0 20px #b5e5db1c}
+#pause-screen .score-tips{padding:12px;background:linear-gradient(120deg,#030c194a,#0d1d2950);border:1px solid #8bb4bb25;border-radius:6px}
+#pause-reason{color:#c5d9e2}
+.result-navigation{background:linear-gradient(180deg,#142a3d45,#0818279c);border-top-color:#a2c2c54d}
+dialog::backdrop{background:radial-gradient(ellipse at 50% 40%,#071528a8,#020612df);backdrop-filter:blur(4px)}
+button,button.secondary,.share-actions a.post-link{
+ position:relative;isolation:isolate;border:1px solid #5c8292;border-top-color:#99b9bc;border-bottom-color:#243d55;border-radius:9px 3px 9px 3px;
+ background:linear-gradient(180deg,#65959d22,transparent 46%,#0004 51%),linear-gradient(120deg,#244456,#0d263c 58%,#1c384c);
+ color:#e2f2f3;text-shadow:0 1px 2px #001722;box-shadow:inset 0 1px #e2fffa20,inset 0 0 0 2px #0a1a2b88,0 3px 0 #030b16,0 5px 12px #0004;
+ transition:filter .14s,box-shadow .14s,translate .1s,border-color .14s;
+}
+button::after,a.post-link::after{content:"";position:absolute;inset:3px;pointer-events:none;border-radius:6px 1px 6px 1px;border:1px solid #bce9e70e;background:linear-gradient(105deg,transparent 30%,#d7fff90c 48%,transparent 63%)}
+button.primary,#boot-start,#result-screen #share-result,#capture{
+ color:#17263b;text-shadow:0 1px #fff4ce99;border-color:#e2b765;border-top-color:#fff2bf;border-bottom-color:#a56f2d;
+ background:radial-gradient(ellipse at 48% -35%,#fffce6d9,transparent 72%),linear-gradient(180deg,#fff7d14d,transparent 42%,#bd7b160e 48%),linear-gradient(115deg,#ffe6a1,#ffd06b 55%,#eeb150);
+ box-shadow:inset 0 1px #fff9db,inset 0 0 0 2px #7e511d30,inset 0 -2px #ad702537,0 3px 0 #60431e,0 7px 18px #0007,0 0 17px #efbd4a23;
+}
+button.primary::after,#boot-start::after,#share-result::after,#capture::after{border-color:#fff5c96b;background:linear-gradient(110deg,transparent 25%,#fffce52b 48%,transparent 65%)}
+button.text-button,.boot-actions #boot-silent{color:#b9d4dc;background:linear-gradient(180deg,#7faebb08,#07142438);border:1px solid #759fa52a;box-shadow:inset 0 1px #c1e5e90a;text-decoration:none}
+button.text-button::after,.boot-actions #boot-silent::after{display:none}
+.hud button{border-radius:50%;background:radial-gradient(circle at 35% 20%,#486777,#102b40 65%);box-shadow:inset 0 0 0 3px #071928,inset 0 0 0 4px #a9d9df22,0 3px 10px #0006}.hud button::after{border-radius:50%}
+#capture.cooling{background:linear-gradient(160deg,#172e40,#0a1b2e);color:#9bafba;border-color:#405767;box-shadow:inset 0 0 0 2px #061322,0 3px 0 #040b16}
+#capture.active{color:#e4fff3;border-color:#ceffe8;background:radial-gradient(ellipse at 50% 120%,#8efadb66,transparent 70%),linear-gradient(140deg,#276e66,#123e4b);box-shadow:inset 0 0 0 2px #061b26,0 0 20px #75f7d73b}
+@media(hover:hover){button:not(:disabled):hover,a.post-link:hover{filter:brightness(1.17);border-top-color:#e4fdf3;box-shadow:inset 0 1px #eafff54d,inset 0 0 0 2px #0a1b2a66,0 3px 0 #040b15,0 6px 20px #5cdbd526}}
+button:not(:disabled):active,a.post-link:active{translate:0 2px;filter:brightness(1.12);box-shadow:inset 0 2px 8px #0008,inset 0 0 0 2px #061525,0 1px 0 #020814}
+button:disabled{filter:saturate(.35)}
+button:focus-visible,a.post-link:focus-visible{outline:3px solid #ffdd94;outline-offset:3px}
+select{background:linear-gradient(180deg,#061322,#162d40);border-color:#61808f;border-bottom-color:#96b9bb66;box-shadow:inset 0 2px 6px #0007;color:#edf6f6}
+#credits-screen .credits-actions button{background:linear-gradient(160deg,#213d4cd9,#091727e8);border-color:#81958f77;box-shadow:inset 0 1px #e5e6bd1f,0 2px 5px #0007}
+body.reduced-effects button,body.reduced-effects a.post-link{transition:none}
+@media(prefers-reduced-motion:reduce){button,a.post-link{transition:none}}
+
+@media(min-width:800px){html[lang=en] #result-screen .menu-card h2{font-size:23px;line-height:1.35;margin:4px 0 7px}}

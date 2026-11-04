@@ -2,7 +2,7 @@ const assert=require('node:assert/strict');const C=require('../../source/core.js
 {
  const s=new C.Game({seed:99});s.item={id:++s.id,x:s.player.x,y:s.player.y,type:'pierce',r:24,age:0};s.updateItem(1/60);
  assert(s.pierceUntil>s.time);s.step(1/60);assert(s.shots.every(x=>x.piercing));
- const shot=s.shots[0];s.enemies=[{id:++s.id,x:shot.x,y:shot.y-3,r:20,hp:5,type:'ray',age:1,baseX:shot.x,beat:0,fireAt:99,shots:0,offset:0,pattern:0},{id:++s.id,x:shot.x,y:shot.y-6,r:20,hp:5,type:'ray',age:1,baseX:shot.x,beat:0,fireAt:99,shots:0,offset:0,pattern:0}];s.step(1/60);assert.equal(s.enemies[0].hp,5-.5);assert.equal(s.enemies[1].hp,5-.5);
+ const shot=s.shots[0];s.enemies=[{id:++s.id,x:shot.x,y:shot.y-3,r:20,hp:5,type:'ray',age:1,baseX:shot.x,beat:0,fireAt:99,shots:0,offset:0,pattern:0},{id:++s.id,x:shot.x,y:shot.y-6,r:20,hp:5,type:'ray',age:1,baseX:shot.x,beat:0,fireAt:99,shots:0,offset:0,pattern:0}];s.step(1/60);assert.equal(s.enemies[0].hp,5-.575);assert.equal(s.enemies[1].hp,5-.575);
 }
 {
  const s=new C.Game({difficulty:'hard',seed:112});s.stageIndex=2;s.player.invuln=999;s.spawnBoss();s.boss.y=130;s.boss.hp=s.boss.maxHp*.6;s.bossAttack=1;s.eclipseBossPattern();assert(s.boss.reflectUntil>s.time);

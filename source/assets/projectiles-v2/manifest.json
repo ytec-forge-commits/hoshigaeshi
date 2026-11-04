@@ -1,0 +1,82 @@
+{
+  "date": "2026-11-04",
+  "tool": "OpenAI built-in image generation",
+  "model": "not exposed by tool",
+  "files": [
+    {
+      "file": "gold.png",
+      "dimensions": [
+        128,
+        128
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "bytes": 13725,
+      "sha256": "5557de01d574fbe93ea3b442bfbfa154c0c7194a920de62bd8fa80b35573d5cf",
+      "masterSha256": "9f57539dfd3623a6ccbfe5e0340b19ec4036c2981e7f728aacbe49eece573556"
+    },
+    {
+      "file": "petal.png",
+      "dimensions": [
+        128,
+        128
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "bytes": 18346,
+      "sha256": "2885257e96d3ac781b30e917b007e8422c2bb4c619a11f9a8a0b80734792ecb4",
+      "masterSha256": "d06858cb4bb64bc7fcffc0b4b70b340425433e5021da2b24da1ab2417c60b9a6"
+    },
+    {
+      "file": "thorn.png",
+      "dimensions": [
+        128,
+        128
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "bytes": 10240,
+      "sha256": "e3d36db19ff1da6dddd2dbd64a930e2172fc54466be70e85a604128dadbde3aa",
+      "masterSha256": "9eca6a8b56d861a70e2e182725fb1419d6595b75b41bcddb3542c9a2530b0ae6"
+    },
+    {
+      "file": "player.png",
+      "dimensions": [
+        128,
+        128
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "bytes": 10613,
+      "sha256": "67f6b5d805aff206abf0c2dcd57c318f65ef5490294618b1dd87b65ec1d995a2",
+      "masterSha256": "32d80c673b399c213bd0470172f651da993defa03fe548c50c335c4f82e1dc2c"
+    },
+    {
+      "file": "return.png",
+      "dimensions": [
+        128,
+        128
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ],
+      "bytes": 12740,
+      "sha256": "f2b2bca690e42cafcc5e990689db331bed8c61bc021e9ffb87d1de14391116c9",
+      "masterSha256": "a07cd5b551532c015ca450ccaf77ffbb04b9a91d639d46f1dc5652b6ef46d505"
+    }
+  ]
+}

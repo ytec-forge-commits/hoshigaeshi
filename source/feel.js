@@ -49,22 +49,59 @@ const ITEMS={
 function itemInfo(type){return ITEMS[type]||ITEMS.twin;}
 // Render-only motion; never feeds collision or input coordinates back into the simulation.
 function flightPose(previous,vx,vy,dt,reduced=false){
- if(reduced)return{lean:0,tail:0,thrust:0,energy:0,phase:0};
+ if(reduced)return{lean:0,tail:0,thrust:0,energy:0,phase:0,quiet:true};
  const p=previous||{lean:0,tail:0,thrust:0,energy:0,phase:0},step=Math.max(0,Math.min(.05,Number(dt)||0));
  const clamp=v=>Math.max(-1,Math.min(1,Number(v)||0)),x=clamp(vx/680),y=clamp(-vy/680),blend=1-Math.exp(-step*14),lag=1-Math.exp(-step*7);
  const lean=p.lean+(x-p.lean)*blend,thrust=p.thrust+(y-p.thrust)*blend,energy=p.energy+(Math.min(1,Math.hypot(x,y))-p.energy)*blend;
  return{lean,tail:p.tail+(lean-p.tail)*lag,thrust,energy,phase:(p.phase+step*(4+energy*7))%(Math.PI*2)};
 }
-function paintFlight(canvas,image,pose){
- const ctx=canvas.getContext('2d'),w=canvas.width,h=canvas.height;if(!ctx)return;
- ctx.clearRect(0,0,w,h);
- // Horizontal bands bend the head and tapering tail independently, without replacing the artwork.
- for(let y=0;y<h;y+=4){
-  const t=(y+2)/h,tail=Math.max(0,(t-.52)/.48),head=Math.max(0,1-t/.34),wing=Math.max(0,1-Math.abs(t-.34)/.22);
-  const offset=pose.lean*3*head-pose.tail*13*tail+Math.sin(pose.phase-tail*3)*3*tail*pose.energy;
-  const spread=1-wing*(.055*pose.thrust+.035*Math.sin(pose.phase)*pose.energy),width=w*spread;
-  ctx.drawImage(image,0,y,image.width,Math.min(4,h-y),(w-width)/2+offset,y,width,Math.min(4,h-y));
- }
+// A continuous surface gives each wing, the nose and the tail their own follow-through.
+// Coordinates are normalized; the collision jewel at (.5, .34) is an invariant anchor.
+function flightPoint(x,y,pose){
+ if(pose.quiet)return{x,y};
+ const side=Math.sign(x-.5),outer=clamp((Math.abs(x-.5)*2-.14)/.86,0,1),body=1-clamp(Math.abs(x-.5)/.22,0,1);
+ const wingBand=clamp((y-.14)/.13,0,1)*clamp((.6-y)/.12,0,1),wing=outer**1.25*wingBand;
+ const stroke=Math.sin(pose.phase-outer*1.15),head=clamp((.34-y)/.23,0,1)*body,tail=clamp((y-.51)/.37,0,1)**1.3*body;
+ const fold=.07+.09*(.5+.5*stroke)+.025*Math.max(0,pose.thrust);
+ return{x:x-(x-.5)*wing*fold+pose.lean*.032*head-pose.tail*.105*tail+Math.sin(pose.phase-tail*3.8)*.06*tail*(.6+.4*pose.energy),
+  y:y+wing*(stroke*(.065+.055*pose.energy)+pose.thrust*.045+side*pose.lean*.05)-pose.thrust*.028*head+pose.thrust*.03*tail+Math.cos(pose.phase)*.009*tail+(y-.34)*body*.018*Math.sin(pose.phase)};
 }
-return{flightPose,paintFlight,backgroundFrame,cueFrame,creditsFrame,creditsResumeTime,scoreChainFrame,itemInfo};
+const FLIGHT_X=[0,.125,.25,.375,.5,.625,.75,.875,1],FLIGHT_Y=[0,.125,.25,.34,.4375,.5625,.625,.75,.875,1];
+function paintFlight(canvas,image,pose){return paintSurface(canvas,image,(x,y)=>flightPoint(x,y,pose),pose.quiet);}
+function paintSurface(canvas,image,point,quiet=false){
+ const ctx=canvas.getContext('2d'),w=canvas.width,h=canvas.height;if(!ctx)return;
+ ctx.clearRect(0,0,w,h);if(quiet){ctx.drawImage(image,0,0,w,h);return;}
+ const points=FLIGHT_Y.map(y=>FLIGHT_X.map(x=>{const p=point(x,y);return{sx:x*w,sy:y*h,x:p.x*w,y:p.y*h};}));
+ function triangle(p,q,r){
+  const ux=q.sx-p.sx,uy=q.sy-p.sy,vx=r.sx-p.sx,vy=r.sy-p.sy,det=ux*vy-vx*uy;
+  const dx=q.x-p.x,dy=q.y-p.y,ex=r.x-p.x,ey=r.y-p.y;
+  const a=(dx*vy-ex*uy)/det,b=(dy*vy-ey*uy)/det,c=(ux*ex-vx*dx)/det,d=(ux*ey-vx*dy)/det;
+  const cx=(p.x+q.x+r.x)/3,cy=(p.y+q.y+r.y)/3;
+  ctx.save();ctx.beginPath();
+  // Subpixel overlap avoids antialiased cracks between adjacent painted triangles.
+  for(const [i,v]of [p,q,r].entries()){const length=Math.hypot(v.x-cx,v.y-cy)||1,x=v.x+(v.x-cx)*.65/length,y=v.y+(v.y-cy)*.65/length;if(i)ctx.lineTo(x,y);else ctx.moveTo(x,y);}
+  ctx.closePath();ctx.clip();ctx.transform(a,b,c,d,p.x-a*p.sx-c*p.sy,p.y-b*p.sx-d*p.sy);ctx.drawImage(image,0,0,w,h);ctx.restore();
+ }
+ for(let y=0;y<points.length-1;y++)for(let x=0;x<points[y].length-1;x++){const a=points[y][x],b=points[y][x+1],c=points[y+1][x],d=points[y+1][x+1];triangle(a,b,c);triangle(b,d,c);}
+}
+// Outer anatomy breathes around a rigid centre. This is never used by core.js.
+function creaturePoint(x,y,kind,phase,reduced=false){
+ if(reduced)return{x,y};
+ const dx=x-.5,dy=y-.5,r=Math.hypot(dx,dy),outer=clamp((r-.11)/.5,0,1),a=Math.atan2(dy,dx);
+ if(kind==='radial'){
+  const angle=a+Math.sin(phase-r*5)*.15*outer,scale=1+Math.sin(phase*2+a*3)*.055*outer;
+  return{x:.5+Math.cos(angle)*r*scale,y:.5+Math.sin(angle)*r*scale};
+ }
+ const wing=clamp((Math.abs(dx)-.06)/.37,0,1),tail=clamp((y-.51)/.44,0,1),stroke=Math.sin(phase-Math.abs(dx)*3);
+ if(kind==='wing')return{x:x-dx*wing*(.07+.09*stroke),y:y+wing*stroke*.09+tail*Math.sin(phase-2)*.015};
+ return{x:x+Math.sin(phase-tail*4)*.045*tail+(dx*.05*Math.sin(phase))*outer,y:y+wing*Math.sin(phase-wing*2)*.045-dy*.035*Math.sin(phase)};
+}
+function paintCreature(canvas,image,kind,phase){paintSurface(canvas,image,(x,y)=>creaturePoint(x,y,kind,phase));}
+function laserFrame(length,width,time,reduced=false){
+ if(reduced||length<=0)return[];
+ const speed=620,spacing=58,travel=((time*speed)%spacing+spacing)%spacing,packets=[];
+ for(let d=travel,i=0;d<length;d+=spacing,i++)packets.push({distance:d,tail:Math.min(d,24+8*Math.sin(i+time*3)),offset:Math.sin(d*.035-time*9)*width*.27,radius:Math.max(1,width*.11)});
+ return packets;
+}
+return{creaturePoint,paintCreature,laserFrame,flightPose,flightPoint,paintFlight,backgroundFrame,cueFrame,creditsFrame,creditsResumeTime,scoreChainFrame,itemInfo};
 });

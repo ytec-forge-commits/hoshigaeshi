@@ -1,3 +1,17 @@
+# feedback23 · 2026-11-04
+
+- 敵弾を紫・桃・金の生成結晶PNGへ更新し、単色塗りつぶしを外して陰影を保ちます。弾の軌道・速度・当たり判定は不変です。
+- 結果画面に「結果を共有」を追加。対応端末は画像と成績を共有し、非対応時は文章コピーへ進めます。日英表示、キャンセル、手動コピーに対応。画像保存とX投稿も維持します。
+- 自機の青白い弾と返却する金の星も生成ラスタへ。通常/貫通弾は0.5→0.575、三連星は0.43→0.5。射撃間隔・移動・当たり判定は維持。
+- 自機は停止中も翼と尾が動き、8方向移動へ頭・翼・尾が追従。3ボスと全雑魚に、翼・触手・外周の部分アニメーションを追加。
+- 自機・ボスのレーザーに、発射点から進む光粒と流れる光の筋を追加。危険範囲・予告時間・威力は維持。
+- 専用ボス撃破音とBGM減衰、静かなオープニング曲、決定・戻る・停止・再開の操作音を追加。音量・ミュートに従い、ポーズ中の操作音とゲーム音を分離。
+- ボタン・ウィンドウにガラス面の陰影、金属の縁、角の装飾、押下反応を追加。フォーカスと演出軽減に対応。
+- 練習55秒は7弾幕（扇状・交差・狙い・加速・分裂・追尾・レーザー）を順番に紹介。5種類のアイテムを拾って試せ、通常射撃も有効。ダメージなし・記録対象外を維持。
+- English: Five generated crystal projectiles, articulated player/enemy motion, flowing lasers, a dedicated boss-defeat sound, quiet intro music, responsive UI sounds, and glass-and-metal controls. Normal shots gain 15% damage; spread shots scale similarly. The safe 55-second practice introduces seven patterns and five usable items. Result sharing supports native image/text sharing, clipboard and manual-copy fallbacks in both languages.
+
+---
+
 # feedback22 · 2026-11-03
 
 - 操作方法を保存していないPCではマウス、スマホ・タブレットではタッチを初期選択にします。起動時の日英案内も揃え、保存済みの操作方法・記録は保持します。

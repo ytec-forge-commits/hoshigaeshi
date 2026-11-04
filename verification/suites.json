@@ -53,5 +53,9 @@
   "feedback20-sound.cjs",
   "feedback20-recharge.cjs",
   "feedback21-flight-drops.cjs",
-  "feedback21-locale.cjs"
+  "feedback21-locale.cjs",
+  "feedback23-share.cjs",
+  "feedback23-feel.cjs",
+  "feedback23-living.cjs",
+  "feedback23-practice.cjs"
 ]

@@ -1,4 +1,4 @@
-# STAR REBOUND — v9 feedback22
+# STAR REBOUND — v9 feedback23
 
 [日本語](README.md)
 
@@ -85,3 +85,12 @@ Serve only this `source/` directory. Keep server code, databases, keys, backups 
 Original game code is Apache-2.0. Artwork, audio, fonts, dependencies and branding have separate terms. Preserve their notices. The Forge tagline is **Turning ideas into working creations.**
 
 This is an unlisted test build. Automated simulation and browser checks do not replace real phone/controller/speaker checks or a human playthrough of every difficulty. Score validation checks consistency; it is not a server-verified replay.
+
+On the result screen, **Share result** opens the device share menu with your score and, when supported and ready, a result image. Text-only sharing and clipboard copying are fallbacks. If clipboard access is unavailable, select the displayed caption manually. **Save result image** and **Post to X** remain available. Shared content does not include your name or the full local save.
+
+
+## Practice and presentation (feedback23)
+
+The safe 55-second practice introduces front fans, crossfire, aimed shots, accelerating shots, splitting shots, homing shots and lasers. Each pattern is announced before firing. Spread, Twin, Pierce, Extend and Guard items then appear in sequence: move toward them to collect and try the same powers used in the main game. Practice does not reduce life or affect records and rankings. Lasers cannot be captured; move away from the warning line.
+
+Player and enemy wings, appendages and laser light now move. Reduced effects stops articulated deformation and flowing light. Quiet music accompanies the opening; boss defeat and menu actions have dedicated sounds. BGM, SFX and mute remain adjustable in Settings.

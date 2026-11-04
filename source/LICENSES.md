@@ -109,3 +109,9 @@ The five screen illustrations and six transparent scenery layers in `assets/v7-a
 起動のY-TEC Forgeの名称・Yマーク・ワードマーク・固定句「アイデアを、動くものへ。」および英語版「Turning ideas into working creations.」はブランド表現です。コードや作品用素材のApache-2.0/CC0から、名称・ロゴの自由利用や公式な推薦が許可されたとは解釈しないでください。今回の作品での表示は本人依頼によるもので、ブランドを第三者へ再許諾しません。色は作品ごとに変更可、固定句は句点を含めて維持します。
 
 English: The two new geometric item SVGs are original CC0 game assets. Procedural sounds use no external samples; synthesis code is Apache-2.0 and the resulting sounds follow the existing original-audio CC0 terms. Y-TEC Forge naming, logo and fixed Japanese tagline are brand identifiers, excluded from any implied trademark permission under the code or asset licenses.
+
+## Generated projectiles / 生成弾素材 (2026-11-04)
+
+`assets/projectiles-v2/petal.png`, `thorn.png`, `gold.png`, `player.png`, `return.png` are original transparent raster illustrations generated with the built-in OpenAI image tool. They follow the existing original generated-raster terms above, within the rights the provider can grant. No third-party reference image or stock was supplied. Prompts, tool and runtime processing are recorded in `assets/projectiles-v2/PROVENANCE.md`; dimensions and SHA-256 are in `manifest.json`. The previous adopted sprites are retained.
+
+The 2026-11-04 boss-defeat cue, four UI cues and quiet opening music are also original procedural audio under the same terms, with no external samples.

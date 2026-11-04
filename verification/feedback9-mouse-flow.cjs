@@ -4,7 +4,7 @@ function test(name,fn){try{fn();results.push({name,status:'PASS'});}catch(e){res
 function fixture({touch=false,transit=false}={}){
  const nodes={},events={},doc={hidden:false,hasFocus:()=>true,querySelector:()=>null,pointerLockElement:null,addEventListener:(k,f)=>events[k]=f,exitPointerLock(){this.pointerLockElement=null;events.pointerlockchange();}};
  let requests=0;const arena={focus(){},requestPointerLock(){requests++;}},game=new C.Game();game.pause();
- const env={resumeLabel:()=> '続ける',mode:'paused',sim:game,audioGate:null,document:doc,stageDefeat:null,stageTransit:transit?{}:null,cinematicHeld:true,acc:2,readyAudioAction:null,settings:{controlMode:'mouse'},needsMouseLock:()=>!touch,$:id=>id==='arena'?arena:nodes[id]||(nodes[id]={disabled:false,focus(){}}),clearInput(){env.target=null;},sound:{music:true,pause(){},resume(){},begin(){}},screen(){},paintCinematic(){},announce(){},target:{x:400,y:400}};
+ const env={resumeLabel:()=> '続ける',mode:'paused',sim:game,audioGate:null,document:doc,stageDefeat:null,stageTransit:transit?{}:null,cinematicHeld:true,acc:2,readyAudioAction:null,settings:{controlMode:'mouse'},needsMouseLock:()=>!touch,$:id=>id==='arena'?arena:nodes[id]||(nodes[id]={disabled:false,focus(){}}),clearInput(){env.target=null;},sound:{ui(){},music:true,pause(){},resume(){},begin(){}},screen(){},paintCinematic(){},announce(){},target:{x:400,y:400}};
  env.mouseLock=new Controls.PointerLockInput(doc,arena,{locked(){env.resume();}});vm.createContext(env);vm.runInContext(source.slice(source.indexOf(' function pause('),source.indexOf(' function home(')),env);
  return{env,game,nodes,requests:()=>requests,lock(){doc.pointerLockElement=arena;events.pointerlockchange();}};
 }
