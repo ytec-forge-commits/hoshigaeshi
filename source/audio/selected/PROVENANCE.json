@@ -1,0 +1,343 @@
+{
+  "date": "2026-11-04",
+  "selection": "User-approved feedback25 audition choices",
+  "records": [
+    {
+      "key": "button",
+      "author": "Kenney",
+      "title": "impact-sounds",
+      "source": "https://kenney.nl/assets/impact-sounds",
+      "license": "CC0-1.0",
+      "original_file": "impact-impactMetal_medium_002.ogg",
+      "original_sha256": "7e89ce2ca0dbda95ea2b78d4b50791cab35c10d20e9f5ccd45dd0b00e99ff548",
+      "seconds": 0.11623582766439909,
+      "channels": 1,
+      "sample_rate": 44100,
+      "pitch_changed": false,
+      "speed_changed": false,
+      "processing": {
+        "gain": 0.2887194195742259,
+        "edge_fade_ms": 1,
+        "audition": "button"
+      },
+      "outputs": [
+        {
+          "file": "button.ogg",
+          "sha256": "57a3f6affa990e773c416b62384ccf7443c0e7a3ddc7cfa319aff7fa54050d06",
+          "bytes": 4817,
+          "peak": 0.23015907406806946
+        },
+        {
+          "file": "button.mp3",
+          "sha256": "f0c72c34e63d513cdd6df8e9f3132fffdc639195a817362508203e8e1c1be3a7",
+          "bytes": 4432,
+          "peak": 0.22716598212718964
+        }
+      ]
+    },
+    {
+      "key": "boss-defeat",
+      "author": "Kenney",
+      "title": "sci-fi-sounds",
+      "source": "https://kenney.nl/assets/sci-fi-sounds",
+      "license": "CC0-1.0",
+      "original_file": "scifi-lowFrequency_explosion_000.ogg",
+      "original_sha256": "3cb48d86dab63140cfb9aaeea4d4a6846abaca5831d157d8adbec0490da26343",
+      "seconds": 2.000045351473923,
+      "channels": 1,
+      "sample_rate": 44100,
+      "pitch_changed": false,
+      "speed_changed": false,
+      "processing": {
+        "gain": 0.28225277030556567,
+        "edge_fade_ms": 1,
+        "audition": "boss-defeat"
+      },
+      "outputs": [
+        {
+          "file": "boss-defeat.ogg",
+          "sha256": "e7a780730c8f6f8803d594194b5488425dbfc811e6c7a6782c0163b6ff466dc7",
+          "bytes": 8730,
+          "peak": 0.36183419823646545
+        },
+        {
+          "file": "boss-defeat.mp3",
+          "sha256": "27808867c7f83927f305370a300ef983a11c359ef079c99a51a023357ccf49b8",
+          "bytes": 49572,
+          "peak": 0.34919309616088867
+        }
+      ]
+    },
+    {
+      "key": "chain-1",
+      "author": "Kenney",
+      "title": "interface-sounds",
+      "source": "https://kenney.nl/assets/interface-sounds",
+      "license": "CC0-1.0",
+      "original_file": "interface-glass_001.ogg",
+      "original_sha256": "183eebee20eb0a532b0b85104d139cbf2673eb66d95c3cc733ac9ea98362e7e8",
+      "seconds": 0.2755328798185941,
+      "channels": 1,
+      "sample_rate": 44100,
+      "pitch_changed": false,
+      "speed_changed": false,
+      "processing": {
+        "gain": 0.3376125570318811,
+        "edge_fade_ms": 1,
+        "audition": "chain-A"
+      },
+      "outputs": [
+        {
+          "file": "chain-1.ogg",
+          "sha256": "f265b0116b2071c0c8fc60df55048f4eaa2dbb0a73041827a42086a8502a2704",
+          "bytes": 5717,
+          "peak": 0.24973143637180328
+        },
+        {
+          "file": "chain-1.mp3",
+          "sha256": "838f4bdd805acbe5da02e208aeaf8ca1325259e131586b2d11c76df834d1969d",
+          "bytes": 8194,
+          "peak": 0.24797171354293823
+        }
+      ]
+    },
+    {
+      "key": "chain-2",
+      "author": "Kenney",
+      "title": "interface-sounds",
+      "source": "https://kenney.nl/assets/interface-sounds",
+      "license": "CC0-1.0",
+      "original_file": "interface-confirmation_001.ogg",
+      "original_sha256": "063564703b6094d70718a3e787a55cc9141611e4ecd6b6637f8828f79b4a8c3a",
+      "seconds": 0.28984126984126984,
+      "channels": 1,
+      "sample_rate": 44100,
+      "pitch_changed": false,
+      "speed_changed": false,
+      "processing": {
+        "gain": 0.1819438186150737,
+        "edge_fade_ms": 1,
+        "audition": "chain-A"
+      },
+      "outputs": [
+        {
+          "file": "chain-2.ogg",
+          "sha256": "bc1f8f90ce548378d1adc75157cb2d5eb98a32441d00b0d8559881b64984b12d",
+          "bytes": 5308,
+          "peak": 0.16255652904510498
+        },
+        {
+          "file": "chain-2.mp3",
+          "sha256": "c12b469872525ea6811b299b6ab2a4e5bbe3bc00b0a39c084df75178e67c929c",
+          "bytes": 8821,
+          "peak": 0.15720608830451965
+        }
+      ]
+    },
+    {
+      "key": "chain-3",
+      "author": "Kenney",
+      "title": "interface-sounds",
+      "source": "https://kenney.nl/assets/interface-sounds",
+      "license": "CC0-1.0",
+      "original_file": "interface-confirmation_003.ogg",
+      "original_sha256": "3091bf0be0497f825769ee0733ca7bdc3bcd59bd6c6e8f2ba8f93d580ff38022",
+      "seconds": 0.3220181405895692,
+      "channels": 1,
+      "sample_rate": 44100,
+      "pitch_changed": false,
+      "speed_changed": false,
+      "processing": {
+        "gain": 0.28253544383149976,
+        "edge_fade_ms": 1,
+        "audition": "chain-A"
+      },
+      "outputs": [
+        {
+          "file": "chain-3.ogg",
+          "sha256": "c96f105be897e8368c2e8e55b5b5f04c0c99f978275b392dacb6306f5af7f568",
+          "bytes": 6007,
+          "peak": 0.249214768409729
+        },
+        {
+          "file": "chain-3.mp3",
+          "sha256": "8355640a133fe93883f891117c5701f08908a5c248421dbb0c0af3da45e92870",
+          "bytes": 9448,
+          "peak": 0.24170109629631042
+        }
+      ]
+    },
+    {
+      "key": "chain-4",
+      "author": "Kenney",
+      "title": "interface-sounds",
+      "source": "https://kenney.nl/assets/interface-sounds",
+      "license": "CC0-1.0",
+      "original_file": "interface-confirmation_004.ogg",
+      "original_sha256": "568967a3d9f8a8f6af54ea01729c4882284308f2a27d78c07ffd7ee0d6951661",
+      "seconds": 0.4904081632653061,
+      "channels": 1,
+      "sample_rate": 44100,
+      "pitch_changed": false,
+      "speed_changed": false,
+      "processing": {
+        "gain": 0.19094308416968256,
+        "edge_fade_ms": 1,
+        "audition": "chain-A"
+      },
+      "outputs": [
+        {
+          "file": "chain-4.ogg",
+          "sha256": "21a2b401560678e30616d2f28dcff13c762fde8d5f98e320977aedb1c27cf3f6",
+          "bytes": 6668,
+          "peak": 0.17142006754875183
+        },
+        {
+          "file": "chain-4.mp3",
+          "sha256": "d273852095f109d38f54de9011e2f380b15f46aea2d5cf9dfc98fa263d619ec6",
+          "bytes": 13209,
+          "peak": 0.16676084697246552
+        }
+      ]
+    },
+    {
+      "key": "player-shot",
+      "author": "Zane Little",
+      "title": "Theremin Laser SFX / Short / Smooth 10",
+      "source": "https://opengameart.org/content/theremin-laser-sfx",
+      "license": "CC0-1.0",
+      "original_file": "theremin-Smooth 10.wav",
+      "original_sha256": "a0f0bfd2bec5bb01f58d8e1415de8a9db1e5576410b853ba5bff9f4d333c14ee",
+      "seconds": 0.25,
+      "channels": 2,
+      "sample_rate": 44100,
+      "pitch_changed": false,
+      "speed_changed": false,
+      "processing": {
+        "gain": 0.3629567713024749,
+        "edge_fade_ms": 1,
+        "excerpt_seconds": null,
+        "end_fade_ms": null,
+        "audition": "shots-R3-A"
+      },
+      "outputs": [
+        {
+          "file": "player-shot.ogg",
+          "sha256": "f7720b7fe0198179056c717116e9c6628ffb914c28c0189959f3639f26fbc307",
+          "bytes": 6790,
+          "peak": 0.045307014137506485
+        },
+        {
+          "file": "player-shot.mp3",
+          "sha256": "b64c85416fca5ee243497a72b602acca0318e16716f899e50122521a1b3f47fe",
+          "bytes": 7567,
+          "peak": 0.04388441517949104
+        }
+      ]
+    },
+    {
+      "key": "enemy-pop",
+      "author": "qubodup",
+      "title": "Dull explosion",
+      "source": "https://opengameart.org/content/dull-explosion",
+      "license": "CC0-1.0",
+      "original_file": "dull-explosion-0.flac",
+      "original_sha256": "a463ff6b4cc37321f646ddbe9ff326aef244dea33d3951bc2a833a27cc611bf9",
+      "seconds": 0.16594104308390023,
+      "channels": 2,
+      "sample_rate": 44100,
+      "pitch_changed": false,
+      "speed_changed": false,
+      "processing": {
+        "gain": 0.18862415395198323,
+        "edge_fade_ms": 1,
+        "excerpt_seconds": null,
+        "end_fade_ms": null,
+        "audition": "enemy-defeat-R4-A"
+      },
+      "outputs": [
+        {
+          "file": "enemy-pop.ogg",
+          "sha256": "f8452624fea966f0c70ceb2a4eaf6b0eff968c65cc891491fb97581fcc2c02a3",
+          "bytes": 7793,
+          "peak": 0.1471862941980362
+        },
+        {
+          "file": "enemy-pop.mp3",
+          "sha256": "91ff4c90b1f56120c02b549f8dce6aa5ebfc6ead229a35210ee435835cc7dc73",
+          "bytes": 5686,
+          "peak": 0.1443297415971756
+        }
+      ]
+    },
+    {
+      "key": "stage-transit",
+      "author": "OtoLogic",
+      "title": "Onoma-Sparkle08-1 (Short)",
+      "source": "https://otologic.jp/free/se/sparkle01.html",
+      "license": "CC-BY-4.0",
+      "original_file": "Onoma-Sparkle08-1(Short).mp3",
+      "original_sha256": "a00e11e27499fa236a48df7db37f0453b54466bd6265fc39f1c333212e5613b5",
+      "seconds": 3.0,
+      "channels": 2,
+      "sample_rate": 44100,
+      "pitch_changed": false,
+      "speed_changed": false,
+      "processing": {
+        "gain": 1.5585986619214693,
+        "edge_fade_ms": 1,
+        "excerpt_seconds": 3,
+        "end_fade_ms": 280,
+        "audition": "stage-transit-R2-B"
+      },
+      "outputs": [
+        {
+          "file": "stage-transit.ogg",
+          "sha256": "95b1254bc82456afb37edf197c972dc4067c2dbeb4e66fced33389e08a21cd26",
+          "bytes": 61787,
+          "peak": 0.34986022114753723
+        },
+        {
+          "file": "stage-transit.mp3",
+          "sha256": "b2ef72958db45360c4b788aaae97f321049b86301cbd5ff8622efadfa4eed09e",
+          "bytes": 73395,
+          "peak": 0.358201265335083
+        }
+      ]
+    },
+    {
+      "key": "opening-ambience",
+      "author": "StumpyStrust",
+      "title": "Doodle menu like song",
+      "source": "https://opengameart.org/content/doodle-menu-like-song",
+      "license": "CC0-1.0",
+      "original_file": "doodle_0.mp3",
+      "original_sha256": "e74874295992900758cba8077f110024680bd7592e5c6103960f99d29ba8f13d",
+      "seconds": 12.0,
+      "channels": 2,
+      "sample_rate": 44100,
+      "pitch_changed": false,
+      "speed_changed": false,
+      "processing": {
+        "excerpt_seconds": 12,
+        "loudness": "First 12 seconds of the audition processing: loudnorm I=-22 TP=-5 LRA=11 over the first 45 seconds",
+        "edge_fade_ms": 1,
+        "audition": "OP-C"
+      },
+      "outputs": [
+        {
+          "file": "opening-ambience.ogg",
+          "sha256": "349f590478b157b9e578326b2251089b5e0e5f85b5370e8451ce01febd192aa5",
+          "bytes": 171720,
+          "peak": 0.3869088590145111
+        },
+        {
+          "file": "opening-ambience.mp3",
+          "sha256": "2647cc1f28006e4a0c1c8b6578569e875097046aeab07e0a4ff5ca17f0bfb258",
+          "bytes": 289689,
+          "peak": 0.38492006063461304
+        }
+      ]
+    }
+  ]
+}

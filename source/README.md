@@ -1,4 +1,6 @@
-# 星返し / STAR REBOUND — v9 feedback24 連鎖音階・結果操作・未掲載テスト版
+# 星返し / STAR REBOUND — v9 feedback25 選択音源・節目の連鎖音・未掲載テスト版
+
+OPと主要SEは本人選択のフリー素材を使用。連鎖音は4・8・16・24CHAIN到達時だけ音色を変えて鳴らし、音階を毎回上げる演出は終了しました。出典と加工内容は[audio/selected/CREDITS.md](audio/selected/CREDITS.md)を参照してください。
 
 静的HTTPサーバーで index.html を開いてください。画像・音声・フォント・スクリプトは同梱してあり、サブパスから相対参照します。ビルドやアカウントは不要です。
 

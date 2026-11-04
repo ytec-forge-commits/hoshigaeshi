@@ -1,4 +1,6 @@
-# STAR REBOUND — v9 feedback24
+# STAR REBOUND — v9 feedback25
+
+The opening and main effects use user-selected free audio. Chain cues play only at 4, 8, 16 and 24 CHAIN with four distinct timbres. Sources, licenses and edits are in [audio/selected/CREDITS.md](audio/selected/CREDITS.md).
 
 [日本語](README.md)
 

@@ -78,7 +78,8 @@ const AUDIO_FILES={
 };
 const ARCADE_AUDIO=['chain-1','chain-2','chain-3','chain-4','pickup-spread','pickup-twin','pickup-pierce'];
 for(const key of ARCADE_AUDIO)AUDIO_FILES[key]=['arcade/'+key+'.ogg','arcade/'+key+'.mp3'];
-const COMMON_AUDIO=['capture','return-burst','hit','enemy-pop','boss','victory','button',...ARCADE_AUDIO,...window.StarSoundDesign.KEYS];
+for(const key of ['opening-ambience','button','player-shot','enemy-pop','boss-defeat','stage-transit','chain-1','chain-2','chain-3','chain-4'])AUDIO_FILES[key]=['selected/'+key+'.ogg','selected/'+key+'.mp3'];
+const COMMON_AUDIO=['capture','return-burst','hit','enemy-pop','boss','victory','button','player-shot','boss-defeat','stage-transit',...ARCADE_AUDIO,...window.StarSoundDesign.KEYS];
 const CREDITS_TRACK='star-tide-loop';
 const START_AUDIO=[...COMMON_AUDIO.filter(key=>!ARCADE_AUDIO.includes(key)),'star-tide-loop','stage1-boss'];
 function comboAccentPlan(combo,returned,reduced){const tier=!returned?0:combo>=24?4:combo>=16?3:combo>=8?2:combo>=4?1:0;return{tier,stars:reduced?Math.min(4,tier):[0,6,10,16,22][tier]};}
@@ -86,27 +87,28 @@ const SOUND_RULES={
   hit:{priority:5,gap:.1,max:1,gain:.9},'return-burst':{priority:5,gap:.2,max:1,gain:.95},
   'boss-defeat':{priority:6,gap:.6,max:1,gain:1.1},'stage-transit':{priority:5,gap:1,max:1,gain:1},victory:{priority:5,gap:0,max:1},boss:{priority:4,gap:1,max:1},
   capture:{priority:2,gap:.08,max:2,gain:.6},'enemy-pop':{priority:1,gap:.125,max:1},
-  'player-shot':{priority:1,gap:.16,max:1,gain:.18},'option-laser':{priority:3,gap:.5,max:1,gain:.72},'boss-beam':{priority:4,gap:1,max:1,gain:.9},'shield-break':{priority:5,gap:.2,max:1,gain:.9},
-  button:{priority:1,gap:.08,max:1},'combo-accent':{priority:4,gap:.04,max:4,gain:.95},'item-pickup':{priority:5,gap:.08,max:1,gain:.9}
+  'player-shot':{priority:1,gap:.16,max:2,gain:1},'option-laser':{priority:3,gap:.5,max:1,gain:.72},'boss-beam':{priority:4,gap:1,max:1,gain:.9},'shield-break':{priority:5,gap:.2,max:1,gain:.9},
+  button:{priority:1,gap:.08,max:1},'combo-accent':{priority:4,gap:.18,max:1,gain:.95},'item-pickup':{priority:5,gap:.08,max:1,gain:.9}
 };
 class Sound{
 constructor(){this.ctx=null;this.buffers={};this.loadedPaths={};this.loading=null;this.inflight=new Map();this.wanted=new Set();this.activeMusic=new Set();this.loadVersion=0;this.music=null;this.fadingMusic=null;this.musicTrack=null;this.musicCreated=0;this.voices=[];this.last={};this.intent=0;this.ready=false;this.failedKeys=[];this.runSilent=false;}
 // UI has its own tiny audio context so pause menus can sound while gameplay is suspended.
 ui(key='ui-confirm'){
  if(settings.muted||settings.sfxVolume===0||document.hidden||this.runSilent)return;
+ if(!this.buffers.button){try{this.openContext();this.prefetch('button');}catch(e){}return;}
  try{const AC=window.AudioContext||window.webkitAudioContext;if(!this.uiCtx){this.uiCtx=new AC();this.uiGain=this.uiCtx.createGain();this.uiGain.connect(this.uiCtx.destination);}const ctx=this.uiCtx;this.uiGain.gain.value=.42*settings.sfxVolume/100;
- const emit=()=>{if(settings.muted||settings.sfxVolume===0||document.hidden)return;const t=ctx.currentTime;this.lastUIByKey??={};if(t-(this.lastUIByKey[key]??-99)<.055)return;this.lastUIByKey[key]=t;this.lastUI=t;
- this.uiBuffers??={};if(!this.uiBuffers[key]){const data=window.StarSoundDesign.synthesize(key,ctx.sampleRate),buffer=ctx.createBuffer(1,data.length,ctx.sampleRate);buffer.copyToChannel(data,0);this.uiBuffers[key]=buffer;}
+ const emit=()=>{if(settings.muted||settings.sfxVolume===0||document.hidden||this.runSilent)return;const t=ctx.currentTime;this.lastUIByKey??={};if(t-(this.lastUIByKey[key]??-99)<.055)return;this.lastUIByKey[key]=t;this.lastUI=t;
+ this.uiBuffers??={};this.uiBuffers[key]=this.buffers.button;
  const source=ctx.createBufferSource(),gain=ctx.createGain();source.buffer=this.uiBuffers[key];gain.gain.value=1;source.connect(gain);gain.connect(this.uiGain);this.uiVoices??=[];if(this.uiVoices.length>=3){const old=this.uiVoices.shift();try{old.stop();}catch(e){}}this.uiVoices.push(source);source.onended=()=>{this.uiVoices=this.uiVoices.filter(v=>v!==source);source.disconnect();gain.disconnect();};source.start();};
  if(ctx.state==='running')emit();else ctx.resume().then(emit).catch(()=>{});
  }catch(e){}
 }
-prepareIntro(){this.openContext();if(this.buffers['opening-ambience'])return;const rate=Math.min(24000,this.ctx.sampleRate),data=window.StarSoundDesign.introMusic(rate),buffer=this.ctx.createBuffer(1,data.length,rate);buffer.copyToChannel(data,0);this.buffers['opening-ambience']=buffer;}
-beginIntro(){
+prepareIntro(){this.openContext();this.prefetch('button');return this.prefetch('opening-ambience');}
+async beginIntro(){
  if(settings.muted||this.runSilent)return;
  try{this.openContext();this.stopMusic();const token=++this.intent,key='opening-ambience';
- this.prepareIntro();
- this.ctx.resume().then(()=>{if(token!==this.intent||mode!=='intro'||document.hidden||cinematicHeld)return;const t=this.ctx.currentTime;this.music=this.createMusic(key,t,0);this.musicTrack=key;this.music.gain.gain.linearRampToValueAtTime(.65,t+1.2);}).catch(()=>{});
+ const loaded=await this.prepareIntro();if(!loaded||token!==this.intent||mode!=='intro'||document.hidden||cinematicHeld||settings.muted||this.runSilent)return;
+ await this.ctx.resume();if(token!==this.intent||mode!=='intro'||document.hidden||cinematicHeld||settings.muted||this.runSilent)return;const t=this.ctx.currentTime;this.music=this.createMusic(key,t,0);this.musicTrack=key;this.music.gain.gain.linearRampToValueAtTime(.65,t+1.2);
  }catch(e){}
 }
 finishIntro(){if(this.musicTrack!=='opening-ambience')return;this.intent++;const old=this.music,t=this.ctx.currentTime;old.gain.gain.cancelScheduledValues(t);old.gain.gain.setValueAtTime(old.gain.gain.value,t);old.gain.gain.linearRampToValueAtTime(0,t+.6);old.source.stop(t+.62);this.fadingMusic=old;this.music=null;this.musicTrack=null;}
@@ -222,22 +224,24 @@ stopMusic(){
   for(const track of [this.music,this.fadingMusic])if(track){track.onDone=null;try{track.source.stop();}catch(e){}}
   this.music=null;this.fadingMusic=null;this.musicTrack=null;
 }
-stop(){this.clearChain();this.intent++;this.cancelInflight();this.stopMusic();for(const v of this.voices){try{v.source.stop();}catch(e){}}this.voices=[];this.failedKeys=[];if(this.ctx?.state==='suspended')this.ctx.resume().catch(()=>{});}
-clearChain(){this.chainQueue=[];this.nextChainAt=0;}
+stop(){this.clearChain(true);this.intent++;this.cancelInflight();this.stopMusic();for(const v of this.voices){try{v.source.stop();}catch(e){}}this.voices=[];this.failedKeys=[];if(this.ctx?.state==='suspended')this.ctx.resume().catch(()=>{});}
+clearChain(reset=false){this.chainQueue=[];this.nextChainAt=0;if(reset)this.chainCueTier=0;}
 queueChain(combo){
  if(!Number.isFinite(combo)||combo<1)return;
+ if(combo===1)this.clearChain(true);
+ const tier=combo>=24?4:combo>=16?3:combo>=8?2:combo>=4?1:0;
+ if(tier<=(this.chainCueTier||0))return;
+ this.chainCueTier=tier;
  if(!this.ready||this.runSilent||settings.muted||settings.sfxVolume===0||document.hidden||mode!=='playing'||this.ctx?.state!=='running'){this.clearChain();return;}
- if(combo===1)this.clearChain();
- this.chainQueue??=[];this.chainQueue.push({combo:Math.floor(combo),at:this.ctx.currentTime});
- // Keep a rapid run short even when a single return destroys a whole wave.
- if(this.chainQueue.length>8)this.chainQueue.splice(0,this.chainQueue.length-8);
+ // A simultaneous wave clear announces only the highest reached milestone.
+ this.chainQueue=[{combo:Math.floor(combo),at:this.ctx.currentTime}];
 }
 flushChain(){
  if(!this.chainQueue?.length)return;
  if(!this.ready||this.runSilent||settings.muted||settings.sfxVolume===0||document.hidden||mode!=='playing'||this.ctx?.state!=='running'){this.clearChain();return;}
  const t=this.ctx.currentTime;this.chainQueue=this.chainQueue.filter(note=>t-note.at<=.65);
  if(!this.chainQueue.length||t<(this.nextChainAt||0))return;
- const note=this.chainQueue.shift();this.play('combo-accent',0,note.combo);this.nextChainAt=t+.075;
+ const note=this.chainQueue.shift();this.play('combo-accent',0,note.combo);this.nextChainAt=t+.18;
 }
 pause(){this.clearChain();if(this.ctx)this.ctx.suspend().catch(()=>{});}
 resume(){if(this.ctx)this.ctx.resume().catch(()=>{});}
@@ -246,8 +250,8 @@ play(key,minGap=0,variant=null){
   const rule=SOUND_RULES[key]||{priority:1,gap:.06,max:1},t=this.ctx.currentTime;
   if(t-(this.last[key]??-999)<Math.max(rule.gap,minGap))return;
   const same=this.voices.filter(v=>v.key===key);if(same.length>=rule.max&&key!=='combo-accent')return;
- const chime=key==='item-pickup'||key==='combo-accent',variantKey=key==='item-pickup'?'pickup-'+variant:Number(variant)>22?'chain-sparkle':Number(variant)>1?'chain-note-'+Math.min(22,Math.floor(Number(variant))):'chain-note';
- const buffer=chime?(this.buffers[variantKey]||this.buffers.capture):this.buffers[key];if(!buffer)return;
+ const chime=key==='item-pickup'||key==='combo-accent',tier=Number(variant)>=24?4:Number(variant)>=16?3:Number(variant)>=8?2:Number(variant)>=4?1:0,variantKey=key==='item-pickup'?'pickup-'+variant:'chain-'+tier;
+ const buffer=key==='item-pickup'?(this.buffers[variantKey]||this.buffers.capture):key==='combo-accent'?this.buffers[variantKey]:this.buffers[key];if(!buffer)return;
  if(same.length>=rule.max){for(const prior of same.slice(0,1)){this.voices=this.voices.filter(v=>v!==prior);try{prior.source.stop();}catch(e){}}}
 
   if(this.voices.length>=4){
@@ -374,7 +378,7 @@ if(qaMode){
    controls.append(introReplay,...introShots,moviePlay,chain,twin,...hazards,stage2,directStage3,jump,sweep,longBoss,clear,item,pickup,routeJump('QA: 02/03',16.79),routeJump('QA: WHALE',28),routeJump('QA: 04/05',44.42),routeJump('QA: ARCH',64),fieldHold);document.querySelector('.game-column').appendChild(controls);
 }
  function restart(){if(needsMouseLock()){clearInput();pendingMouseRestart={practice:!!sim?.practice};$('resume').disabled=true;mouseLock.request();}else start(sim?.practice);}
- function start(practice=false,keepMouseLock=false){if(!scene||assetsFailed||mode==='preparing')return;pendingMouseRestart=null;if(!keepMouseLock)mouseLock.release();pendingDifficulty=$('difficulty').value;audioGate=null;hideAudioGate();if(sound.ready&&sound.has(START_AUDIO)&&!sound.failedKeys.length){sound.stop();sound.keep(START_AUDIO);sound.runSilent=false;launch(practice);return;}return prepareStart(practice);}
+ function start(practice=false,keepMouseLock=false){if(!scene||assetsFailed||mode==='preparing')return;pendingMouseRestart=null;if(!keepMouseLock)mouseLock.release();pendingDifficulty=$('difficulty').value;audioGate=null;hideAudioGate();if(sound.ready&&sound.has(START_AUDIO)&&!sound.failedKeys.length){sound.stop();sound.keep([...START_AUDIO,...ARCADE_AUDIO]);for(const key of ARCADE_AUDIO)sound.loadOne(key);sound.runSilent=false;launch(practice);return;}return prepareStart(practice);}
  async function prepareStart(practice=false){
     mode='preparing';sound.stop();sound.runSilent=false;clearInput();screen('menu');
    $('start').disabled=true;$('practice').disabled=true;$('start').textContent='音を準備中…';
@@ -929,7 +933,7 @@ this.flightTexture=this.textures.createCanvas('player-flight',256,256);this.flig
     g.lineStyle(3,color,remaining<=3?.85:.5);g.beginPath();g.arc(p.x,p.y+8,43,Math.PI*.2,Math.PI*.2+Math.PI*.6*Math.min(1,remaining/20));g.strokePath();
     if(!quiet){g.fillStyle(color,.25+.12*Math.sin(phase));for(const side of [-1,1])g.fillEllipse(p.x+side*distance,p.y+24,8,22);}
    }
-   resetComboAccent(){this.comboAccentTier=0;this.comboAccentUntil=0;sound.clearChain();$('combo').dataset.tier='0';$('combo').dataset.pop='';$('combo').hidden=true;}
+   resetComboAccent(){this.comboAccentTier=0;this.comboAccentUntil=0;sound.clearChain(true);$('combo').dataset.tier='0';$('combo').dataset.pop='';$('combo').hidden=true;}
    clearBossDefeat(){for(const sprite of this.defeatSprites||[])sprite.destroy();this.defeatSprites=[];$('boss-defeat-cut-in').hidden=true;}
    beginBossDefeat(stageIndex){this.clearBossDefeat();$('boss-cut-portrait').src=asset(['boss.png','stage2/boss-mirror.png','stage3/boss-eclipse.png'][stageIndex]);$('boss-cut-name').textContent=['潮の主','鏡潮の主','時環の主'][stageIndex];$('boss-cut-stage').textContent=`STAGE ${stageIndex+1} / LIBERATED`;const point=this.lastBossDestroy||{x:240,y:160};this.lastBossDestroy=null;const key=['boss','stage2-boss','stage3-eclipse'][stageIndex];this.defeatSprites=[this.add.image(point.x,point.y,key).setDisplaySize(190,190).setDepth(8),this.add.image(point.x,point.y,'ring').setDisplaySize(200,200).setTint(0xffdf9c).setDepth(9).setBlendMode(Phaser.BlendModes.ADD)];this.paintBossDefeat(0,effectiveReduced());}
    paintBossDefeat(progress,quiet){const [ghost,ring]=this.defeatSprites||[];if(!ghost)return;const p=Math.max(0,Math.min(1,progress));ghost.setAlpha(.95*(1-p)).setDisplaySize(190*(quiet?1:1-.14*p),190*(quiet?1:1-.14*p));ring.setVisible(!quiet).setAlpha(.6*(1-p)).setDisplaySize(200+180*p,200+180*p);const frame=window.StarCinematic.defeatFrame(p,quiet),cut=$('boss-defeat-cut-in');cut.hidden=false;cut.style.opacity=String(frame.opacity);$('boss-cut-band').style.transform=`translateX(${frame.x}%) rotate(-7deg)`;$('boss-cut-portrait').style.transform=`scale(${frame.portraitScale}) rotate(7deg)`;cut.dataset.quiet=String(quiet);}

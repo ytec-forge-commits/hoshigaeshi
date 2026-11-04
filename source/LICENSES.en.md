@@ -75,4 +75,12 @@ The startup chime in `startup.js` and six effects in `sound-design.js` are synth
 
 `assets/projectiles-v2/petal.png`, `thorn.png`, `gold.png`, `player.png`, `return.png` are original transparent raster illustrations generated with the built-in OpenAI image tool. They follow the existing original generated-raster terms above, within the rights the provider can grant. No third-party reference image or stock was supplied. Prompts, tool and runtime processing are recorded in `assets/projectiles-v2/PROVENANCE.md`; dimensions and SHA-256 are in `manifest.json`. The previous adopted sprites are retained.
 
-The 2026-11-04 boss-defeat cue, four UI cues and quiet opening music are also original procedural audio under the same terms, with no external samples.
+The earlier 2026-11-04 procedural boss-defeat, UI and opening cues were replaced by the selected recordings documented below. Their historical description does not apply to the new recordings.
+
+## 選択済み音源 / Selected recordings (2026-11-04, feedback25)
+
+Opening: StumpyStrust — Doodle menu like song (CC0). Chain, metal button and boss defeat: Kenney Interface / Impact / Sci-Fi Sounds (CC0). Player shot: Zane Little — Theremin Laser SFX (CC0). Enemy defeat: qubodup — Dull explosion (CC0). Stage passage: **OtoLogic — Onoma-Sparkle08-1 (Short), CC BY 4.0**.
+
+OtoLogicの素材を使用しています。移動音は先頭3秒へ短縮、音量調整・末尾280msフェードを適用。全選択音源は音程・再生速度を保持。OPは試聴版先頭12秒の抜粋です。 / Sound by OtoLogic; modified with a three-second excerpt, gain adjustment and 280 ms end fade. All selected cues retain their original pitch and speed; the opening is a 12-second excerpt.
+
+出典・改変・原作者通知・全文 / Sources, modifications, original notices and full licenses: [audio/selected/CREDITS.md](audio/selected/CREDITS.md). SHA-256 and processing: [PROVENANCE.json](audio/selected/PROVENANCE.json). Third-party terms remain separate from the original-code and original-asset licenses.
