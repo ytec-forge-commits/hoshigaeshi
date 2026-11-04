@@ -1,3 +1,15 @@
+# feedback24 · 2026-11-04
+
+- OPを持続和音から柔らかな鍵盤の旋律へ変更し、決定・戻る・停止・再開音を低めに調整。
+- 敵弾の案内を「紫の弾」から「敵の弾」へ日英で変更。
+- CHAINごとにC4〜C7の長音階22段。23以上は星のきらめき音。各音の長さを維持し、同時撃破は短く順に鳴らします。連鎖切断・被弾・停止・ミュートでは待機音を破棄。
+- 第1・第2面の突破演出後に、星が流れる面移動SEを一度だけ再生。
+- 結果画面のランキング登録入口を固定し、名前入力と公開内容を専用ダイアログへ。共有・画像保存・X投稿を同じ紫色・大きさで固定表示。
+- X投稿・結果共有・手動コピーの文章へ、日英それぞれのForge紹介ページ予定URLを追加。試遊URLを含めません。
+- English: A softer opening melody and lower UI cues; enemy-bullet guidance; a 22-note, three-octave chain scale followed by star sparkles; flowing stage-transition audio; and visible ranking entry plus equal purple share, image-save and X controls. Shared captions link to the planned localized Forge introduction page.
+
+---
+
 # feedback23 · 2026-11-04
 
 - 敵弾を紫・桃・金の生成結晶PNGへ更新し、単色塗りつぶしを外して陰影を保ちます。弾の軌道・速度・当たり判定は不変です。

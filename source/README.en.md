@@ -1,4 +1,4 @@
-# STAR REBOUND — v9 feedback23
+# STAR REBOUND — v9 feedback24
 
 [日本語](README.md)
 
@@ -94,3 +94,15 @@ On the result screen, **Share result** opens the device share menu with your sco
 The safe 55-second practice introduces front fans, crossfire, aimed shots, accelerating shots, splitting shots, homing shots and lasers. Each pattern is announced before firing. Spread, Twin, Pierce, Extend and Guard items then appear in sequence: move toward them to collect and try the same powers used in the main game. Practice does not reduce life or affect records and rankings. Lasers cannot be captured; move away from the warning line.
 
 Player and enemy wings, appendages and laser light now move. Reduced effects stops articulated deformation and flowing light. Quiet music accompanies the opening; boss defeat and menu actions have dedicated sounds. BGM, SFX and mute remain adjustable in Settings.
+
+## Audio and result controls (feedback24)
+
+- A soft keyboard melody accompanies the opening, with lower-pitched button sounds.
+- Each defeat CHAIN rises one note through three full octaves, from C4 to C7 (22 steps). From CHAIN 23 onward, a star-sparkle sound plays. A broken chain restarts at C4.
+- A flowing-star cue accompanies the passage to the next stage.
+- The ranking entry stays visible on the result screen and opens a separate dialog for the nickname and public-data notice.
+- Share result, Save image and Post on X have equal-sized purple buttons that stay visible beside the result details.
+- Gameplay guidance refers to enemy bullets without assuming a particular color.
+
+
+Shared captions include the planned introduction page at `https://ytec.cloudfree.jp/forge/en/projects/hoshigaeshi/` in English, or `/forge/projects/hoshigaeshi/` in Japanese. These pages are planned for public launch. Captions never include the current local or unlisted test URL.
