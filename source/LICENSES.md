@@ -129,3 +129,7 @@ OtoLogicの素材を使用しています。移動音は先頭3秒へ短縮、�
 `audio/selected/chain-bell-1..4.ogg/mp3` are original synthesized bell chords, under the existing CC0 1.0 original-audio policy. They contain no third-party recordings. The previous Kenney chain files and notices remain preserved. Recipe, hashes and verification: [CHAIN_BELLS.json](audio/selected/CHAIN_BELLS.json).
 
 現在の連鎖ベル8ファイルは作品用のオリジナル合成音です。既存の自作音源CC0区分を継続し、他の録音・第三者素材の利用条件は変更しません。
+
+## エンドロール専用曲（2026-11-04）
+
+`audio/credits/credits-flute-v1.ogg` / `.mp3` は「星流」の柔らかい笛の編曲です。本人選定済みの全曲版を使用し、既存の自作音源CC0条件と、伴奏ベルに含むVSCO 2 CEのCC0条件を維持します。[日英の来歴・権利表示](audio/credits/CREDITS.md)と同フォルダーのPROVENANCE.json・CC0全文を参照してください。

@@ -1,0 +1,112 @@
+{
+  "title": "Star Current / credits flute arrangement",
+  "date": "2026-11-04",
+  "selection": "User selected candidate 04, full v21 arrangement",
+  "master": {
+    "file": "starlight-selected-v21-04-breathy-flute.wav",
+    "sha256": "1a575d69811f68c3905f5eeee88fdc4db381c6c70a4c2577a770739a53f687ca"
+  },
+  "processing": "MP3 is a byte-identical copy of the chosen audition. OGG is encoded from its PCM24 WAV using libvorbis quality 6. No gain, remix, normalization, trimming or time changes.",
+  "loop": "Full 39.285714-second arrangement including its closing decay; repeats from zero after the existing ending. Runtime volume and 1.5-second fade remain unchanged.",
+  "audio_terms": "Existing original-composition CC0-1.0 terms, to the extent rights may be granted; third-party glock sample remains CC0-1.0.",
+  "recorded_sample": {
+    "file": "sources/glock_medium_G4.wav",
+    "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/Percussion/Glock/glock_medium_G4.wav",
+    "sha256": "6c4649b13e24fa01e4634edad8fe8edf18aef33facc5d49fe53097b376bac4da",
+    "bytes": 1271310,
+    "license": "CC0-1.0",
+    "source_project": "VSCO 2 Community Edition / Versilian Studios and contributors",
+    "usage": "Soft response bells in the accompaniment; melody is a procedural flute."
+  },
+  "sample_license": {
+    "file": "VSCO-2-CE-CC0-LICENSE.txt",
+    "url": "https://raw.githubusercontent.com/sgossner/VSCO-2-CE/440300901dfe9275fd84e0b7763af1f8443ae62e/LICENSE",
+    "sha256": "36ffd9dc085d529a7e60e1276d73ae5a030b020313e6c5408593a6ae2af39673"
+  },
+  "files": [
+    {
+      "file": "credits-flute-v1.ogg",
+      "sha256": "12fa623a366cc338c0df63b310752898c2a2bec2dfe08e5ac4ec74255eb17fa3",
+      "bytes": 429005,
+      "seconds": 39.285714285714285,
+      "clip": 0,
+      "finite": true,
+      "rms": 0.07286519382461497,
+      "true_peak_4x": 0.34916801266563374,
+      "mono_power_db": -0.953212632961299,
+      "side_mid_db": -6.100625058263695,
+      "loudness": {
+        "input_i": -20.56,
+        "input_tp": -9.14,
+        "input_lra": 6.7
+      },
+      "bands": {
+        "20-150": {
+          "rms_db": -30.435585943606252,
+          "side_mid_db": -8.553211270423253
+        },
+        "150-400": {
+          "rms_db": -27.50954879868687,
+          "side_mid_db": -0.09918353103889904
+        },
+        "400-1200": {
+          "rms_db": -25.737687536637928,
+          "side_mid_db": -14.403313235991659
+        },
+        "1200-3000": {
+          "rms_db": -43.67363031258396,
+          "side_mid_db": -13.89743343519672
+        },
+        "3000-10000": {
+          "rms_db": -66.84293022858752,
+          "side_mid_db": -17.460778666424645
+        }
+      },
+      "loop_boundary_jump": 1.2078626241418533e-06,
+      "first_10ms_peak": 0.0564207099378109,
+      "last_10ms_peak": 0.0
+    },
+    {
+      "file": "credits-flute-v1.mp3",
+      "sha256": "c242bfaef7b8eca4f58458dd0facca4c86598cf3205898826e019c6e9521679d",
+      "bytes": 1258937,
+      "seconds": 39.285714285714285,
+      "clip": 0,
+      "finite": true,
+      "rms": 0.07258341269428657,
+      "true_peak_4x": 0.34484747384123415,
+      "mono_power_db": -0.9550899339166887,
+      "side_mid_db": -6.091107280435544,
+      "loudness": {
+        "input_i": -20.59,
+        "input_tp": -9.25,
+        "input_lra": 6.7
+      },
+      "bands": {
+        "20-150": {
+          "rms_db": -30.44629680803437,
+          "side_mid_db": -8.576489067832897
+        },
+        "150-400": {
+          "rms_db": -27.528247105862512,
+          "side_mid_db": -0.10662488783705884
+        },
+        "400-1200": {
+          "rms_db": -25.7889020351457,
+          "side_mid_db": -14.400868517107577
+        },
+        "1200-3000": {
+          "rms_db": -43.69925929786607,
+          "side_mid_db": -13.972474738161402
+        },
+        "3000-10000": {
+          "rms_db": -66.77439513555142,
+          "side_mid_db": -18.72065527455615
+        }
+      },
+      "loop_boundary_jump": 1.1509418138544447e-06,
+      "first_10ms_peak": 0.0540124885737896,
+      "last_10ms_peak": 1.336215547098618e-07
+    }
+  ]
+}

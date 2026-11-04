@@ -6,7 +6,7 @@ class GamepadInput{
  constructor(){this.owner=null;this.reset();}
  reset(){this.armed=false;this.previous={};}
  release(){this.owner=null;this.reset();}
- poll(pads,active){
+ poll(pads,active,stickSensitivity=100){
   const empty={dx:0,dy:0,primary:false,pause:false,back:false,navX:0,navY:0,lost:false,status:'disconnected'};
   const all=pads?Array.from(pads).filter(p=>p&&p.connected):[];
   const supported=all.filter(p=>p.mapping==='standard');
@@ -16,12 +16,15 @@ class GamepadInput{
   if(!pad)return {...empty,status:pads===null?'unavailable':all.length?'unsupported':'disconnected'};
   const down=i=>!!pad.buttons[i]?.pressed||pad.buttons[i]?.value>.5;
   let dx=Number(down(15))-Number(down(14)),dy=Number(down(13))-Number(down(12));
+  const analog=!dx&&!dy;
   if(!dx&&!dy){dx=Number.isFinite(pad.axes[0])?pad.axes[0]:0;dy=Number.isFinite(pad.axes[1])?pad.axes[1]:0;const size=Math.hypot(dx,dy);if(size<=.22){dx=0;dy=0;}else{const scale=Math.min(1,(size-.22)/.78)/size;dx*=scale;dy*=scale;}}
   const size=Math.hypot(dx,dy);if(size>1){dx/=size;dy/=size;}
   const now={primary:down(0),pause:down(9),back:down(1),navX:Math.abs(dx)>.45?Math.sign(dx):0,navY:Math.abs(dy)>.45?Math.sign(dy):0};
   const neutral=dx===0&&dy===0&&!now.primary&&!now.pause&&!now.back;
   if(!active){this.reset();return {...empty,status:'connected'};}
   if(!this.armed){if(neutral)this.armed=true;this.previous=now;return {...empty,status:neutral?'connected':'waiting'};}
+  // Sensitivity changes ship motion only, after menu edges and neutral detection.
+  if(analog){const gain=(Number.isFinite(stickSensitivity)?Math.max(30,Math.min(100,stickSensitivity)):100)/100;dx*=gain;dy*=gain;}
   const out={...empty,dx,dy,status:'connected'};
   for(const k of ['primary','pause','back','navX','navY'])out[k]=now[k]&&now[k]!==this.previous[k]?now[k]:typeof now[k]==='boolean'?false:0;
   this.previous=now;return out;

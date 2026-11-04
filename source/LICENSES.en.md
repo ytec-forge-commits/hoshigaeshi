@@ -90,3 +90,7 @@ OtoLogicの素材を使用しています。移動音は先頭3秒へ短縮、�
 `audio/selected/chain-bell-1..4.ogg/mp3` are original synthesized bell chords, under the existing CC0 1.0 original-audio policy. They contain no third-party recordings. The previous Kenney chain files and notices remain preserved. Recipe, hashes and verification: [CHAIN_BELLS.json](audio/selected/CHAIN_BELLS.json).
 
 現在の連鎖ベル8ファイルは作品用のオリジナル合成音です。既存の自作音源CC0区分を継続し、他の録音・第三者素材の利用条件は変更しません。
+
+## Dedicated credits music (2026-11-04)
+
+`audio/credits/credits-flute-v1.ogg` / `.mp3` contain the owner-selected soft flute arrangement of Star Current. Original audio retains the existing CC0 terms; response bells retain the VSCO 2 CE CC0 terms. See [credits and provenance](audio/credits/CREDITS.en.md), PROVENANCE.json and the included CC0 license in the same folder.

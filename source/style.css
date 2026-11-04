@@ -588,3 +588,15 @@ body.reduced-effects button,body.reduced-effects a.post-link{transition:none}
  #result-screen .menu-card .share-actions>.primary,#result-screen #share-result{font-size:11px;min-height:48px}
  #result-screen #credits-replay{min-height:36px}
 }
+
+/* Gamepad value picker: show directional controls beside the selected value. */
+.difficulty-picker{display:grid}
+#difficulty{grid-area:1/1}
+.difficulty-arrows{display:none;grid-area:1/1;margin-inline:12px;align-items:center;justify-content:space-between;pointer-events:none;color:#ffdc81;font-size:14px}
+#difficulty-pad-help{display:none;grid-area:2/1}
+#difficulty.pad-selected{appearance:none;padding-inline:32px;text-align:center}
+#difficulty.pad-selected~.difficulty-arrows{display:flex}
+#menu-screen #difficulty-pad-help{font-size:11px;line-height:1.5;color:#ffdc81;margin:7px 0 0}
+#difficulty.pad-selected~#difficulty-pad-help{display:block}
+#menu-screen #difficulty-description{font-size:11px;line-height:1.5;color:#bed3e2;margin:6px 0 2px;overflow-wrap:anywhere}
+#stick-sensitivity-value{font-variant-numeric:tabular-nums;color:#ffdc81}

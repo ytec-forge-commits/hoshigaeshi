@@ -1,3 +1,15 @@
+# feedback30 / 2026-11-04
+
+- パッドで難易度を選択中は左右の矢印と操作案内を表示。短い難度名と、下の難度説明に分けました。
+- 「操作・音」にスティック感度30〜100%を追加（5%刻み、初期70%）。100%で従来速度。十字キー・メニュー操作・デッドゾーンは保持し、設定は端末に保存します。
+- Gamepad difficulty selection now shows directional arrows and a nearby hint. Difficulty descriptions sit below the value. Settings adds saved stick sensitivity (30–100%, 5% steps, default 70%); 100% restores the original speed. D-pad, menu navigation and deadzone behavior are unchanged.
+
+# feedback29 / 2026-11-04
+
+- 本人が選んだ④「柔らかい笛」の全曲版を、エンディングとエンドロールの専用曲として採用。音量・伴奏・終止の余韻を保ち、全曲を繰り返します。
+- MP3は選定された試聴版と同一データ。OGGと日英の来歴・クレジットも同梱。第1ステージの曲、保存形式、操作は維持。
+- The ending and credits now play the owner-selected soft flute arrangement. The full piece retains its balance and closing decay; MP3 is identical to the selected audition. OGG and bilingual provenance are included. First-stage music, save compatibility and controls are unchanged.
+
 # feedback28 / 2026-11-04
 
 - 選択された柔らかなベル和音を5連鎖ごとに再生。5/10/15/20で音高が上がり、以降は上限を保持。連鎖切断で最初へ戻る。

@@ -46,8 +46,8 @@ const musicGainFor=track=>track==='stage3-field'?STAGE3_FIELD_GAIN:track==='stag
  const mirrorMuzzleSide=(boss,nextAttack)=>boss.telegraphed&&boss.telegraphSide!=null?boss.telegraphSide:boss.activeSide??(nextAttack%2===0?-1:1);
  let qaOutput=null,qaFieldHold=false;if(qaMode){qaOutput=document.createElement('output');qaOutput.id='qa-report';qaOutput.style.cssText='position:fixed;left:5px;bottom:5px;z-index:9999;max-width:45vw;background:#001d;color:#9fe;font:10px monospace;padding:6px;pointer-events:none;white-space:pre-wrap';document.body.appendChild(qaOutput);}let qaFrames=0,qaWorst=0;
 let guideInput=matchMedia('(pointer:coarse)').matches?'touch':null;
-let storageOK=true,saved={schemaVersion:1,settings:{muted:false,musicVolume:40,sfxVolume:40,reduced:matchMedia('(prefers-reduced-motion: reduce)').matches,difficulty:'easy',language:'ja',controlMode:matchMedia('(pointer: coarse)').matches?'touch':'mouse',captureSide:'left'},previewBests:{easy:0,normal:0,hard:0,nightmare:0},previewRuns:0,previewClears:0};
-try{const raw=localStorage.getItem(KEY);if(raw){const x=JSON.parse(raw);if(!x||typeof x!=='object')throw Error('invalid');if(x.settings){if(['ja','en'].includes(x.settings.language))saved.settings.language=x.settings.language;for(const k of['muted','reduced'])if(typeof x.settings[k]==='boolean')saved.settings[k]=x.settings[k];for(const k of['musicVolume','sfxVolume'])if(Number.isFinite(x.settings[k]))saved.settings[k]=Math.max(0,Math.min(100,x.settings[k]));if(['keyboard','mouse','gamepad','touch'].includes(x.settings.controlMode))saved.settings.controlMode=x.settings.controlMode;if(['left','right'].includes(x.settings.captureSide))saved.settings.captureSide=x.settings.captureSide;if(Object.hasOwn(C.DIFF,x.settings.difficulty))saved.settings.difficulty=x.settings.difficulty;}for(const k of Object.keys(saved.previewBests))if(Number.isFinite(x.previewBests?.[k])&&x.previewBests[k]>=0&&x.previewBests[k]<1e9)saved.previewBests[k]=Math.floor(x.previewBests[k]);for(const k of['previewRuns','previewClears'])if(Number.isInteger(x[k])&&x[k]>=0&&x[k]<1e8)saved[k]=x[k];}}catch(e){storageOK=false;}
+let storageOK=true,saved={schemaVersion:1,settings:{muted:false,musicVolume:40,sfxVolume:40,reduced:matchMedia('(prefers-reduced-motion: reduce)').matches,difficulty:'easy',language:'ja',controlMode:matchMedia('(pointer: coarse)').matches?'touch':'mouse',captureSide:'left',stickSensitivity:70},previewBests:{easy:0,normal:0,hard:0,nightmare:0},previewRuns:0,previewClears:0};
+try{const raw=localStorage.getItem(KEY);if(raw){const x=JSON.parse(raw);if(!x||typeof x!=='object')throw Error('invalid');if(x.settings){if(['ja','en'].includes(x.settings.language))saved.settings.language=x.settings.language;for(const k of['muted','reduced'])if(typeof x.settings[k]==='boolean')saved.settings[k]=x.settings[k];for(const k of['musicVolume','sfxVolume'])if(Number.isFinite(x.settings[k]))saved.settings[k]=Math.max(0,Math.min(100,x.settings[k]));if(Number.isFinite(x.settings.stickSensitivity))saved.settings.stickSensitivity=Math.max(30,Math.min(100,Math.round(x.settings.stickSensitivity/5)*5));if(['keyboard','mouse','gamepad','touch'].includes(x.settings.controlMode))saved.settings.controlMode=x.settings.controlMode;if(['left','right'].includes(x.settings.captureSide))saved.settings.captureSide=x.settings.captureSide;if(Object.hasOwn(C.DIFF,x.settings.difficulty))saved.settings.difficulty=x.settings.difficulty;}for(const k of Object.keys(saved.previewBests))if(Number.isFinite(x.previewBests?.[k])&&x.previewBests[k]>=0&&x.previewBests[k]<1e9)saved.previewBests[k]=Math.floor(x.previewBests[k]);for(const k of['previewRuns','previewClears'])if(Number.isInteger(x[k])&&x[k]>=0&&x[k]<1e8)saved[k]=x[k];}}catch(e){storageOK=false;}
 function persist(){try{localStorage.setItem(KEY,JSON.stringify(saved));storageOK=true;}catch(e){storageOK=false;}storageMessage();}
 function storageMessage(){if(!storageOK){$('storage-note').textContent='記録の保存が使えません\nこの画面を開いている間だけ遊べます';$('storage-note').classList.add('warning');}else{$('storage-note').textContent='設定と端末内記録はこのブラウザに保存\n通常プレイ開始時にランキングへ接続し、名前と結果は登録ボタンで送信します';$('storage-note').classList.remove('warning');}}
  const motionPreference=matchMedia('(prefers-reduced-motion: reduce)');
@@ -64,6 +64,7 @@ const mouseMotion=new window.StarControls.RelativeMouseInput();
 function clearInput(){mouseMotion.clear();touchTap.reset();keys.clear();pointer=null;target=null;if(typeof padInput!=='undefined'){padInput.reset();padFrame={dx:0,dy:0};}}
 const AUDIO_FILES={
   'star-tide-loop':['stage1/stage1-flow.ogg','stage1/stage1-flow.mp3'],
+  'credits-flute':['credits/credits-flute-v1.ogg','credits/credits-flute-v1.mp3'],
   'stage1-boss':bossCandidate?['stage1/candidate-heavy-battle-2/heavy_battle_2_bpm185.ogg','stage1/candidate-heavy-battle-2/heavy_battle_2_bpm185.mp3']:['stage1/stage1-boss.ogg','stage1/stage1-boss.mp3'],
   ...(stage2Candidate?{
     'stage2-field':['stage2/candidate-frenzied-swimming/frenzied_swimming_0.ogg','stage2/candidate-frenzied-swimming/frenzied_swimming_converted.mp3'],
@@ -81,7 +82,7 @@ for(const key of ARCADE_AUDIO)AUDIO_FILES[key]=['arcade/'+key+'.ogg','arcade/'+k
 for(const key of ['opening-ambience','button','player-shot','enemy-pop','boss-defeat','stage-transit','chain-1','chain-2','chain-3','chain-4'])AUDIO_FILES[key]=['selected/'+key+'.ogg','selected/'+key+'.mp3'];
 for(const key of ['chain-1','chain-2','chain-3','chain-4'])AUDIO_FILES[key]=['selected/'+key.replace('chain-','chain-bell-')+'.ogg','selected/'+key.replace('chain-','chain-bell-')+'.mp3'];
 const COMMON_AUDIO=['capture','return-burst','hit','enemy-pop','boss','victory','button','player-shot','boss-defeat','stage-transit',...ARCADE_AUDIO,...window.StarSoundDesign.KEYS];
-const CREDITS_TRACK='star-tide-loop';
+const CREDITS_TRACK='credits-flute';
 const START_AUDIO=[...COMMON_AUDIO.filter(key=>!ARCADE_AUDIO.includes(key)),'star-tide-loop','stage1-boss'];
 function comboAccentPlan(combo,returned,reduced){const tier=!returned?0:combo>=24?4:combo>=16?3:combo>=8?2:combo>=4?1:0;return{tier,stars:reduced?Math.min(4,tier):[0,6,10,16,22][tier]};}
 const SOUND_RULES={
@@ -675,7 +676,10 @@ async function toggleFullscreen(){try{if(document.fullscreenElement)await docume
 fullscreenButton.onclick=toggleFullscreen;menuFullscreenButton.onclick=toggleFullscreen;
 document.addEventListener('fullscreenchange',()=>{const active=document.fullscreenElement===gameColumn;fullscreenButton.textContent=active?'⤡':'⛶';fullscreenButton.setAttribute('aria-label',active?'全画面を終了':'全画面表示');fullscreenButton.title=active?'全画面を終了':'全画面表示';menuFullscreenButton.textContent=active?'⤡ 全画面を終了':'⛶ 全画面で準備';menuFullscreenButton.setAttribute('aria-label',active?'開始前の全画面を終了':'開始前に全画面表示');clearInput();if(mode==='playing')pause('画面サイズが変わったため一時停止しました');});
 $('capture').addEventListener('pointerdown',e=>{e.preventDefault();capture();});$('capture').addEventListener('click',e=>{if(e.detail===0)capture();});
-$('difficulty').value=settings.difficulty;$('difficulty').onchange=()=>{settings.difficulty=$('difficulty').value;persist();updateRecords();};
+function updateDifficultyDescription(){$('difficulty-description').textContent=$('difficulty').selectedOptions[0].dataset.description;}
+$('difficulty').value=settings.difficulty;updateDifficultyDescription();$('difficulty').onchange=()=>{settings.difficulty=$('difficulty').value;persist();updateRecords();updateDifficultyDescription();};
+$('stick-sensitivity').value=settings.stickSensitivity;$('stick-sensitivity-value').textContent=settings.stickSensitivity+'%';
+$('stick-sensitivity').oninput=()=>{settings.stickSensitivity=Number($('stick-sensitivity').value);$('stick-sensitivity-value').textContent=settings.stickSensitivity+'%';persist();};
 const openSettings=()=>{pendingMouseRestart=null;mouseLock.release();$('resume').disabled=false;clearInput();if(mode==='playing'||mode==='transit'||mode==='boss-defeat')pause('設定のあいだ、星の時間を止めています');openDialog($('settings'));document.body.classList.toggle('credits-dialog-open',mode==='credits');syncCreditsAudio();};$('settings-open').onclick=openSettings;$('menu-settings').onclick=openSettings;$('pause-settings').onclick=openSettings;$('settings').addEventListener('close',()=>{document.body.classList.remove('credits-dialog-open');syncCreditsAudio();});$('muted').checked=settings.muted;$('reduced').checked=settings.reduced;for(const [id,key] of[['music-volume','musicVolume'],['sfx-volume','sfxVolume']]){$(id).value=settings[key];$(id+'-value').textContent=settings[key]+'%';}
 function audioNotice(){
   $('audio-notice').textContent=settings.muted||settings.musicVolume===0&&settings.sfxVolume===0?'音なしで出発します\n操作・音から変更できます':'出発すると音が流れます\n操作・音から変更できます';
@@ -767,7 +771,7 @@ function gamepadMenu(frame){
 function pollGamepad(){
  let pads=null;try{if(typeof navigator.getGamepads==='function')pads=navigator.getGamepads();}catch(e){}
  const active=(mode==='boot'||settings.controlMode==='gamepad')&&!document.hidden&&document.hasFocus();
- const frame=padInput.poll(pads,active);padFrame={dx:0,dy:0};updateControlStatus(frame.status);
+ const frame=padInput.poll(pads,active,settings.stickSensitivity);padFrame={dx:0,dy:0};updateControlStatus(frame.status);
  if(!active){clearPadSelection();return;}
  if(mode==='boot'){if(bootReady&&!bootClock.started){if(frame.back)chooseBoot(true);else gamepadMenu(frame);}return;}
  if(frame.primary||frame.pause||frame.back||frame.navX||frame.navY||frame.dx||frame.dy)setGuideInput('gamepad');

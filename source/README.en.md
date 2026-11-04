@@ -1,6 +1,6 @@
-# STAR REBOUND — v9 feedback25
+# STAR REBOUND — v9 feedback30 / local candidate
 
-The opening and main effects use user-selected free audio. Chain cues play only at 4, 8, 16 and 24 CHAIN with four distinct timbres. Sources, licenses and edits are in [audio/selected/CREDITS.md](audio/selected/CREDITS.md).
+The opening and main effects use owner-selected free audio. Every fifth chain kill plays one of four bell chords. The ending and credits use the selected soft flute arrangement. See [effect sources](audio/selected/CREDITS.md) and [credits music provenance](audio/credits/CREDITS.en.md).
 
 [日本語](README.md)
 
@@ -23,13 +23,13 @@ After the Forge logo and opening, choose a difficulty or try the 55-second pract
 | Standard gamepad | Left stick / D-pad | A / cross | Start / Menu |
 | Touch | Drag your finger on the playfield | Double-tap nearby, or press Rebound | On-screen Pause / Resume |
 
-Aiming and normal shots are automatic. Only the small white dot at your ship's center can be hit; its glowing wings cannot. Movement speed is the same across controls, including diagonal movement. Small gamepad stick movements allow finer control. The head, wings and tail follow movement as a visual effect; this does not change the hitbox.
+Aiming and normal shots are automatic. Only the small white dot at your ship's center can be hit; its glowing wings cannot. The base maximum movement speed is 680 game units per second, including diagonal movement. **Stick sensitivity** in Settings scales gamepad stick movement from 30% to 100% in 5% steps (default: 70%). Lower values make movement slower; 100% restores the original speed. Small stick movements still allow finer control. D-pad movement, menu navigation and other input methods are unaffected. The value is saved locally; older saves without this setting start at 70%. The head, wings and tail follow movement as a visual effect; this does not change the hitbox.
 
 Touch double-taps allow small finger movements and a forgiving interval; drags and long presses do not count. Both touch controls remain available. If a disconnected gamepad is selected, choose Touch in Settings before playing on your phone.
 
 Locked mouse uses the browser's Pointer Lock. The game pauses before ownership is obtained, when it fails, when it is released, or when you leave the page. Retry deliberately or choose another control method. It does not automatically relock immediately after Esc. Clicking a restart confirmation starts a new run with mouse lock; starting or resuming by touch uses drag movement without locking. Stage transitions retain mouse lock and can be skipped with left click.
 
-For gamepads, connect a controller, focus the page and press a pad button once so the browser recognizes it. Menus use up/down to select, left/right to change values, A/cross to confirm, and B/circle to close dialogs. The selected menu control has a gold outline and pointer. Disconnecting pauses the game. Reconnect, release buttons and sticks, then resume. The game retains the first supported controller instead of silently switching to another. Physical controller and phone testing remains outstanding.
+For gamepads, connect a controller, focus the page and press a pad button once so the browser recognizes it. Menus use up/down to select, left/right to change values, A/cross to confirm, and B/circle to close dialogs. The selected menu control has a gold outline and pointer. When difficulty is selected with the pad, left/right arrows and a nearby control hint show how to change it; the difficulty description appears below. Disconnecting pauses the game. Reconnect, release buttons and sticks, then resume. The game retains the first supported controller instead of silently switching to another. User playtesting on 2026-11-05 confirmed controller feel at 60% sensitivity, the ending music and credits pacing. Physical phone testing and full runs on every difficulty remain outstanding.
 
 Leaving the page pauses play. Dialogs can be closed by clicking or tapping the dim area outside them; a confirmation closes as Cancel. Closing settings does not automatically resume a paused game.
 

@@ -59,5 +59,7 @@
   "feedback23-living.cjs",
   "feedback23-practice.cjs",
   "feedback24-chain.cjs",
-  "feedback25-audio.cjs"
+  "feedback25-audio.cjs",
+  "feedback29-credits-audio.cjs",
+  "feedback30-gamepad.cjs"
 ]

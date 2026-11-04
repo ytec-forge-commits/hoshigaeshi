@@ -1,6 +1,15 @@
 /* STAR REBOUND English copy. Apache-2.0. */
 (function(root,data){if(typeof module==='object'&&module.exports)module.exports=data;else root.StarEnglish=data;})(typeof globalThis!=='undefined'?globalThis:this,
 {
+  "左右で変更 · 上下で項目移動": "Left/right: change · Up/down: move focus",
+  "ゆるやかな潮、ライフ5": "Gentle currents · 5 lives",
+  "弾を読んで、ライフ4": "Read the patterns · 4 lives",
+  "濃い弾幕、ライフ3": "Dense barrages · 3 lives",
+  "24発で1回復、ライフ2": "24 captures heal 1 · 2 lives",
+  "スティック感度": "Stick sensitivity",
+  "低いほど、ゆっくり細かく移動できます": "Lower values give slower, finer movement.",
+  "初期値70% · 100%で従来の速さ": "Default: 70% · 100% restores the original speed.",
+  "十字キーとメニュー操作は変わりません": "D-pad and menu controls stay the same.",
   "ランキングに名前を登録": "Add name to ranking",
   "登録した記録を確認": "View registered result",
   "ランキングの案内": "About rankings",
