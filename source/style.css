@@ -542,7 +542,9 @@ button.text-button::after,.boot-actions #boot-silent::after{display:none}
 button:not(:disabled):active,a.post-link:active{translate:0 2px;filter:brightness(1.12);box-shadow:inset 0 2px 8px #0008,inset 0 0 0 2px #061525,0 1px 0 #020814}
 button:disabled{filter:saturate(.35)}
 button:focus-visible,a.post-link:focus-visible{outline:3px solid #ffdd94;outline-offset:3px}
-select{background:linear-gradient(180deg,#061322,#162d40);border-color:#61808f;border-bottom-color:#96b9bb66;box-shadow:inset 0 2px 6px #0007;color:#edf6f6}
+/* Native option popups need a solid color beneath the closed-select gradient. */
+select{color-scheme:dark;background:#0b1930 linear-gradient(180deg,#061322,#162d40);border-color:#61808f;border-bottom-color:#96b9bb66;box-shadow:inset 0 2px 6px #0007;color:#edf6f6}
+select option{background-color:#0b1930;color:#edf6f6}
 #credits-screen .credits-actions button{background:linear-gradient(160deg,#213d4cd9,#091727e8);border-color:#81958f77;box-shadow:inset 0 1px #e5e6bd1f,0 2px 5px #0007}
 body.reduced-effects button,body.reduced-effects a.post-link{transition:none}
 @media(prefers-reduced-motion:reduce){button,a.post-link{transition:none}}

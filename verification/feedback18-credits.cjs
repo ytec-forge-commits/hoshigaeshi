@@ -2,13 +2,13 @@ const assert=require('node:assert/strict'),F=require('../source/feel.js'),C=requ
 function test(name,fn){try{fn();results.push({name,status:'PASS'});}catch(e){results.push({name,status:'FAIL',message:e.message});}}
 // Catch an early result transition, or a farewell that scrolls off before it can be read.
 test('only the farewell stays centred until the player chooses the result',()=>{
- const entering=F.creditsFrame(26,0,400,1200,false,200);
+ const entering=F.creditsFrame(13,0,400,1200,false,200);
  assert.equal(entering.y,-848);assert.equal(entering.finaleOffset,0);assert.equal(entering.done,false);
- const held=F.creditsFrame(29,0,400,1200,false,200);
+ const held=F.creditsFrame(14.5,0,400,1200,false,200);
  assert.equal(held.y,-992);assert.equal(held.y+held.finaleOffset,-900);assert.equal(held.done,false);
  const late=F.creditsFrame(600,0,400,1200,false,200);
  assert.equal(late.y,-1200);assert.equal(late.y+late.finaleOffset,-900);assert.equal(late.done,false);assert.equal(late.remaining,Infinity);
- assert.deepEqual(F.creditsFrame(29,10,400,1200,true,200),held);
+ assert.deepEqual(F.creditsFrame(14.5,10,400,1200,true,200),held);
 });
 test('credits can resume from a reading position before the farewell',()=>{
  const t=F.creditsResumeTime(600,400),f=F.creditsFrame(t,0,400,1200,false,200);

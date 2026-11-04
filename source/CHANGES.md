@@ -1,3 +1,15 @@
+# feedback27 / 2026-11-04
+
+- エンドロールを48から96px/秒へ調整。停止して読む・再開・最後の謝辞の中央保持を維持。
+- 通常敵の撃破音を約3dB増幅。音源・音程・再生頻度・全体音量設定は維持。
+- Credits now scroll at twice the prior speed; reading, resume and farewell hold are preserved. Normal enemy defeat SFX is about 3dB louder.
+- エンドロール曲と連鎖音は試聴候補の選定中で、現行音源を継続。
+
+# v9 feedback26 · 選択欄の視認性修正
+
+- 起動・難易度・設定のドロップダウンを開いたとき、白地に薄い文字になる問題を修正。背景色と文字色を明示し、暗色の標準選択UIを使用。
+- Fixed low-contrast dropdown choices at startup and in menus/settings by defining solid option colors and a dark native color scheme.
+
 # v9 feedback25 · 選択音源と節目の連鎖音
 
 - OP-C、連鎖A、金属ボタンA、射撃R3-A、撃破R4-A、ボス撃破A、移動R2-Bを採用。音程・速度を保持し、日英クレジットと来歴を同梱。

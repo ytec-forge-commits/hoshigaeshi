@@ -28,12 +28,13 @@ function cueFrame(kind,age,reduced=false){
  const duration=kind==='warning'?2.4:1.5,p=clamp(age/duration,0,1),visible=age>=0&&age<duration;
  return {visible,opacity:visible?(reduced?1:Math.min(1,p*7,(1-p)*6)):0,scale:reduced?1:.92+.12*Math.sin(Math.min(1,p*2)*Math.PI/2),rotation:reduced?0:(1-p)*-5,ring:reduced?1:1+p*1.4};
 }
+const CREDITS_SPEED=96;
 function creditsFrame(elapsed,dt,height,contentHeight,held,finaleHeight=0){
  const next=Math.max(0,elapsed)+(held?0:Math.max(0,dt)),finale=Math.min(height,Math.max(0,finaleHeight)),endY=(height+finale)/2-contentHeight;
- const arrive=(height-endY)/48,duration=finale?Infinity:Math.max(24,(height+contentHeight)/48)+1,y=finale?Math.max(-contentHeight,height-next*48):height-next*48;
+ const arrive=(height-endY)/CREDITS_SPEED,duration=finale?Infinity:Math.max(12,(height+contentHeight)/CREDITS_SPEED)+1,y=finale?Math.max(-contentHeight,height-next*CREDITS_SPEED):height-next*CREDITS_SPEED;
  return{elapsed:next,y,finaleOffset:finale?Math.max(0,endY-y):0,remaining:Math.max(0,duration-next),done:next>=duration,closing:finale?clamp((next-arrive)/4,0,1):0};
 }
-function creditsResumeTime(scrollTop,height){return(Math.max(0,scrollTop)+Math.max(0,height))/48;}
+function creditsResumeTime(scrollTop,height){return(Math.max(0,scrollTop)+Math.max(0,height))/CREDITS_SPEED;}
 // Presentation only; the contract test checks these tiers against Game.kill.
 function scoreChainFrame(combo,lastKill,time){
  const remaining=combo>0?clamp(4-(time-lastKill),0,4):0,count=remaining>0?combo:0,multiplier=Math.min(5,1+Math.floor(count/5));
@@ -103,5 +104,5 @@ function laserFrame(length,width,time,reduced=false){
  for(let d=travel,i=0;d<length;d+=spacing,i++)packets.push({distance:d,tail:Math.min(d,24+8*Math.sin(i+time*3)),offset:Math.sin(d*.035-time*9)*width*.27,radius:Math.max(1,width*.11)});
  return packets;
 }
-return{creaturePoint,paintCreature,laserFrame,flightPose,flightPoint,paintFlight,backgroundFrame,cueFrame,creditsFrame,creditsResumeTime,scoreChainFrame,itemInfo};
+return{creaturePoint,paintCreature,laserFrame,flightPose,flightPoint,paintFlight,backgroundFrame,cueFrame,CREDITS_SPEED,creditsFrame,creditsResumeTime,scoreChainFrame,itemInfo};
 });

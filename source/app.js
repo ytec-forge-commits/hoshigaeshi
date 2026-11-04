@@ -86,7 +86,7 @@ function comboAccentPlan(combo,returned,reduced){const tier=!returned?0:combo>=2
 const SOUND_RULES={
   hit:{priority:5,gap:.1,max:1,gain:.9},'return-burst':{priority:5,gap:.2,max:1,gain:.95},
   'boss-defeat':{priority:6,gap:.6,max:1,gain:1.1},'stage-transit':{priority:5,gap:1,max:1,gain:1},victory:{priority:5,gap:0,max:1},boss:{priority:4,gap:1,max:1},
-  capture:{priority:2,gap:.08,max:2,gain:.6},'enemy-pop':{priority:1,gap:.125,max:1},
+  capture:{priority:2,gap:.08,max:2,gain:.6},'enemy-pop':{priority:1,gap:.125,max:1,gain:1.414},
   'player-shot':{priority:1,gap:.16,max:2,gain:1},'option-laser':{priority:3,gap:.5,max:1,gain:.72},'boss-beam':{priority:4,gap:1,max:1,gain:.9},'shield-break':{priority:5,gap:.2,max:1,gain:.9},
   button:{priority:1,gap:.08,max:1},'combo-accent':{priority:4,gap:.18,max:1,gain:.95},'item-pickup':{priority:5,gap:.08,max:1,gain:.9}
 };
@@ -572,7 +572,7 @@ function paintCredits(dt=0){
 }
 function setCreditsReading(reading){
  if(mode!=='credits'||reading===creditsReading)return;
- const view=document.querySelector('.credits-window'),scroll=reading?Math.max(0,creditsElapsed*48-view.clientHeight):view.scrollTop;
+ const view=document.querySelector('.credits-window'),scroll=reading?Math.max(0,creditsElapsed*FEEL.CREDITS_SPEED-view.clientHeight):view.scrollTop;
  creditsReading=reading;if(!reading)creditsElapsed=FEEL.creditsResumeTime(scroll,view.clientHeight);
  paintCredits();view.scrollTop=reading?scroll:0;
 }
