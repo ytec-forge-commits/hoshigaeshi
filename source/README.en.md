@@ -100,7 +100,7 @@ Player and enemy wings, appendages and laser light now move. Reduced effects sto
 ## Audio and result controls (feedback24)
 
 - A soft keyboard melody accompanies the opening, with lower-pitched button sounds.
-- Each defeat CHAIN rises one note through three full octaves, from C4 to C7 (22 steps). From CHAIN 23 onward, a star-sparkle sound plays. A broken chain restarts at C4.
+- A soft bell chord sounds every five defeats. Its pitch rises at CHAIN 5 / 10 / 15 / 20, then stays at that height. A broken chain restarts at the first chord (feedback28).
 - A flowing-star cue accompanies the passage to the next stage.
 - The ranking entry stays visible on the result screen and opens a separate dialog for the nickname and public-data notice.
 - Share result, Save image and Post on X have equal-sized purple buttons that stay visible beside the result details.

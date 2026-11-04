@@ -1,0 +1,131 @@
+{
+  "date": "2026-11-04",
+  "selection": "User confirmed 0:20-0:30 of chain-current-ABC.mp3 (proposal B).",
+  "origin": "Original additive synthesis for STAR REBOUND; no third-party recording.",
+  "license": "CC0-1.0 under the existing original synthesized asset policy.",
+  "recipe": {
+    "sample_rate": 44100,
+    "partials_ratio_gain_decay": [
+      [
+        1,
+        1,
+        4.5
+      ],
+      [
+        2,
+        0.18,
+        11
+      ],
+      [
+        3,
+        0.04,
+        20
+      ]
+    ],
+    "tone_seconds": 0.7,
+    "onset_spacing_seconds": 0.035,
+    "attack_seconds": 0.006,
+    "release_seconds": 0.04,
+    "note_gain": 0.206140350877193,
+    "equal_power_centre_pan": true
+  },
+  "policy": "Every five defeats; four authored voicings at 5/10/15/20, then repeat the fourth voicing. Coalesce simultaneous milestones.",
+  "outputs": [
+    {
+      "file": "chain-bell-1.ogg",
+      "sha256": "6eacb6b27dbf107ca7265bb6209748ada5ab600dfcd05304696ce91ea2fc793e",
+      "notes_midi": [
+        60,
+        64,
+        67
+      ],
+      "seconds": 0.7670975056689342,
+      "peak": 0.3449118435382843,
+      "clipped_samples": 0
+    },
+    {
+      "file": "chain-bell-1.mp3",
+      "sha256": "c2adc3c02101722d37e46b6b4a467b9b2e6cd63c6c26d26220ced3f5669c6aa5",
+      "notes_midi": [
+        60,
+        64,
+        67
+      ],
+      "seconds": 0.77,
+      "peak": 0.33827799558639526,
+      "clipped_samples": 0
+    },
+    {
+      "file": "chain-bell-2.ogg",
+      "sha256": "11729e1c2ba14fc31753c685e75a321a233ca73743b614404cca8567673ad4a8",
+      "notes_midi": [
+        62,
+        66,
+        69
+      ],
+      "seconds": 0.7670975056689342,
+      "peak": 0.2937118709087372,
+      "clipped_samples": 0
+    },
+    {
+      "file": "chain-bell-2.mp3",
+      "sha256": "1cd3c8e9035fc8aa4b7dcd2a73faaf9c313626e2b4b8d7ca7a1e6eedcbc51077",
+      "notes_midi": [
+        62,
+        66,
+        69
+      ],
+      "seconds": 0.77,
+      "peak": 0.28339332342147827,
+      "clipped_samples": 0
+    },
+    {
+      "file": "chain-bell-3.ogg",
+      "sha256": "50c14bf23e60e476ad10a7b6220674bf44fcffe6e057b07b94db5899c1861607",
+      "notes_midi": [
+        64,
+        68,
+        71
+      ],
+      "seconds": 0.7670975056689342,
+      "peak": 0.3749210238456726,
+      "clipped_samples": 0
+    },
+    {
+      "file": "chain-bell-3.mp3",
+      "sha256": "bcf99108294ba2180afdb184268eeedc7698ba11f8a633f29c3f3a59e24d6077",
+      "notes_midi": [
+        64,
+        68,
+        71
+      ],
+      "seconds": 0.77,
+      "peak": 0.3625481128692627,
+      "clipped_samples": 0
+    },
+    {
+      "file": "chain-bell-4.ogg",
+      "sha256": "e6be72bec4f027bc4a6061a5a1b7321ce0c5a0a807d8c7c468d55e97e7adfcd9",
+      "notes_midi": [
+        66,
+        70,
+        73
+      ],
+      "seconds": 0.7670975056689342,
+      "peak": 0.35119304060935974,
+      "clipped_samples": 0
+    },
+    {
+      "file": "chain-bell-4.mp3",
+      "sha256": "57ec818caee59da0eda8faa07040eacb4930e54c64ada23c313e4f8e5fc52c72",
+      "notes_midi": [
+        66,
+        70,
+        73
+      ],
+      "seconds": 0.77,
+      "peak": 0.33729204535484314,
+      "clipped_samples": 0
+    }
+  ]
+}

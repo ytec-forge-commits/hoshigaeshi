@@ -1,3 +1,10 @@
+# feedback28 / 2026-11-04
+
+- 選択された柔らかなベル和音を5連鎖ごとに再生。5/10/15/20で音高が上がり、以降は上限を保持。連鎖切断で最初へ戻る。
+- 同時撃破は最高節目の1音へ集約。停止・ミュート・期限切れの待機音を破棄。
+- Soft bell chords now sound every five defeats, rising through four voicings and holding the fourth after CHAIN 20. Simultaneous milestones coalesce; stale or suppressed sounds are discarded.
+- エンドロール曲の新しい楽器構成は試聴調整中。現行のゲームBGMは維持。 / The new credits arrangement remains an audition; runtime music is unchanged.
+
 # feedback27 / 2026-11-04
 
 - エンドロールを48から96px/秒へ調整。停止して読む・再開・最後の謝辞の中央保持を維持。

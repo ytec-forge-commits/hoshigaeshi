@@ -1,6 +1,6 @@
 # Selected audio / 選択済み音源 — 2026-11-04
 
-All files in this directory are derivatives of the following user-selected recordings. They are served locally, with no external audio requests. Original recordings and older game audio remain preserved separately. This notice does not change their licenses.
+The selected recordings listed below are retained alongside the original synthesized chain-bell cues described at the end of this document. They are served locally, with no external audio requests. Original recordings and older game audio remain preserved separately. This notice does not change their licenses.
 
 | Runtime cue | Recording / author | License |
 |---|---|---|
@@ -19,3 +19,9 @@ All files in this directory are derivatives of the following user-selected recor
 SE gain and edge fades follow the selected auditions. The opening contains the first 12 seconds of the normalized audition and ends with the cinematic. Original and output SHA-256 values, sample formats and exact processing are in [PROVENANCE.json](PROVENANCE.json).
 
 Full license texts: [CC0](../../licenses/CC0-1.0.txt), [CC BY 4.0](../../licenses/CC-BY-4.0.txt). Original Kenney notices: [Interface](Kenney-Interface-License.txt), [Impact](Kenney-Impact-License.txt), [Sci-Fi](Kenney-SciFi-License.txt).
+
+## Bell-chain revision / 連鎖ベル改訂（feedback28）
+
+`chain-bell-1..4.ogg/mp3` are original additive-synthesized bell chords created for this game, under the existing CC0 1.0 original-audio policy. No third-party recording is used in these eight files. They reproduce the user-approved 0:20–0:30 comparison section. The older Kenney `chain-1..4` files and notices remain preserved.
+
+5連鎖ごとの柔らかなベル和音を採用。5/10/15/20で4段階、以降は4段階目を繰り返します。レシピ・SHA・復号結果は [CHAIN_BELLS.json](CHAIN_BELLS.json)、再生成は `../source/compose_chain_bells.py`。

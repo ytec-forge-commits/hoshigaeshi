@@ -79,6 +79,7 @@ const AUDIO_FILES={
 const ARCADE_AUDIO=['chain-1','chain-2','chain-3','chain-4','pickup-spread','pickup-twin','pickup-pierce'];
 for(const key of ARCADE_AUDIO)AUDIO_FILES[key]=['arcade/'+key+'.ogg','arcade/'+key+'.mp3'];
 for(const key of ['opening-ambience','button','player-shot','enemy-pop','boss-defeat','stage-transit','chain-1','chain-2','chain-3','chain-4'])AUDIO_FILES[key]=['selected/'+key+'.ogg','selected/'+key+'.mp3'];
+for(const key of ['chain-1','chain-2','chain-3','chain-4'])AUDIO_FILES[key]=['selected/'+key.replace('chain-','chain-bell-')+'.ogg','selected/'+key.replace('chain-','chain-bell-')+'.mp3'];
 const COMMON_AUDIO=['capture','return-burst','hit','enemy-pop','boss','victory','button','player-shot','boss-defeat','stage-transit',...ARCADE_AUDIO,...window.StarSoundDesign.KEYS];
 const CREDITS_TRACK='star-tide-loop';
 const START_AUDIO=[...COMMON_AUDIO.filter(key=>!ARCADE_AUDIO.includes(key)),'star-tide-loop','stage1-boss'];
@@ -225,13 +226,13 @@ stopMusic(){
   this.music=null;this.fadingMusic=null;this.musicTrack=null;
 }
 stop(){this.clearChain(true);this.intent++;this.cancelInflight();this.stopMusic();for(const v of this.voices){try{v.source.stop();}catch(e){}}this.voices=[];this.failedKeys=[];if(this.ctx?.state==='suspended')this.ctx.resume().catch(()=>{});}
-clearChain(reset=false){this.chainQueue=[];this.nextChainAt=0;if(reset)this.chainCueTier=0;}
+clearChain(reset=false){this.chainQueue=[];this.nextChainAt=0;if(reset)this.chainCueMilestone=0;}
 queueChain(combo){
  if(!Number.isFinite(combo)||combo<1)return;
  if(combo===1)this.clearChain(true);
- const tier=combo>=24?4:combo>=16?3:combo>=8?2:combo>=4?1:0;
- if(tier<=(this.chainCueTier||0))return;
- this.chainCueTier=tier;
+ const milestone=Math.floor(combo/5);
+ if(milestone<=(this.chainCueMilestone||0))return;
+ this.chainCueMilestone=milestone;
  if(!this.ready||this.runSilent||settings.muted||settings.sfxVolume===0||document.hidden||mode!=='playing'||this.ctx?.state!=='running'){this.clearChain();return;}
  // A simultaneous wave clear announces only the highest reached milestone.
  this.chainQueue=[{combo:Math.floor(combo),at:this.ctx.currentTime}];
@@ -250,7 +251,7 @@ play(key,minGap=0,variant=null){
   const rule=SOUND_RULES[key]||{priority:1,gap:.06,max:1},t=this.ctx.currentTime;
   if(t-(this.last[key]??-999)<Math.max(rule.gap,minGap))return;
   const same=this.voices.filter(v=>v.key===key);if(same.length>=rule.max&&key!=='combo-accent')return;
- const chime=key==='item-pickup'||key==='combo-accent',tier=Number(variant)>=24?4:Number(variant)>=16?3:Number(variant)>=8?2:Number(variant)>=4?1:0,variantKey=key==='item-pickup'?'pickup-'+variant:'chain-'+tier;
+ const chime=key==='item-pickup'||key==='combo-accent',tier=Math.min(4,Math.floor(Number(variant)/5)),variantKey=key==='item-pickup'?'pickup-'+variant:'chain-'+tier;
  const buffer=key==='item-pickup'?(this.buffers[variantKey]||this.buffers.capture):key==='combo-accent'?this.buffers[variantKey]:this.buffers[key];if(!buffer)return;
  if(same.length>=rule.max){for(const prior of same.slice(0,1)){this.voices=this.voices.filter(v=>v!==prior);try{prior.source.stop();}catch(e){}}}
 

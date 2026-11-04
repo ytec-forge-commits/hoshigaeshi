@@ -29,8 +29,8 @@ module.exports=(async()=>{
   Object.assign(h.env,{scene:{},assetsFailed:false,mouseLock:{release(){}},hideAudioGate(){},launch(){h.env.mode='playing';},prepareStart(){throw Error('expected cached start');},pendingMouseRestart:null,pendingDifficulty:null,audioGate:null});
   vm.runInContext(code.slice(code.indexOf(' function start('),code.indexOf(' async function prepareStart(')),h.env);
   delete h.sound.buffers['chain-2'];h.env.mode='menu';h.env.start();await new Promise(r=>setImmediate(r));
-  for(const key of ['chain-1','chain-2','chain-3','chain-4'])assert.equal(h.sound.buffers[key]?.name,'selected/'+key+'.ogg');
-  h.ctx.currentTime++;h.sound.queueChain(4);h.sound.flushChain();assert.equal(h.ctx.started.at(-1).buffer.name,'selected/chain-1.ogg');
+  for(const key of ['chain-1','chain-2','chain-3','chain-4'])assert.equal(h.sound.buffers[key]?.name,'selected/'+key.replace('chain-','chain-bell-')+'.ogg');
+  h.ctx.currentTime++;h.sound.queueChain(5);h.sound.flushChain();assert.equal(h.ctx.started.at(-1).buffer.name,'selected/chain-bell-1.ogg');
  });
  await test('starting a run actually decodes the selected shot, enemy, boss and passage cues',async()=>{
   const h=fixture();h.sound.buffers={};await h.sound.ensure();
@@ -39,7 +39,7 @@ module.exports=(async()=>{
  await test('approved sample effects load the chosen files instead of procedural replacements',async()=>{
   const h=fixture();h.sound.buffers={};
   for(const key of ['button','player-shot','enemy-pop','boss-defeat','stage-transit','chain-1','chain-2','chain-3','chain-4']){
-   assert(await h.sound.prefetch(key));assert.equal(h.sound.buffers[key].name,'selected/'+key+'.ogg');
+   assert(await h.sound.prefetch(key));assert.equal(h.sound.buffers[key].name,'selected/'+key.replace('chain-','chain-bell-')+'.ogg');
   }
  });
  await test('sample loading tries the MP3 alternative and never substitutes an unchosen tone',async()=>{
@@ -47,16 +47,16 @@ module.exports=(async()=>{
   assert(await h.sound.prefetch('player-shot'));assert.equal(h.sound.buffers['player-shot'].name,'selected/player-shot.mp3');
   h.sound.buffers={};h.env.fetch=async()=>({ok:false,status:404});assert.equal(await h.sound.prefetch('player-shot'),false);assert.equal(h.sound.buffers['player-shot'],undefined);
  });
- await test('chain counts change four authored timbres at unchanged playback rate',()=>{
-  const h=fixture();for(const [combo,want]of [[4,'chain-1'],[7,'chain-1'],[8,'chain-2'],[15,'chain-2'],[16,'chain-3'],[23,'chain-3'],[24,'chain-4'],[500,'chain-4']]){
+ await test('five-kill milestones use four bell voicings and cap pitch after twenty',()=>{
+  const h=fixture();for(const [combo,want]of [[5,'chain-1'],[9,'chain-1'],[10,'chain-2'],[14,'chain-2'],[15,'chain-3'],[19,'chain-3'],[20,'chain-4'],[500,'chain-4']]){
    h.ctx.currentTime++;assert(h.sound.play('combo-accent',0,combo));const voice=h.ctx.started.at(-1);assert.equal(voice.buffer.name,want);assert.equal(voice.playbackRate.value,1);voice.stop();
   }
  });
- await test('only 4, 8, 16 and 24 chain milestones emit cues; a new chain can earn them again',()=>{
+ await test('every fifth kill emits a bell including after twenty; a broken chain restarts the voicing',()=>{
   const h=fixture();for(let n=1;n<=50;n++){h.sound.queueChain(n);h.sound.flushChain();h.ctx.currentTime+=.2;h.sound.voices.slice().forEach(v=>v.source.stop());}
-  assert.deepEqual(h.ctx.started.map(v=>v.buffer.name),['chain-1','chain-2','chain-3','chain-4']);
-  for(let n=1;n<=4;n++){h.sound.queueChain(n);h.sound.flushChain();h.ctx.currentTime+=.2;}
-  assert.equal(h.ctx.started.length,5);assert.equal(h.ctx.started.at(-1).buffer.name,'chain-1');
+  assert.deepEqual(h.ctx.started.map(v=>v.buffer.name),['chain-1','chain-2','chain-3','chain-4','chain-4','chain-4','chain-4','chain-4','chain-4','chain-4']);
+  for(let n=1;n<=5;n++){h.sound.queueChain(n);h.sound.flushChain();h.ctx.currentTime+=.2;}
+  assert.equal(h.ctx.started.length,11);assert.equal(h.ctx.started.at(-1).buffer.name,'chain-1');
  });
  await test('a simultaneous kill storm emits just its highest reached tier, with no long note backlog',()=>{
   const h=fixture();for(let n=1;n<=100;n++)h.sound.queueChain(n);h.sound.flushChain();
@@ -66,13 +66,13 @@ module.exports=(async()=>{
  await test('suppressed or expired milestone cues do not return when sound becomes available',()=>{
   for(const flag of ['muted','zero','paused','hidden','silent','suspended']){
    const h=fixture();if(flag==='muted')h.env.settings.muted=true;if(flag==='zero')h.env.settings.sfxVolume=0;if(flag==='paused')h.env.mode='paused';if(flag==='hidden')h.env.document.hidden=true;if(flag==='silent')h.sound.runSilent=true;if(flag==='suspended')h.ctx.state='suspended';
-   h.sound.queueChain(4);h.sound.flushChain();assert.equal(h.ctx.started.length,0);
-   Object.assign(h.env.settings,{muted:false,sfxVolume:40});h.env.mode='playing';h.env.document.hidden=false;h.sound.runSilent=false;h.ctx.state='running';h.sound.queueChain(5);h.sound.flushChain();assert.equal(h.ctx.started.length,0);
+   h.sound.queueChain(5);h.sound.flushChain();assert.equal(h.ctx.started.length,0);
+   Object.assign(h.env.settings,{muted:false,sfxVolume:40});h.env.mode='playing';h.env.document.hidden=false;h.sound.runSilent=false;h.ctx.state='running';h.sound.queueChain(6);h.sound.flushChain();assert.equal(h.ctx.started.length,0);
   }
-  const h=fixture();h.sound.queueChain(8);h.ctx.currentTime+=1;h.sound.flushChain();assert.equal(h.ctx.started.length,0);
+  const h=fixture();h.sound.queueChain(10);h.ctx.currentTime+=1;h.sound.flushChain();assert.equal(h.ctx.started.length,0);
  });
  await test('a missing chain sample stays silent instead of using a capture sound',()=>{
-  const h=fixture();delete h.sound.buffers['chain-1'];h.sound.play('combo-accent',0,4);assert.equal(h.ctx.started.length,0);
+  const h=fixture();delete h.sound.buffers['chain-1'];h.sound.play('combo-accent',0,5);assert.equal(h.ctx.started.length,0);
  });
  await test('pause and resume UI use the selected metal sample while gameplay context is suspended',async()=>{
   const h=fixture();h.ctx.state='suspended';h.env.mode='paused';h.sound.ui('ui-pause');await Promise.resolve();

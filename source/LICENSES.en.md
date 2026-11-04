@@ -84,3 +84,9 @@ Opening: StumpyStrust — Doodle menu like song (CC0). Chain, metal button and b
 OtoLogicの素材を使用しています。移動音は先頭3秒へ短縮、音量調整・末尾280msフェードを適用。全選択音源は音程・再生速度を保持。OPは試聴版先頭12秒の抜粋です。 / Sound by OtoLogic; modified with a three-second excerpt, gain adjustment and 280 ms end fade. All selected cues retain their original pitch and speed; the opening is a 12-second excerpt.
 
 出典・改変・原作者通知・全文 / Sources, modifications, original notices and full licenses: [audio/selected/CREDITS.md](audio/selected/CREDITS.md). SHA-256 and processing: [PROVENANCE.json](audio/selected/PROVENANCE.json). Third-party terms remain separate from the original-code and original-asset licenses.
+
+## Bell-chain revision / 連鎖ベル改訂（feedback28）
+
+`audio/selected/chain-bell-1..4.ogg/mp3` are original synthesized bell chords, under the existing CC0 1.0 original-audio policy. They contain no third-party recordings. The previous Kenney chain files and notices remain preserved. Recipe, hashes and verification: [CHAIN_BELLS.json](audio/selected/CHAIN_BELLS.json).
+
+現在の連鎖ベル8ファイルは作品用のオリジナル合成音です。既存の自作音源CC0区分を継続し、他の録音・第三者素材の利用条件は変更しません。
