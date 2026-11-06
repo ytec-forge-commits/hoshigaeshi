@@ -2,19 +2,23 @@
 (function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory(require('./i18n-en.js'));else root.StarLocale=factory(root.StarEnglish);})(typeof globalThis!=='undefined'?globalThis:this,function(copy){
 'use strict';
 let language='ja',documentRoot=null,observer=null;
+// Pause panels turn authored full-width separators into line breaks before
+// inserting text. Keep those display variants translatable without changing
+// Japanese copy or treating arbitrary whitespace as interchangeable.
+const displayCopy={...Object.fromEntries(Object.entries(copy).filter(([ja])=>ja.includes('　')).map(([ja,en])=>[ja.replace(/　/g,'\n'),en])),...copy};
 const japanese=/[ぁ-んァ-ヶ一-龠]/,cache=new Map(),originals=new WeakMap(),attributes=new WeakMap();
 const escape=s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
-const templates=Object.entries(copy).filter(([s])=>s.includes('${')).sort((a,b)=>b[0].replace(/\$\{[^}]+\}/g,'').length-a[0].replace(/\$\{[^}]+\}/g,'').length).map(([ja,en])=>({pattern:new RegExp('^'+ja.split(/\$\{[^}]+\}/g).map(escape).join('([\\s\\S]*?)')+'$'),en}));
-const fragments=Object.entries(copy).filter(([ja])=>!ja.includes('${')&&ja.trim().length>1).sort((a,b)=>b[0].length-a[0].length);
+const templates=Object.entries(displayCopy).filter(([s])=>s.includes('${')).sort((a,b)=>b[0].replace(/\$\{[^}]+\}/g,'').length-a[0].replace(/\$\{[^}]+\}/g,'').length).map(([ja,en])=>({pattern:new RegExp('^'+ja.split(/\$\{[^}]+\}/g).map(escape).join('([\\s\\S]*?)')+'$'),en}));
+const fragments=Object.entries(displayCopy).filter(([ja])=>!ja.includes('${')&&ja.trim().length>1).sort((a,b)=>b[0].length-a[0].length);
 function text(value,locale=language,depth=0){
  const raw=String(value??'');if(locale!=='en'||!japanese.test(raw)||depth>5)return raw;
  const s=raw.replace(/\r\n?/g,'\n');if(cache.has(s))return cache.get(s);
- let result=copy[s];
+ let result=displayCopy[s];
  if(result===undefined){
   for(const {pattern,en}of templates){const m=pattern.exec(s);if(m){result=en.replace(/\{(\d+)\}/g,(_,i)=>text(m[Number(i)+1],'en',depth+1));break;}}
  }
  if(result===undefined){
-  const trim=s.trim();if(copy[trim]!==undefined)result=s.slice(0,s.indexOf(trim))+copy[trim]+s.slice(s.indexOf(trim)+trim.length);
+  const trim=s.trim();if(displayCopy[trim]!==undefined)result=s.slice(0,s.indexOf(trim))+displayCopy[trim]+s.slice(s.indexOf(trim)+trim.length);
  }
  if(result===undefined){
   result=s;

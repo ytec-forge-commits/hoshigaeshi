@@ -61,5 +61,7 @@
   "feedback24-chain.cjs",
   "feedback25-audio.cjs",
   "feedback29-credits-audio.cjs",
-  "feedback30-gamepad.cjs"
+  "feedback30-gamepad.cjs",
+  "feedback32-locale.cjs",
+  "feedback33-transition.cjs"
 ]

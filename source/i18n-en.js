@@ -307,7 +307,7 @@
   "3ステージクリア": "All 3 stages cleared",
   "第${r.stageIndex+1}ステージで時間切れ": "Time out on Stage {0}",
   "第${r.stageIndex+1}ステージでゲームオーバー": "Game over on Stage {0}",
-  "星返し / STAR REBOUND\n${outcome} | SCORE ${Math.round(r.score).toLocaleString('ja-JP')}\n星返し ${r.returned}発・最大連鎖 ${r.bestCombo}\n#星返し": "STAR REBOUND\n{0} | SCORE {1}\nReturned {2} · Best chain {3}\n#StarRebound",
+  "星返し / STAR REBOUND\n${outcome} | SCORE ${Math.round(r.score).toLocaleString('ja-JP')}\n星返し ${r.returned}発・最大連鎖 ${r.bestCombo}": "STAR REBOUND\n{0} | SCORE {1}\nReturned {2} · Best chain {3}",
   "練習完了・記録対象外": "Practice complete · Not recorded",
   "3ステージ クリア": "ALL 3 STAGES CLEAR",
   "第${r.stageIndex+1}ステージ ${r.result==='timeout'?'時間切れ':'ゲームオーバー'}": "Stage {0} · {1}",

@@ -495,15 +495,16 @@ function tickStageTransit(dt){
  const passage=stageTransit;if(!passage||passage.game!==sim||passage.session!==session||mode!=='transit')return;
  if(cinematicHeld||document.hidden||document.querySelector('dialog[open]'))return;
  passage.acc+=Math.max(0,Math.min(.05,Number(dt)||0));
- while(passage.acc+1e-9>=1/60&&stageTransit===passage&&mode==='transit'){
+ while(passage.acc+1e-9>=1/60&&stageTransit===passage&&mode==='transit'&&sim.stageIndex===passage.stageIndex){
   passage.acc-=1/60;cinematic.step(1/60);sim.step(1/60);scene.handleEvents(sim.events);
  }
  if(stageTransit===passage)paintCinematic();
 }
 function endStageTransit(stageIndex){
- if(!stageTransit||stageTransit.game!==sim||stageTransit.session!==session||stageIndex!==stageTransit.stageIndex+1)return;
+ if(!stageTransit||stageTransit.game!==sim||stageTransit.session!==session||mode!=='transit'||stageIndex!==stageTransit.stageIndex+1)return;
  stageTransit=null;cinematic.cancel();cinematicHeld=false;document.body.classList.remove('cinematic-active');
  mode='playing';screen(null);clearInput();acc=0;$('pause').disabled=false;$('arena').focus({preventScroll:true});
+ cueGate(fieldTrackFor(sim.stageIndex),()=>sound.transitionToStage());
 }
 
 function beginCinematic(kind){
@@ -617,7 +618,7 @@ function confirm(title,copy,label,action){lastFocus=document.activeElement;$('co
 $('confirm-no').onclick=()=>{$('confirm-dialog').close();confirmAction=null;lastFocus?.focus();};$('confirm-yes').onclick=()=>{const fn=confirmAction;confirmAction=null;$('confirm-dialog').close();fn?.();};$('confirm-dialog').addEventListener('cancel',()=>{confirmAction=null;});
 function resultCaption(r){
  const outcome=r.result==='practiced'?'練習完了（記録対象外）':r.result==='stage-clear'?'3ステージクリア':r.result==='timeout'?`第${r.stageIndex+1}ステージで時間切れ`:`第${r.stageIndex+1}ステージでゲームオーバー`;
- return L.text(`星返し / STAR REBOUND\n${outcome} | SCORE ${Math.round(r.score).toLocaleString('ja-JP')}\n星返し ${r.returned}発・最大連鎖 ${r.bestCombo}\n#星返し`)+`\nhttps://ytec.cloudfree.jp/forge/${L.language==='en'?'en/':''}projects/hoshigaeshi/`;
+ return L.text(`星返し / STAR REBOUND\n${outcome} | SCORE ${Math.round(r.score).toLocaleString('ja-JP')}\n星返し ${r.returned}発・最大連鎖 ${r.bestCombo}`)+`\n#星返し #StarRebound\nhttps://ytec.cloudfree.jp/forge/${L.language==='en'?'en/':''}projects/hoshigaeshi/`;
 }
 function resultPostUrl(r){return 'https://x.com/intent/tweet?text='+encodeURIComponent(resultCaption(r));}
  function resultArtPath(r){return asset(`v7-art/${r.result==='stage-clear'?'final-clear':'gameover'}.webp`);}
@@ -961,14 +962,14 @@ handleEvents(events){for(const e of events){if(e.type==='destroy'&&e.combo>0)sou
  else if(e.type==='itempickup'){this.ringBurst(sim.player.x,sim.player.y,e.itemKind==='pierce'?0xffdc87:0x9dffe8);this.burst(sim.player.x,sim.player.y,26,'star',.85,130);this.burst(sim.player.x,sim.player.y,3,'glow',.55,35);sound.play('item-pickup',0,e.itemKind);const v=FEEL.itemInfo(e.itemKind);$('power-toast-icon').src=asset(v.icon);$('power-toast-title').textContent=v.name;$('power-toast-copy').textContent=v.effect;$('power-toast').hidden=false;this.powerToastUntil=sim.time+4;announce(v.name+'を取得　'+v.effect+'　残り20秒');
 } else if(e.type==='itemuse'){this.ringBurst(sim.player.x,sim.player.y);this.burst(sim.player.x,sim.player.y,18,'star',.7,170);$('power-toast-icon').src=asset('item-twin-v5.png');$('power-toast-title').textContent='連星 · 反撃強化！';$('power-toast-copy').textContent='左右レーザーは、そのまま継続';$('power-toast').hidden=false;this.powerToastUntil=sim.time+2;announce('連星の反撃強化を使いました　左右レーザーは続きます');}
  else if(e.type==='itemexpire'){const label=FEEL.itemInfo(e.itemKind).name;$('power-toast-icon').src=asset(FEEL.itemInfo(e.itemKind).icon);$('power-toast-title').textContent=label+' · 効果終了';$('power-toast-copy').textContent=['extend','guard'].includes(e.itemKind)?'支援効果が終わりました':'通常ショットに戻りました';$('power-toast').hidden=false;this.powerToastUntil=sim.time+1.8;announce(label+'の効果が終わりました');}
-  else if(e.type==='ready')announce('星返しの準備ができました');else if(e.type==='act')announce(C.STAGES[e.stageIndex].beats[e.beat].label+'');else if(e.type==='stageclear'){this.bossCue=null;this.burst(240,300,60,'star',1.15,230);clearInput();$('stage-clear-kicker').textContent=`STAGE ${e.stageIndex+1} CLEAR`;$('stage-clear-name').textContent=e.stageIndex===2?'星路が、\nつながった':C.STAGES[e.stageIndex].name;$('stage-clear-stats').textContent=`SCORE ${String(Math.round(sim.score)).padStart(6,'0')} · LIFE ${e.hp}/${sim.player.maxHp}`;$('stage-clear-banner').style.backgroundImage=`linear-gradient(180deg,#07152b38,#07152ba8),url("${asset('v7-art/'+(e.stageIndex===2?'final-clear':'stage'+(e.stageIndex+1)+'-clear')+'.webp')}")`;$('stage-clear-banner').hidden=false;document.body.classList.add('stage-clear-active');announce(C.STAGES[e.stageIndex].name+'突破　ライフを引き継ぎます');beginBossDefeat(e.stageIndex);}else if(e.type==='stage'){endStageTransit(e.stageIndex);document.body.classList.remove('stage-clear-active');$('stage-clear-banner').hidden=true;this.enterStage(e.stageIndex);cueGate(fieldTrackFor(sim.stageIndex),()=>sound.transitionToStage());announce(C.STAGES[e.stageIndex].name+'へ');}else if(e.type==='bosssummon'){this.burst(e.x,e.y,14,'spark',.65,95);announce('ボスが護衛機を呼んだ　星返しでまとめて返そう');}else if(e.type==='bossreturnwarn'){announce('敵も星返しを構える　金の輪に注意');}else if(e.type==='bossabsorb'){this.burst(e.x,e.y,3,'star',.28,45);}else if(e.type==='bossreturn'){sound.play('return-burst',.3);this.burst(e.x,e.y,18,'star',.55,120);announce('敵の星返し　軌道を見て捕ろう');}else if(e.type==='pulsewarn')announce(e.pattern===3?'敵が星返しを構えた　金の輪と返し弾に注意':'時環の予告　敵の攻撃を見て動こう');else if(e.type==='mirrorwarn')announce(e.side<0?'左の鏡が光ります':'右の鏡が光ります');}}
+  else if(e.type==='ready')announce('星返しの準備ができました');else if(e.type==='act')announce(C.STAGES[e.stageIndex].beats[e.beat].label+'');else if(e.type==='stageclear'){this.bossCue=null;this.burst(240,300,60,'star',1.15,230);clearInput();$('stage-clear-kicker').textContent=`STAGE ${e.stageIndex+1} CLEAR`;$('stage-clear-name').textContent=e.stageIndex===2?'星路が、\nつながった':C.STAGES[e.stageIndex].name;$('stage-clear-stats').textContent=`SCORE ${String(Math.round(sim.score)).padStart(6,'0')} · LIFE ${e.hp}/${sim.player.maxHp}`;$('stage-clear-banner').style.backgroundImage=`linear-gradient(180deg,#07152b38,#07152ba8),url("${asset('v7-art/'+(e.stageIndex===2?'final-clear':'stage'+(e.stageIndex+1)+'-clear')+'.webp')}")`;$('stage-clear-banner').hidden=false;document.body.classList.add('stage-clear-active');announce(C.STAGES[e.stageIndex].name+'突破　ライフを引き継ぎます');beginBossDefeat(e.stageIndex);}else if(e.type==='stage'){document.body.classList.remove('stage-clear-active');$('stage-clear-banner').hidden=true;this.enterStage(e.stageIndex);if(!stageTransit)cueGate(fieldTrackFor(sim.stageIndex),()=>sound.transitionToStage());announce(C.STAGES[e.stageIndex].name+'へ');}else if(e.type==='bosssummon'){this.burst(e.x,e.y,14,'spark',.65,95);announce('ボスが護衛機を呼んだ　星返しでまとめて返そう');}else if(e.type==='bossreturnwarn'){announce('敵も星返しを構える　金の輪に注意');}else if(e.type==='bossabsorb'){this.burst(e.x,e.y,3,'star',.28,45);}else if(e.type==='bossreturn'){sound.play('return-burst',.3);this.burst(e.x,e.y,18,'star',.55,120);announce('敵の星返し　軌道を見て捕ろう');}else if(e.type==='pulsewarn')announce(e.pattern===3?'敵が星返しを構えた　金の輪と返し弾に注意':'時環の予告　敵の攻撃を見て動こう');else if(e.type==='mirrorwarn')announce(e.side<0?'左の鏡が光ります':'右の鏡が光ります');}}
   update(t,delta){if(assetsFailed)return;pollGamepad();sound.flushChain();if(sim&&this.powerToastUntil&&sim.time>=this.powerToastUntil)$('power-toast').hidden=true;qaFrames++;qaWorst=Math.max(qaWorst,delta);const dt=Math.min(delta/1000,.05),wasDefeat=mode==='boss-defeat',wasTransit=mode==='transit';if(wasDefeat)tickBossDefeat(dt);else if(wasTransit)tickStageTransit(dt);else if(cinematic.active&&!stageTransit){const done=cinematic.step(dt,cinematicHeld||document.hidden||$('settings').open);if(done)completeCinematic(done);else paintCinematic();}this.visualTime+=mode==='paused'||document.hidden?0:dt;this.impactCooldown=Math.max(0,this.impactCooldown-dt);menuTime+=mode==='paused'?0:dt;if(mode==='playing'&&sim&&!wasTransit&&!wasDefeat){const relativeMouse=settings.controlMode==='mouse'&&mouseLock.locked&&!pointer,mouseFrame=relativeMouse?mouseMotion.begin(sim.player,performance.now()):null;if(relativeMouse)target=mouseFrame?.target||null;acc+=Math.min(delta/1000,.1);let steps=0;while(acc>=1/60&&steps<6){sim.step(1/60,input());if(qaFieldHold&&sim.stageIndex===1&&sim.stagePhase==='waves')sim.stageTime=Math.min(sim.stageTime,70);this.handleEvents(sim.events);acc-=1/60;steps++;if(mode!=='playing'||sim.state==='paused')break;if(sim.state!=='playing'){mode='finishing';mouseLock.release();pendingFinish=sim.state==='stage-clear'?1.15:.4;clearInput();$('pause').disabled=true;$('capture').disabled=true;break;}}if(steps>0&&relativeMouse){if(mouseFrame&&mode==='playing'&&sim.state==='playing')mouseMotion.consume(mouseFrame,sim.player,performance.now());else mouseMotion.clear();target=null;}}else acc=0;if(mode==='finishing'){pendingFinish-=dt;if(pendingFinish<=0)finish();}if(mode==='credits')paintCredits(dt);
  const playing=mode==='playing',vdt=mode==='paused'||document.hidden?0:dt;const beat=sim?.beat||0,boss=!!sim?.stageBossSpawned;
  this.flow.clear();for(const path of FEEL.backgroundFrame(sim?.stageIndex||0,this.visualTime,effectiveReduced()).paths){this.flow.lineStyle(path.width,path.color,path.alpha);this.flow.beginPath();path.points.forEach((p,i)=>i?this.flow.lineTo(p.x,p.y):this.flow.moveTo(p.x,p.y));this.flow.strokePath();}
  this.powerArt.clear();this.drawBossCue();
   const routeWanted=!!(this.route&&sim&&!sim.practice&&(!effectiveReduced()||sim.stageIndex>=1));
   const routeFrame=routeWanted?this.route.update(effectiveReduced()?0:sim.stageTime,C.STAGES[sim.stageIndex].sweepAt):null;
- const routeActive=!!routeFrame?.active;
+ const routeActive=!!routeFrame?.active,legacyBackground=(sim?.stageIndex||0)===0;
  if(!routeWanted)this.route?.hide();
 if(mode==='playing'&&sim&&!sim.practice){
   if(sim.stageTime>=30)this.passageMix=Math.min(1,this.passageMix+dt/6);
@@ -976,9 +977,12 @@ if(mode==='playing'&&sim&&!sim.practice){
 }
 const bgX=240+(effectiveReduced()?0:Math.sin(this.visualTime*.07)*this.farDriftX);
 const bgY=360+(effectiveReduced()?0:Math.sin(this.visualTime*.05)*this.farDriftY);
- this.bg.setPosition(bgX,bgY).setVisible(!routeActive&&this.passageMix<1);
- this.passage.setPosition(bgX,bgY).setAlpha(this.passageMix).setVisible(!routeActive&&this.passageMix>0&&this.vistaMix<1);
- this.vista.setPosition(bgX,bgY).setAlpha(this.vistaMix).setVisible(!routeActive&&this.vistaMix>0);
+ this.bg.setPosition(bgX,bgY).setVisible(legacyBackground&&!routeActive&&this.passageMix<1);
+ this.passage.setPosition(bgX,bgY).setAlpha(this.passageMix).setVisible(legacyBackground&&!routeActive&&this.passageMix>0&&this.vistaMix<1);
+ this.vista.setPosition(bgX,bgY).setAlpha(this.vistaMix).setVisible(legacyBackground&&!routeActive&&this.vistaMix>0);
+ // Keep the transit cover until this frame has the destination scenery.
+ // On load failure, use the stage's ambient layers instead of Stage 1 art.
+ if(stageTransit&&sim?.stageIndex===stageTransit.stageIndex+1&&(routeActive||this.route?.failed))endStageTransit(sim.stageIndex);
 const midAlpha=.30+(.12-.30)*this.passageMix,nearAlpha=.42+(.22-.42)*this.passageMix;
  this.mid.setAlpha(routeActive ? .11 : midAlpha+(.05-midAlpha)*this.vistaMix);
  this.near.setAlpha(routeActive ? .18 : nearAlpha+(.10-nearAlpha)*this.vistaMix);
