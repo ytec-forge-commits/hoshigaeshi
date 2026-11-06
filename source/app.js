@@ -618,7 +618,7 @@ function confirm(title,copy,label,action){lastFocus=document.activeElement;$('co
 $('confirm-no').onclick=()=>{$('confirm-dialog').close();confirmAction=null;lastFocus?.focus();};$('confirm-yes').onclick=()=>{const fn=confirmAction;confirmAction=null;$('confirm-dialog').close();fn?.();};$('confirm-dialog').addEventListener('cancel',()=>{confirmAction=null;});
 function resultCaption(r){
  const outcome=r.result==='practiced'?'練習完了（記録対象外）':r.result==='stage-clear'?'3ステージクリア':r.result==='timeout'?`第${r.stageIndex+1}ステージで時間切れ`:`第${r.stageIndex+1}ステージでゲームオーバー`;
- return L.text(`星返し / STAR REBOUND\n${outcome} | SCORE ${Math.round(r.score).toLocaleString('ja-JP')}\n星返し ${r.returned}発・最大連鎖 ${r.bestCombo}`)+`\n#星返し #StarRebound #インディーゲーム #IndieGame\nhttps://ytec.cloudfree.jp/forge/${L.language==='en'?'en/':''}projects/hoshigaeshi/`;
+ return L.text(`星返し / STAR REBOUND\n${outcome} | SCORE ${Math.round(r.score).toLocaleString('ja-JP')}\n星返し ${r.returned}発・最大連鎖 ${r.bestCombo}`)+`\n${L.language==='en'?'#StarRebound #IndieGame':'#星返し #インディーゲーム'}\nhttps://ytec.cloudfree.jp/forge/${L.language==='en'?'en/':''}projects/hoshigaeshi/`;
 }
 function resultPostUrl(r){return 'https://x.com/intent/tweet?text='+encodeURIComponent(resultCaption(r));}
  function resultArtPath(r){return asset(`v7-art/${r.result==='stage-clear'?'final-clear':'gameover'}.webp`);}
