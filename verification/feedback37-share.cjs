@@ -1,0 +1,8 @@
+const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict');
+const C=require('../source/core.js'),L=require('../source/i18n.js');
+module.exports=(async()=>{const results=[];const source=fs.readFileSync(path.join(__dirname,'../source/app.js'),'utf8');const body=source.match(/function resultCaption\(r\)\{[\s\S]*?\n\}/)[0];const env={C,L};vm.createContext(env);vm.runInContext(body,env);
+ for(const [difficulty,ja,en] of [['easy','やさしい','Easy'],['normal','標準','Normal'],['hard','挑戦','Hard'],['nightmare','ナイトメア','Nightmare']]){
+  try{for(const [lang,label] of [['ja',ja],['en',en]]){L.setLanguage(lang);const caption=env.resultCaption({difficulty,result:'lost',stageIndex:0,score:120,returned:0,bestCombo:1});assert(caption.includes((lang==='ja'?'難しさ ':'Difficulty: ')+label));assert.equal((caption.match(/#/g)||[]).length,2);assert(caption.includes('SCORE 120'));if(lang==='en')assert(!/[ぁ-んァ-ヶ一-龠]/.test(caption));}results.push({name:'shared result identifies '+difficulty+' in both languages',status:'PASS'});}catch(e){results.push({name:'shared result identifies '+difficulty+' in both languages',status:'FAIL',message:e.message});}
+ }
+ try{const stats='難しさ ナイトメア\n返した星 0個 · 最高連続撃破 1回\n2秒の旅 · ライフ 0/2 · 星の回復 0回';assert.equal(L.text(stats,'en'),'Difficulty: Nightmare\nReturned 0 · Best chain 1\nJourney 2s · Life 0/2 · Heals 0');results.push({name:'difficulty addition preserves full result statistics translation',status:'PASS'});}catch(e){results.push({name:'difficulty addition preserves full result statistics translation',status:'FAIL',message:e.message});}
+ L.setLanguage('ja');return {failed:results.filter(r=>r.status==='FAIL').length,results};})();

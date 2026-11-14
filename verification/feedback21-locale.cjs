@@ -13,7 +13,7 @@ test('Japanese and untrusted plain text are not reinterpreted as HTML',()=>{
 });
 test('all authored server errors render in English after UI punctuation normalization',()=>{
  const source=['Leaderboard.php','bootstrap.php'].map(n=>fs.readFileSync(path.join(__dirname,'../server',n),'utf8')).join('\n');let count=0;
- for(const [,raw]of source.matchAll(/'([^'\n]*[ぁ-んァ-ヶ一-龠][^'\n]*)'/g)){const normalized=raw.replace(/。/g,'\n').trim();assert(!/[ぁ-んァ-ヶ一-龠]/.test(L.text(normalized,'en')),normalized);count++;}
+ for(const [,raw]of source.matchAll(/new ApiError\(\d+,'[^'\n]+','([^'\n]*[ぁ-んァ-ヶ一-龠][^'\n]*)'\)/g)){const normalized=raw.replace(/。/g,'\n').trim();assert(!/[ぁ-んァ-ヶ一-龠]/.test(L.text(normalized,'en')),normalized);count++;}
  assert(count>25);
 });
 test('all stage and item names translate and language choices are bounded',()=>{

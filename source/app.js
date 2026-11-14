@@ -598,7 +598,7 @@ function finish(){
   $('result-title').textContent=practice?'光を返す、その感覚を':clear?'帰り道に、星が灯る':result.result==='timeout'?'帰り道は、まだ遠く':'まだ、光は残っている';
    $('result-copy').textContent=practice?'7種類の弾幕と5種類のアイテムを練習しました\n記録には残りません':clear?'三つの星が、一本の道になりました\n小さな星舟に、おかえりを':result.result==='timeout'?'制限時間になりました\n次は弾を集めて、一気に道をひらこう':'返した光は、次の旅につながる\n近づく弾を集めて、もう一度、星路へ';
   $('result-score').textContent=format(result.score);
-  $('result-stats').textContent=`返した星 ${result.returned}個 · 最高連続撃破 ${result.bestCombo}回\r\n${Math.floor(result.time)}秒の旅 · ライフ ${result.hp}/${result.maxHp} · 星の回復 ${result.heals}回${practice?' · 練習のため記録なし':''}`;
+  $('result-stats').textContent=`難しさ ${C.DIFF[result.difficulty].label}\n返した星 ${result.returned}個 · 最高連続撃破 ${result.bestCombo}回\r\n${Math.floor(result.time)}秒の旅 · ライフ ${result.hp}/${result.maxHp} · 星の回復 ${result.heals}回${practice?' · 練習のため記録なし':''}`;
   $('result-detail-values').textContent=`撃破 ${result.kills}機 · 被弾 ${result.hits}回 · 星返し使用 ${result.captureUses}回\n撃破得点（倍率込み） ${format(result.scoreBreakdown.defeats)}\n返却得点 ${format(result.scoreBreakdown.returns)}\nボス撃破時ライフ得点 ${format(result.scoreBreakdown.lifeBonus)}`;
   if(result.remainingBossHp!==null)$('result-detail-values').textContent+=`\nボス残りHP ${result.remainingBossHp} / ${result.bossMaxHp}`;
   $('result-details').open=false;
@@ -618,7 +618,7 @@ function confirm(title,copy,label,action){lastFocus=document.activeElement;$('co
 $('confirm-no').onclick=()=>{$('confirm-dialog').close();confirmAction=null;lastFocus?.focus();};$('confirm-yes').onclick=()=>{const fn=confirmAction;confirmAction=null;$('confirm-dialog').close();fn?.();};$('confirm-dialog').addEventListener('cancel',()=>{confirmAction=null;});
 function resultCaption(r){
  const outcome=r.result==='practiced'?'練習完了（記録対象外）':r.result==='stage-clear'?'3ステージクリア':r.result==='timeout'?`第${r.stageIndex+1}ステージで時間切れ`:`第${r.stageIndex+1}ステージでゲームオーバー`;
- return L.text(`星返し / STAR REBOUND\n${outcome} | SCORE ${Math.round(r.score).toLocaleString('ja-JP')}\n星返し ${r.returned}発・最大連鎖 ${r.bestCombo}`)+`\n${L.language==='en'?'#StarRebound #IndieGame':'#星返し #インディーゲーム'}\nhttps://ytec.cloudfree.jp/forge/${L.language==='en'?'en/':''}projects/hoshigaeshi/`;
+ return L.text(`難しさ ${C.DIFF[r.difficulty].label}`)+'\n'+L.text(`星返し / STAR REBOUND\n${outcome} | SCORE ${Math.round(r.score).toLocaleString('ja-JP')}\n星返し ${r.returned}発・最大連鎖 ${r.bestCombo}`)+`\n${L.language==='en'?'#StarRebound #IndieGame':'#星返し #インディーゲーム'}\nhttps://ytec.cloudfree.jp/forge/${L.language==='en'?'en/':''}projects/hoshigaeshi/`;
 }
 function resultPostUrl(r){return 'https://x.com/intent/tweet?text='+encodeURIComponent(resultCaption(r));}
  function resultArtPath(r){return asset(`v7-art/${r.result==='stage-clear'?'final-clear':'gameover'}.webp`);}
@@ -628,6 +628,7 @@ async function makeResultImage(r){
  const canvas=document.createElement('canvas');canvas.width=1200;canvas.height=675;const ctx=canvas.getContext('2d');if(!ctx)throw Error('canvas unavailable');
   ctx.fillStyle='#071426';ctx.fillRect(0,0,1200,675);ctx.drawImage(img,0,0,450,675);const shade=ctx.createLinearGradient(420,0,490,0);shade.addColorStop(0,'#07142600');shade.addColorStop(1,'#071426');ctx.fillStyle=shade;ctx.fillRect(420,0,80,675);
   ctx.textAlign='left';ctx.shadowColor='#020817';ctx.shadowBlur=16;ctx.fillStyle='#ffdfa0';ctx.font=L.language==='en'?'bold 58px sans-serif':'bold 74px Noto, sans-serif';ctx.fillText(L.language==='en'?'STAR REBOUND':'星返し',505,140,650);ctx.font='25px sans-serif';ctx.fillStyle='#a9e7e7';ctx.fillText(L.language==='en'?'Turn incoming fire into guiding light':'STAR REBOUND',509,180,650);
+  ctx.fillStyle='#8ceff6';ctx.font='bold 30px Noto, sans-serif';ctx.fillText(L.text(`難しさ ${C.DIFF[r.difficulty].label}`),505,260,650);
   ctx.fillStyle='#fff5df';ctx.font='bold 36px Noto, sans-serif';ctx.fillText(L.text(r.result==='practiced'?'練習完了・記録対象外':r.result==='stage-clear'?'3ステージ クリア':`第${r.stageIndex+1}ステージ ${r.result==='timeout'?'時間切れ':'ゲームオーバー'}`),505,340,650);
   ctx.font='bold 60px sans-serif';ctx.fillStyle='#ffda88';ctx.fillText(`SCORE ${Math.round(r.score).toLocaleString('ja-JP')}`,505,435);ctx.font='25px Noto, sans-serif';ctx.fillStyle='#eaf8fc';ctx.fillText(L.text(`星返し ${r.returned}発  ·  最大連鎖 ${r.bestCombo}`),505,496,650);
  return canvas;

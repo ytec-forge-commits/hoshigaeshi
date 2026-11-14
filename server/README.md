@@ -1,6 +1,6 @@
 # ランキングサーバー / Ranking server
 
-同一originの任意ランキングを提供するPHP + SQLite実装です
+同一originの自動ランキングを提供するPHP + SQLite実装です
 Gitでのコード公開と、Webから直接読める場所への配置は別です
 serverはDocumentRootの外へ配置し、公開入口はsource/api/index.phpだけにしてください
 
@@ -38,7 +38,7 @@ PHP実行者と管理者だけがDBと鍵へアクセスできる権限にし、
 
 ## データと制御
 
-- APIはtop / start / finishのみ
+- APIはtop / start / finish / finish-auto / rename。従来のfinishを維持し、新クライアントはfinish-autoで自動登録、renameで名前だけを変更
 - POSTのOrigin、JSON形式、8KiB上限を検査
 - 署名Cookie、runごとのnonce、actor照合、期限と申告値の整合性を検査
 - prepared statementとtransactionで最高記録・詳細・再送応答を保存
@@ -63,3 +63,10 @@ Set the three environment variables above in the PHP runtime, never in committed
 Check OS permissions and all aliases/vhosts/backups for accidental exposure. The application's realpath check covers its current DocumentRoot only. Back up and restore the database and key together. Never copy test data into production.
 
 Requests use bounded JSON, origin checks, signed anonymous cookies, per-run nonces, prepared SQL and atomic writes. Identical result retries are idempotent. Ranking validates client-reported results but does not replay the game and cannot guarantee cheat prevention. Accounts and an administration UI are not included.
+
+
+## プロフィール形式v1（feedback37）
+
+既存のuser_version=1とruns/scores/score_detailsを維持し、ranking_profiles表だけを追加します。既存の名前を引き継ぎ、未命名のブラウザに番号付き仮名を原子的に割り当てます。旧コードは追加表を無視できるため、ロールバックでも既存DB/鍵を削除・復元しません。自動登録の再送は同一の結果で冪等、名前変更は同一ブラウザCookieと完了したrunのnonceを照合して名前だけを更新します。プロフィールは最高記録と同じ期間保持します。
+
+Profile format v1 is additive: ranking_profiles does not change base schema version 1. Preserve the existing database and signing key when deploying or rolling back. finish remains backward-compatible; finish-auto allocates/reuses the browser nickname and rename updates only owned names, preserving scores, detail IDs and tie timestamps.

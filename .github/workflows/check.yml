@@ -26,3 +26,4 @@ jobs:
           php verification/feedback4-ranking-contracts.php
           php verification/feedback12-ranking.php
           php verification/forge-sqlite-compat.php
+          php verification/feedback37-ranking.php

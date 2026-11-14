@@ -28,6 +28,8 @@ final class Leaderboard {
         $db->exec('CREATE INDEX IF NOT EXISTS run_expiry ON runs(expires)');
         $db->exec('CREATE TABLE IF NOT EXISTS rates (bucket TEXT PRIMARY KEY,count INTEGER NOT NULL,expires REAL NOT NULL)');
         $db->exec('CREATE TABLE IF NOT EXISTS score_details (score_id INTEGER PRIMARY KEY,version INTEGER NOT NULL,score INTEGER NOT NULL,stage INTEGER NOT NULL,recorded REAL NOT NULL,details TEXT NOT NULL)');
+        // Additive profile format v1. Existing score/run tables stay readable by old servers.
+        $db->exec('CREATE TABLE IF NOT EXISTS ranking_profiles (id INTEGER PRIMARY KEY AUTOINCREMENT,browser TEXT NOT NULL UNIQUE,name TEXT)');
         if($version===0)$db->exec('PRAGMA user_version=1');
     }
     private function now():float { return ($this->clock)(); }
@@ -104,16 +106,33 @@ final class Leaderboard {
         $out=['version'=>1];foreach(['time','hp','kills','returned','bestCombo','hits','captureUses'] as $key)$out[$key]=$p[$key];
         $out['heals']=$p['details']['heals']??null;$out['scoreBreakdown']=$p['details']['scoreBreakdown']??null;return $out;
     }
-    public function finish(string $actor,array $input):array {
-        $p=self::payload($input);$hash=hash('sha256',json_encode($p,JSON_UNESCAPED_UNICODE|JSON_THROW_ON_ERROR));$now=$this->now();
-        return $this->atomic(function()use($actor,$p,$hash,$now){
+    private function profileName(string $actor):string {
+        // Called only while holding BEGIN IMMEDIATE, after run ownership validation.
+        $profile=$this->query('SELECT id,name FROM ranking_profiles WHERE browser=?',[$actor])->fetch();
+        if(!$profile){$this->query('INSERT INTO ranking_profiles(browser) VALUES(?)',[$actor]);$profile=$this->query('SELECT id,name FROM ranking_profiles WHERE browser=?',[$actor])->fetch();}
+        if($profile['name']!==null)return $profile['name'];
+        $legacy=$this->query('SELECT name FROM scores WHERE browser=? AND ruleset=? ORDER BY recorded DESC,id DESC LIMIT 1',[$actor,self::RULESET])->fetchColumn();
+        $name=$legacy===false?'星の方舟'.$profile['id']:$legacy;
+        $this->query('UPDATE ranking_profiles SET name=? WHERE browser=?',[$name,$actor]);
+        return $name;
+    }
+    public function finishAuto(string $actor,array $input):array {
+        if(array_key_exists('name',$input))throw new ApiError(422,'invalid_result','結果の形式を確認できませんでした。');
+        // A fixed internal placeholder preserves the canonical retry hash independently of renames.
+        $input['name']='星の方舟';
+        return $this->finish($actor,$input,true);
+    }
+    public function finish(string $actor,array $input,bool $automatic=false):array {
+        $p=self::payload($input);$hash=hash('sha256',($automatic?'auto:':'').json_encode($p,JSON_UNESCAPED_UNICODE|JSON_THROW_ON_ERROR));$now=$this->now();
+        return $this->atomic(function()use($actor,$p,$hash,$now,$automatic){
             $run=$this->query('SELECT * FROM runs WHERE id=?',[$p['runId']])->fetch();
             if(!$run||!hash_equals($run['browser'],$actor)||!hash_equals($run['nonce_hash'],hash('sha256',$p['nonce'])))throw new ApiError(403,'run_invalid','このプレイの登録情報を確認できませんでした。');
             if($p['difficulty']!==$run['difficulty']||$p['ruleset']!==$run['ruleset']||$p['ruleset']!==self::RULESET||$p['seed']!==(int)$run['seed'])throw new ApiError(409,'rules_changed','登録対象のルールが変わりました。新しいプレイでお試しください。');
-            if($run['response']!==null){if(!hash_equals($run['payload_hash'],$hash))throw new ApiError(409,'already_submitted','このプレイは別の内容ですでに登録済みです。');return json_decode($run['response'],true,512,JSON_THROW_ON_ERROR);}
+            if($run['response']!==null){if(!hash_equals($run['payload_hash'],$hash))throw new ApiError(409,'already_submitted','このプレイは別の内容ですでに登録済みです。');$response=json_decode($run['response'],true,512,JSON_THROW_ON_ERROR);if($automatic)$response['entry']['name']=$this->profileName($actor);return $response;}
             if($now>(float)$run['expires'])throw new ApiError(410,'run_expired','登録期限（開始から2時間）を過ぎました。');
             if($p['time']>$now-(float)$run['started']+2)throw new ApiError(422,'elapsed_mismatch','プレイ時間の整合性を確認できませんでした。');
             $this->limit('finish:'.$actor,30,60,$now);
+            if($automatic)$p['name']=$this->profileName($actor);
             $old=$this->query('SELECT * FROM scores WHERE browser=? AND difficulty=? AND ruleset=?',[$actor,$run['difficulty'],self::RULESET])->fetch();
             $stage=$p['completedStages'];$improved=!$old||$p['score']>(int)$old['score']||($p['score']===(int)$old['score']&&$stage>(int)$old['stage']);
             if($improved){
@@ -127,11 +146,34 @@ final class Leaderboard {
                 if($this->query('SELECT 1 FROM score_details WHERE score_id=?',[$best['id']])->fetchColumn()!==false)$this->query('UPDATE score_details SET version=1,score=?,stage=?,recorded=?,details=? WHERE score_id=?',[$best['score'],$best['stage'],$best['recorded'],$details,$best['id']]);
                 else $this->query('INSERT INTO score_details(score_id,version,score,stage,recorded,details) VALUES(?,1,?,?,?,?)',[$best['id'],$best['score'],$best['stage'],$best['recorded'],$details]);
             }
-            $rank=1+(int)$this->query('SELECT COUNT(*) FROM scores WHERE ruleset=? AND difficulty=? AND (score>? OR (score=? AND stage>?) OR (score=? AND stage=? AND recorded<?) OR (score=? AND stage=? AND recorded=? AND id<?))',[self::RULESET,$run['difficulty'],$best['score'],$best['score'],$best['stage'],$best['score'],$best['stage'],$best['recorded'],$best['score'],$best['stage'],$best['recorded'],$best['id']])->fetchColumn();
+            $rank=$this->rank($best,$run['difficulty']);
             $response=['accepted'=>true,'improved'=>$improved,'entry'=>$this->publicEntry($best,$rank),'ruleset'=>self::RULESET];
             $this->query('UPDATE runs SET payload_hash=?,response=?,completed=? WHERE id=?',[$hash,json_encode($response,JSON_UNESCAPED_UNICODE|JSON_PRESERVE_ZERO_FRACTION|JSON_THROW_ON_ERROR),$now,$run['id']]);
             return $response;
         });
+    }
+    public function rename(string $actor,array $input):array {
+        if(count($input)!==3||array_diff(array_keys($input),['runId','nonce','name'])||!isset($input['runId'],$input['nonce'],$input['name'])||!is_string($input['runId'])||!is_string($input['nonce'])||!is_string($input['name']))throw new ApiError(422,'invalid_result','結果の形式を確認できませんでした。');
+        if(!preg_match('/^[a-f0-9]{32}$/D',$input['runId'])||!preg_match('/^[a-f0-9]{64}$/D',$input['nonce']))throw new ApiError(403,'run_invalid','このプレイの登録情報を確認できませんでした。');
+        $name=self::normalizeName($input['name']);$now=$this->now();
+        return $this->atomic(function()use($actor,$input,$name,$now){
+            $run=$this->query('SELECT * FROM runs WHERE id=?',[$input['runId']])->fetch();
+            if(!$run||!hash_equals($run['browser'],$actor)||!hash_equals($run['nonce_hash'],hash('sha256',$input['nonce'])))throw new ApiError(403,'run_invalid','このプレイの登録情報を確認できませんでした。');
+            if($run['response']===null)throw new ApiError(409,'not_submitted','先に記録の自動登録を完了してください。');
+            if($run['ruleset']!==self::RULESET)throw new ApiError(409,'rules_changed','登録対象のルールが変わりました。新しいプレイでお試しください。');
+            if($now>(float)$run['expires'])throw new ApiError(410,'run_expired','登録期限（開始から2時間）を過ぎました。');
+            $this->limit('rename:'.$actor,30,60,$now);
+            $this->profileName($actor);
+            $this->query('UPDATE ranking_profiles SET name=? WHERE browser=?',[$name,$actor]);
+            // Nickname-only update: preserve every score ID, result, detail and tie-break timestamp.
+            $this->query('UPDATE scores SET name=? WHERE browser=? AND ruleset=?',[$name,$actor,self::RULESET]);
+            $best=$this->query('SELECT * FROM scores WHERE browser=? AND difficulty=? AND ruleset=?',[$actor,$run['difficulty'],self::RULESET])->fetch();
+            if(!$best)throw new ApiError(409,'not_submitted','先に記録の自動登録を完了してください。');
+            return ['accepted'=>true,'entry'=>$this->publicEntry($best,$this->rank($best,$run['difficulty'])),'ruleset'=>self::RULESET];
+        });
+    }
+    private function rank(array $best,string $difficulty):int {
+        return 1+(int)$this->query('SELECT COUNT(*) FROM scores WHERE ruleset=? AND difficulty=? AND (score>? OR (score=? AND stage>?) OR (score=? AND stage=? AND recorded<?) OR (score=? AND stage=? AND recorded=? AND id<?))',[self::RULESET,$difficulty,$best['score'],$best['score'],$best['stage'],$best['score'],$best['stage'],$best['recorded'],$best['score'],$best['stage'],$best['recorded'],$best['id']])->fetchColumn();
     }
     private function publicEntry(array $row,int $rank):array {
         $raw=$this->query('SELECT details FROM score_details WHERE score_id=? AND version=1 AND score=? AND stage=? AND recorded=?',[$row['id'],$row['score'],$row['stage'],$row['recorded']])->fetchColumn();

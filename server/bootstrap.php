@@ -15,7 +15,7 @@ try {
     if(!$parts||!isset($parts['scheme'],$parts['host'])||!in_array($parts['scheme'],['http','https'],true)||isset($parts['path'])||isset($parts['user'])||isset($parts['query'])||isset($parts['fragment']))throw new ApiError(503,'not_configured','ランキングの接続設定を確認中です。');
     if($parts['scheme']==='http'&&!in_array($parts['host'],['127.0.0.1','localhost','[::1]'],true))throw new ApiError(503,'https_required','ランキングの接続設定を確認中です。');
     $action=$_GET['action']??'top';$method=$_SERVER['REQUEST_METHOD']??'GET';
-    if(!is_string($action)||!in_array($action,['top','start','finish'],true))throw new ApiError(404,'not_found','その操作は見つかりません。');
+    if(!is_string($action)||!in_array($action,['top','start','finish','finish-auto','rename'],true))throw new ApiError(404,'not_found','その操作は見つかりません。');
     if(($action==='top'&&$method!=='GET')||($action!=='top'&&$method!=='POST')){header('Allow: '.($action==='top'?'GET':'POST'));throw new ApiError(405,'method','この操作方法は使えません。');}
     $requestOrigin=$_SERVER['HTTP_ORIGIN']??null;
     if(($method==='POST'&&$requestOrigin!==$origin)||($requestOrigin!==null&&$requestOrigin!==$origin)||($method==='POST'&&($_SERVER['HTTP_SEC_FETCH_SITE']??'same-origin')==='cross-site'))throw new ApiError(403,'origin','ゲームと同じページからお試しください。');
@@ -61,6 +61,8 @@ try {
         $network=hash_hmac('sha256',gmdate('Y-m-d').':'.($_SERVER['REMOTE_ADDR']??'unknown'),$key);
         reply(201,$store->start($actor,$body['difficulty'],$network));
     }
+    if($action==='finish-auto')reply(200,$store->finishAuto($actor,$body));
+    if($action==='rename')reply(200,$store->rename($actor,$body));
     reply(200,$store->finish($actor,$body));
 }catch(ApiError $e){reply($e->status,['error'=>$e->errorCode,'message'=>$e->getMessage()]);}
 catch(PDOException){reply(503,['error'=>'storage_busy','message'=>'ランキングが混み合っています。少し待って再送してください。']);}

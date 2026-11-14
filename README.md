@@ -7,9 +7,9 @@
 
 - 3ステージ、4段階の難しさ、55秒の練習モード
 - キーボード、マウス固定、standard配列のゲームパッド、タッチ
-- 端末内の記録・設定保存、任意のオンラインランキング
+- 端末内の記録・設定保存、接続可能時の自動オンラインランキング
 - 音量調整、ミュート、演出控えめ、全画面表示
-- 現行候補: v9 feedback30（パッドの難易度案内・スティック感度） / 2026-11-04
+- 現行公開版: v9 feedback37（結果の難しさ表示・自動ランキング・登録名の変更） / 2026-11-14
 
 ## 起動
 
@@ -79,4 +79,4 @@ Run the Python command above and open http://127.0.0.1:8877/ . No build or npm d
 
 Run node scripts/check.cjs with Node.js 20+ for portable verification. PHP tests require PHP 8.3+, PDO SQLite and mbstring. Browser automation does not replace physical phone/controller/audio checks or a human full-game playthrough.
 
-Serve only source/. Keep server/, SQLite, signing keys and backups outside the web root. Online ranking is optional; static hosting supports local records. See [server setup](server/README.md) and [data disclosure](source/ONLINE.md). Original code uses Apache-2.0; assets and dependencies retain the individual licenses in [source/LICENSES.md](source/LICENSES.md). No account, analytics or CDN is required for the static game.
+Serve only source/. Keep server/, SQLite, signing keys and backups outside the web root. Configured online rankings register normal results automatically; static hosting supports local records. See [server setup](server/README.md) and [data disclosure](source/ONLINE.md). Original code uses Apache-2.0; assets and dependencies retain the individual licenses in [source/LICENSES.md](source/LICENSES.md). No account, analytics or CDN is required for the static game.

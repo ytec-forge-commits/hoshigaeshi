@@ -1,4 +1,4 @@
-# STAR REBOUND — v9 feedback30 / local candidate
+# STAR REBOUND — v9 feedback37
 
 The opening and main effects use owner-selected free audio. Every fifth chain kill plays one of four bell chords. The ending and credits use the selected soft flute arrangement. See [effect sources](audio/selected/CREDITS.md) and [credits music provenance](audio/credits/CREDITS.en.md).
 
@@ -74,7 +74,7 @@ The closing message is: **May the stars light your way.**
 
 Settings and best full-run scores per difficulty are stored in this browser. Practice is not recorded. Runs cannot be resumed after reload. Clearing browser data removes local records. Existing save keys and data remain compatible.
 
-Online ranking is optional and requires the same-origin PHP/SQLite service. Normal runs contact it when starting; failed connection still allows local play. Names and results are sent only when you press the submission button. Do not enter personal information. [Read the full data disclosure](ONLINE.en.md) before submitting.
+Online ranking is optional and requires the same-origin PHP/SQLite service. Normal runs contact it when starting; failed connection still allows local play. Normal results are registered automatically under a numbered nickname. Change the name from the result screen; it applies to this browser’s existing records across difficulties and future runs, preserving scores and details. Practice and diagnostics are excluded. Do not enter personal information. [Read the full data disclosure](ONLINE.en.md) before normal play.
 
 Rankings show the top ten per difficulty with time, returned bullets, and expandable run details. Missing historical details are shown as unrecorded. Each browser retains one best entry per difficulty. Clearing local records does not delete online entries.
 
@@ -108,3 +108,8 @@ Player and enemy wings, appendages and laser light now move. Reduced effects sto
 
 
 Shared captions include the planned introduction page at `https://ytec.cloudfree.jp/forge/en/projects/hoshigaeshi/` in English, or `/forge/projects/hoshigaeshi/` in Japanese. These pages are planned for public launch. Captions never include the current local or unlisted test URL.
+
+
+## v9 feedback37 (November 14, 2026)
+
+The result screen, X caption and shared/saved PNG include the selected difficulty in English and Japanese. Normal results are registered automatically under a server-assigned nickname; use the result-screen name button to change it. Retry uncertain submissions from the same result screen. Existing best scores and details are preserved.

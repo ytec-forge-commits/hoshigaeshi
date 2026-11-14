@@ -63,5 +63,7 @@
   "feedback29-credits-audio.cjs",
   "feedback30-gamepad.cjs",
   "feedback32-locale.cjs",
-  "feedback33-transition.cjs"
+  "feedback33-transition.cjs",
+  "feedback37-ranking-client.cjs",
+  "feedback37-share.cjs"
 ]
